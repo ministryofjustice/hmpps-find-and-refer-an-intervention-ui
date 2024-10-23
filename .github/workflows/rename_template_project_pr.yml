@@ -20,13 +20,7 @@ on:
         description: 'Production kubernetes alerts. The severity label used by prometheus to route alert notifications to slack. See cloud-platform user guide.'
         required: true
         default: 'digital-prison-service'
-
-permissions:
-  contents: write
-  actions: write
-  pull-requests: write
   
-    
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -43,7 +37,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RENAME_TOKEN }}
           commit-message: updating project name after deployment from template repository
           title: Update template project name/references
           body: Update all references to project name after deploying from template repository
