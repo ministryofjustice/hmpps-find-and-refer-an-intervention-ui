@@ -1,8 +1,8 @@
 {
-  "name": "hmpps-template-typescript",
+  "name": "hmpps-find-and-refer-an-intervention-ui",
   "version": "0.0.1",
-  "description": "HMPPS Typescript Template",
-  "repository": "git@github.com:ministryofjustice/hmpps-template-typescript.git",
+  "description": "HMPPS Find And Refer An Intervention Ui",
+  "repository": "git@github.com:ministryofjustice/hmpps-find-and-refer-an-intervention-ui.git",
   "license": "MIT",
   "scripts": {
     "prepare": "husky",

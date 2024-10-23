@@ -5,7 +5,7 @@ orbs:
 parameters:
   releases-slack-channel:
     type: string
-    default: SLACK_RELEASES_CHANNEL
+    default: interventions-dev-notifications
   node-version:
     type: string
     default: 20.17-browsers
@@ -145,7 +145,7 @@ workflows:
 #          pipeline_number: <<pipeline.number>>
 #          context:
 #            - hmpps-common-vars
-#            - hmpps-template-typescript-preprod
+#            - hmpps-find-and-refer-an-intervention-ui-preprod
 #          requires:
 #            - request-preprod-approval
 #          helm_timeout: 5m
@@ -164,7 +164,7 @@ workflows:
 #          slack_channel_name: << pipeline.parameters.releases-slack-channel >>
 #          context:
 #            - hmpps-common-vars
-#            - hmpps-template-typescript-prod
+#            - hmpps-find-and-refer-an-intervention-ui-prod
 #          requires:
 #            - request-prod-approval
 #          helm_timeout: 5m
