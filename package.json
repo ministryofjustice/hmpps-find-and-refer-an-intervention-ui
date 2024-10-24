@@ -151,7 +151,8 @@
     "prettier-plugin-jinja-template": "^2.0.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.11.0"
   },
   "overrides": {
     "csurf": {
