@@ -15,7 +15,7 @@ generic-service:
   ingress:
     enabled: true
     host: app-hostname.local # override per environment
-    tlsSecretName: hmpps-find-and-refer-an-intervention-ui-cert
+    tlsSecretName: find-and-refer-an-intervention-ui-cert
 
   livenessProbe:
     httpGet:
