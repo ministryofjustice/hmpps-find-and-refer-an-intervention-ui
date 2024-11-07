@@ -1,1 +1,1 @@
-CREATE DATABASE fina-and-refer-an-intervention;
+CREATE DATABASE find-and-refer-an-intervention;
