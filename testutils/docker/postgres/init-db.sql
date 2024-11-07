@@ -1,1 +1,1 @@
-CREATE DATABASE interventions;
+CREATE DATABASE fina-and-refer-an-intervention;
