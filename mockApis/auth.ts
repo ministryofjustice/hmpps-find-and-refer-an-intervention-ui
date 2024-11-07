@@ -13,7 +13,7 @@ export default class AuthServiceMocks {
       user_name: 'USER1',
       scope: ['read'],
       auth_source: authSource,
-      authorities: authSource === 'auth' ? ['ROLE_CRS_PROVIDER'] : ['ROLE_PROBATION'],
+      authorities: authSource === 'delius' ? ['ROLE_PROBATION'] : [],
       jti: '83b50a10-cca6-41db-985f-e87efb303ddb',
       client_id: 'interventions',
       user_id: '9C2744E3-65CD-4B40-B036-95DBD6F9A871',
