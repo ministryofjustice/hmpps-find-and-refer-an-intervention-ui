@@ -11,36 +11,37 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/auth/health"]
     environment:
-      - SPRING_PROFILES_ACTIVE=dev
+      - SERVER_PORT=8080
+      - SPRING_PROFILES_ACTIVE=dev,delius,local-postgres
+      - DELIUS_ENDPOINT_URL=http://wiremock:8080/delius
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://auth-db:5432/auth-db
       - APPLICATION_AUTHENTICATION_UI_ALLOWLIST=0.0.0.0/0
 
-  app:
-    build:
-      context: .
-      args:
-        BUILD_NUMBER: "1.0.0"
-        GIT_REF: "a1b2c3"
-        GIT_BRANCH: main
+  auth-db:
+    image: postgres:15
     networks:
       - hmpps
+    container_name: auth-db
+    restart: always
     ports:
-      - "3000:3000"
+      - "5434:5432"
     environment:
-      - PRODUCT_ID=UNASSIGNED
-      - REDIS_ENABLED=false
-      - REDIS_HOST=localhost
-      - HMPPS_AUTH_EXTERNAL_URL=http://localhost:9090/auth
-      - HMPPS_AUTH_URL=http://hmpps-auth:8080/auth
-      # These will need to match new creds in the seed auth service auth
-      - AUTH_CODE_CLIENT_ID=hmpps-typescript-template
-      - AUTH_CODE_CLIENT_SECRET=clientsecret
-      - CLIENT_CREDS_CLIENT_ID=hmpps-typescript-template-system
-      - CLIENT_CREDS_CLIENT_SECRET=clientsecret
-      - SESSION_SECRET=somesecretvalue
-      - TOKEN_VERIFICATION_API_URL=http://hmpps-auth:8080/auth
-      - TOKEN_VERIFICATION_ENABLED=false
-      - INGRESS_URL=http://localhost:3000
-      - NO_HTTPS=true
+      - POSTGRES_PASSWORD=admin_password
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=auth-db
+    healthcheck:
+      test: pg_isready -d auth-db
+
+  wiremock:
+    image: wiremock/wiremock
+    networks:
+      - hmpps
+    restart: always
+    ports:
+      - "9092:8080"
+    volumes:
+      - ./wiremock_mappings:/home/wiremock/mappings
+    command: '--verbose'
 
 networks:
   hmpps:
