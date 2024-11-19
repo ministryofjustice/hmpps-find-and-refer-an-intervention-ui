@@ -3,16 +3,16 @@ import CataloguePresenter from './cataloguePresenter'
 export default class CatalogueView {
   constructor(private readonly presenter: CataloguePresenter) {}
 
-  // private get summaryListArgs() {
-  //   return ViewUtils.summaryListArgs(this.presenter.serviceUserSummary)
-  // }
+  private get randomData() {
+    return { reference: 'reference data', number: 9, moreInfo: this.presenter.text.moreInfoText }
+  }
 
   get renderArgs(): [string, Record<string, unknown>] {
     return [
       'catalogue/catalogue',
       {
         presenter: this.presenter,
-        // summaryListArgs: this.summaryListArgs,
+        randomData: this.randomData,
       },
     ]
   }
