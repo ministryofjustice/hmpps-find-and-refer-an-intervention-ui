@@ -1,0 +1,18 @@
+{% extends "../partials/layout.njk" %}
+
+{% set pageTitle = applicationName + " - Home" %}
+{% set mainClasses = "app-container govuk-body" %}
+
+{% block content %}
+
+  <h1>Catalogue Page </h1>
+  <p>Please check back later when there is content to view.</p>
+
+  <ul>
+      <li>{{ randomData.reference }}</li>
+      <li>{{ randomData.number }}</li>
+      <li>{{ randomData.moreInfo }}</li>
+  </ul>
+
+
+{% endblock %}
