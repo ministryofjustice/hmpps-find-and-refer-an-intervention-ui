@@ -1,4 +1,4 @@
-import { ApiConfig } from '../config'
+import config from '../config'
 import RestClient from '../data/restClient'
 
 export interface DummyData {
@@ -8,10 +8,10 @@ export interface DummyData {
 }
 
 export default class FindAndReferService {
-  constructor(private readonly config: ApiConfig) {}
+  constructor() {}
 
   createRestClient(token: string): RestClient {
-    return new RestClient('Find and Refer Service API Client', this.config, token)
+    return new RestClient('Find and Refer Service API Client', config.apis.findAndReferService, token)
   }
 
   async getDummy(token: string, id: string): Promise<DummyData> {

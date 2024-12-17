@@ -1,5 +1,5 @@
 {% extends "../partials/layout.njk" %}
-{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {% set pageTitle = applicationName + " - Home" %}
 {% set mainClasses = "app-container govuk-body" %}
@@ -9,31 +9,32 @@
   <h1>This is a Test Page </h1>
   <p>Test getting data from the service</p>
 
-<dl class="govuk-summary-list">
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      ID
-    </dt>
-    <dd class="govuk-summary-list__value">
-      {{ dummyData.dummyId }}
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Description
-    </dt>
-    <dd class="govuk-summary-list__value">
-      {{ dummyData.dummyDescription }}
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Date
-    </dt>
-    <dd class="govuk-summary-list__value">
-      {{ dummyData.dummyDate }}
-    </dd>
-
-  </div>
-</dl>
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "ID"
+      },
+      value: {
+        text: dummyData.dummyId
+      }
+    },
+    {
+      key: {
+        text: "Description"
+      },
+      value: {
+        text: dummyData.dummyDescription
+      }
+    },
+    {
+      key: {
+        text: "Date"
+      },
+      value: {
+        text: dummyData.dummyDate
+      }
+    }
+  ]
+}) }}
 {% endblock %}

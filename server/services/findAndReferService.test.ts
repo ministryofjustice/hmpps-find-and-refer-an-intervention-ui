@@ -7,7 +7,7 @@ import MockRestClient from '../testutils/mockRestClient'
 jest.mock('../data/restClient')
 
 describe('Find and Refer Service', () => {
-  const findAndReferService = new FindAndReferService(config.apis.findAndReferService)
+  const findAndReferService = new FindAndReferService()
   const restClientMock = new MockRestClient(config.apis.findAndReferService) as jest.Mocked<RestClient>
   findAndReferService.createRestClient = jest.fn().mockReturnValue(restClientMock)
 
