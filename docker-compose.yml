@@ -1,6 +1,18 @@
 version: '3.1'
 services:
 
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    networks:
+      - hmpps
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./testutils/docker/postgres:/docker-entrypoint-initdb.d:ro
+
   hmpps-auth:
     image: quay.io/hmpps/hmpps-auth:latest
     networks:
@@ -31,6 +43,20 @@ services:
       - POSTGRES_DB=auth-db
     healthcheck:
       test: pg_isready -d auth-db
+
+  find-and-refer-interventions-service:
+    image: quay.io/hmpps/hmpps-find-and-refer-an-intervention-service
+    restart: always
+    networks:
+      - hmpps
+    container_name: find-and-refer-interventions-service
+    depends_on:
+      - postgres
+    ports:
+      - '8092:8080'
+    environment:
+      - SPRING_PROFILES_ACTIVE=local
+      - POSTGRES_URI=postgres:5432
 
   wiremock:
     image: wiremock/wiremock
