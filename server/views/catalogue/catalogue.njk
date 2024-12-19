@@ -1,3 +1,9 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{%- from "moj/components/filter/macro.njk" import mojFilter -%}
+
 {% extends "../partials/layout.njk" %}
 
 {% set pageTitle = applicationName + " - Home" %}
@@ -5,14 +11,50 @@
 
 {% block content %}
 
-  <h1>Catalogue Page </h1>
-  <p>Please check back later when there is content to view.</p>
+    <h1 class="govuk-heading-l">{{ presenter.text.pageHeading }}</h1>
 
-  <ul>
-      <li>{{ randomData.reference }}</li>
-      <li>{{ randomData.number }}</li>
-      <li>{{ randomData.moreInfo }}</li>
-  </ul>
+    <div class="govuk-grid-row">
 
+        {%- set filterOptionsHtml %}
+            {{ govukInput(searchByProgrammeNameInputArgs) }}
+            {{ govukCheckboxes(settingCheckboxArgs) }}
+            {{ govukInput(locationInputArgs) }}
+            {{ govukCheckboxes(genderCheckboxArgs) }}
+            {{ govukCheckboxes(typeCheckboxArgs) }}
+            {{ govukCheckboxes(needsCheckboxArgs) }}
+            {{ govukCheckboxes(formatCheckboxArgs) }}
+            {{ govukCheckboxes(attendanceTypeCheckboxArgs) }}
+        {% endset -%}
 
+        <div class="govuk-grid-column-one-third">
+            {{ mojFilter({
+              heading: {
+                text: 'Filter'
+              },
+              submit: {
+                attributes: {
+                    "data-test-id": "submit-button"
+                }
+              },
+              optionsHtml: filterOptionsHtml
+            }) }}
+        </div>
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {% for x in presenter.interventions %}
+                  <h2 class="govuk-heading-m">
+                    <a class="govuk-link" href="aaa">{{x.title}}</a>
+                  </h2>
+                        <strong class="govuk-tag govuk-tag--yellow" style="max-width: none; color: #0b0c0c">General violence offence</strong>
+
+                  {{ govukSummaryList(summaryListArgs(presenter.interventionSummaryList(x))) }}
+
+                  <p class="govuk-body"npShort description ->> {{ x.description }}</p>
+
+                  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
+

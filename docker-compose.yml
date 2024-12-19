@@ -32,6 +32,18 @@ services:
     healthcheck:
       test: pg_isready -d auth-db
 
+  postgres:
+    image: postgres:14.12-alpine
+    container_name: postgres
+    networks:
+      - hmpps
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+#    volumes:
+#      - ./testutils/docker/postgres:/docker-entrypoint-initdb.d:ro
+
   wiremock:
     image: wiremock/wiremock
     networks:
