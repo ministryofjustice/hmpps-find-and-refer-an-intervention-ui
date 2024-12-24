@@ -44,10 +44,28 @@
         <div class="govuk-grid-column-two-thirds">
 
             {% for x in presenter.interventions %}
+              <div class="gem-c-document-list__item-title">
                   <h2 class="govuk-heading-m">
                     <a class="govuk-link" href="aaa">{{x.title}}</a>
                   </h2>
-                        <strong class="govuk-tag govuk-tag--yellow" style="max-width: none; color: #0b0c0c">General violence offence</strong>
+              </div>
+              <span class="govuk-tag govuk-tag--yellow gov-tag-heading">General violence offence</span>
+
+             <div>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Accommodation</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Education, training and employability</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Financial management and income</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Relationships</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Lifestyle and associates</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Drug misuse</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Alcohol misuse</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Emotional wellbeing</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Thinking and behaviour</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Attitudes</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Education, training and employability</strong>
+             </div>
+
+
 
                   {{ govukSummaryList(summaryListArgs(presenter.interventionSummaryList(x))) }}
 
