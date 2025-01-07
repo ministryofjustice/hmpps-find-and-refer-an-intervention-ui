@@ -189,6 +189,7 @@ export default class CatalogueView {
         typeCheckboxArgs: this.typeCheckboxArgs,
         formatCheckboxArgs: this.formatCheckboxArgs,
         attendanceTypeCheckboxArgs: this.attendanceTypeCheckboxArgs,
+        pagination: this.presenter.pagination.mojPaginationArgs,
       },
     ]
   }

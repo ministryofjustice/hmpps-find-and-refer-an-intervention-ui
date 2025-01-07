@@ -1,8 +1,37 @@
 import InterventionSummary from '../../models/interventionSummary'
 import { SummaryListItem } from '../../utils/summaryList'
+import Pagination from '../../utils/pagination/pagination'
 
 export default class CataloguePresenter {
-  constructor(private readonly sampleText: string) {}
+  public readonly pagination: Pagination
+
+  interventions = [
+    this.sampleIntervention('intervention 1'),
+    this.sampleIntervention('intervention 2'),
+    this.sampleIntervention('intervention 3'),
+    this.sampleIntervention('intervention 4'),
+    this.sampleIntervention('intervention 5'),
+    this.sampleIntervention('intervention 6'),
+    this.sampleIntervention('intervention 7'),
+    this.sampleIntervention('intervention 8'),
+    this.sampleIntervention('intervention 9'),
+    this.sampleIntervention('intervention 10'),
+    this.sampleIntervention('intervention 11'),
+    this.sampleIntervention('intervention 12'),
+    this.sampleIntervention('intervention 13'),
+    this.sampleIntervention('intervention 14'),
+  ]
+
+  constructor(private readonly sampleText: string) {
+    this.pagination = new Pagination({
+      content: this.interventions,
+      totalElements: 14,
+      totalPages: 3,
+      numberOfElements: 5,
+      number: 0,
+      size: 5,
+    })
+  }
 
   readonly text = {
     pageHeading: 'Search Results',
@@ -142,13 +171,13 @@ export default class CataloguePresenter {
     // ),
   }
 
-  get interventions(): InterventionSummary[] {
-    return [
-      this.sampleIntervention('intervention 1'),
-      this.sampleIntervention('intervention 2'),
-      this.sampleIntervention('intervention 3'),
-    ]
-  }
+  // get interventions(): InterventionSummary[] {
+  //   return [
+  //     this.sampleIntervention('intervention 1'),
+  //     this.sampleIntervention('intervention 2'),
+  //     this.sampleIntervention('intervention 3'),
+  //   ]
+  // }
 
   interventionSummaryList(intervention: InterventionSummary): SummaryListItem[] {
     return [
