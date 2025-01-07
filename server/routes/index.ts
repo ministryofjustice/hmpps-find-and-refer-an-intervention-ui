@@ -16,18 +16,18 @@ export default function routes({ auditService, findAndReferService }: Services):
   const testController = new TestController(findAndReferService)
   const searchController = new SearchController()
 
-  get('/', async (req, res, next) => {
-    await auditService.logPageView(Page.EXAMPLE_PAGE, { who: res.locals.user.username, correlationId: req.id })
+  // get('/', async (req, res, next) => {
+  //   await auditService.logPageView(Page.EXAMPLE_PAGE, { who: res.locals.user.username, correlationId: req.id })
+  //
+  //   res.render('pages/index')
+  // })
 
-    res.render('pages/index')
+  get('/', async (req, res, next) => {
+    await catalogueController.showCancellationConfirmationPage(req, res)
   })
 
   get('/search', async (req, res, next) => {
     await searchController.showSearchPage(req, res)
-  })
-
-  get('/catalogue', async (req, res, next) => {
-    await catalogueController.showCancellationConfirmationPage(req, res)
   })
 
   get('/test', async (req, res, next) => {
