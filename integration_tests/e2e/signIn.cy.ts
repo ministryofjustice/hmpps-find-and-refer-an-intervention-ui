@@ -2,6 +2,7 @@ import IndexPage from '../pages/index'
 import AuthSignInPage from '../pages/authSignIn'
 import Page from '../pages/page'
 import AuthManageDetailsPage from '../pages/authManageDetails'
+import Unauthorised from '../pages/unauthorised'
 
 context('Sign In', () => {
   beforeEach(() => {
@@ -66,10 +67,32 @@ context('Sign In', () => {
     Page.verifyOnPage(AuthSignInPage)
 
     cy.task('stubVerifyToken', true)
-    cy.task('stubSignIn', { name: 'bobby brown' })
+    cy.task('stubSignIn', { name: 'bobby brown', roles: ['ACP_REFERRER'] })
 
     cy.signIn()
 
     indexPage.headerUserName().contains('B. Brown')
+  })
+})
+
+context('Sign In with invalid role', () => {
+  beforeEach(() => {
+    cy.task('reset')
+    cy.task('stubSignInInvalidRole')
+  })
+
+  it('Unauthenticated user directed to auth', () => {
+    cy.visit('/')
+    Page.verifyOnPage(AuthSignInPage)
+  })
+
+  it('Unauthenticated user navigating to sign in page directed to auth', () => {
+    cy.visit('/sign-in')
+    Page.verifyOnPage(AuthSignInPage)
+  })
+
+  it('User name visible in header', () => {
+    cy.signIn({ failOnStatusCode: false })
+    Page.verifyOnPage(Unauthorised)
   })
 })
