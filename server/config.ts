@@ -104,4 +104,5 @@ export default {
   },
   ingressUrl: get('INGRESS_URL', 'http://localhost:3000', requiredInProduction),
   environmentName: get('ENVIRONMENT_NAME', ''),
+  allowedRoles: ['ROLE_PROBATION', 'ROLE_ACP_REFERRER', 'ROLE_ACP_EDITOR'],
 }

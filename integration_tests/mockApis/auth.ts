@@ -130,6 +130,12 @@ export default {
   getSignInUrl,
   stubAuthPing: ping,
   stubAuthManageDetails: manageDetails,
-  stubSignIn: (userToken: UserToken = {}): Promise<[Response, Response, Response, Response, Response]> =>
+  stubSignIn: (
+    userToken: UserToken = { roles: ['ACP_REFERRER'] },
+  ): Promise<[Response, Response, Response, Response, Response]> =>
+    Promise.all([favicon(), redirect(), signOut(), token(userToken), tokenVerification.stubVerifyToken()]),
+  stubSignInInvalidRole: (
+    userToken: UserToken = { roles: ['NOT_A_ROLE'] },
+  ): Promise<[Response, Response, Response, Response, Response]> =>
     Promise.all([favicon(), redirect(), signOut(), token(userToken), tokenVerification.stubVerifyToken()]),
 }
