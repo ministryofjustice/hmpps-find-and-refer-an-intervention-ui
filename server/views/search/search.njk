@@ -1,0 +1,21 @@
+{% extends "../partials/layout.njk" %}
+
+{% set pageTitle = applicationName  %}
+{% set pageSubTitle = "Search for crn" %}
+{% set mainClasses = "app-container govuk-body" %}
+
+
+{% block content %}
+
+  <h1 class="govuk-heading-l">{{ presenter.text.title }}</h1>
+  <h1>Search</h1>
+  <p>Please check back later when there is content to view.</p>
+
+  <ul>
+      <li>{{ randomData.reference }}</li>
+      <li>{{ randomData.number }}</li>
+      <li>{{ randomData.moreInfo }}</li>
+  </ul>
+
+
+{% endblock %}

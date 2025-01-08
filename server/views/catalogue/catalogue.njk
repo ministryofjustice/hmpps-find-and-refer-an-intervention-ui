@@ -1,3 +1,9 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{%- from "moj/components/filter/macro.njk" import mojFilter -%}
+
 {% extends "../partials/layout.njk" %}
 
 {% set pageTitle = applicationName + " - Home" %}
@@ -5,14 +11,70 @@
 
 {% block content %}
 
-  <h1>Catalogue Page </h1>
-  <p>Please check back later when there is content to view.</p>
+    <h1 class="govuk-heading-l">{{ presenter.text.pageHeading }}</h1>
 
-  <ul>
-      <li>{{ randomData.reference }}</li>
-      <li>{{ randomData.number }}</li>
-      <li>{{ randomData.moreInfo }}</li>
-  </ul>
+    <div class="govuk-grid-row">
+
+        {%- set filterOptionsHtml %}
+            {{ govukInput(searchByProgrammeNameInputArgs) }}
+            {{ govukCheckboxes(settingCheckboxArgs) }}
+            {{ govukInput(locationInputArgs) }}
+            {{ govukCheckboxes(genderCheckboxArgs) }}
+            {{ govukCheckboxes(typeCheckboxArgs) }}
+            {{ govukCheckboxes(needsCheckboxArgs) }}
+            {{ govukCheckboxes(formatCheckboxArgs) }}
+            {{ govukCheckboxes(attendanceTypeCheckboxArgs) }}
+        {% endset -%}
 
 
+        <div class="govuk-grid-column-one-third">
+            {{ mojFilter({
+              heading: {
+                text: 'Filter'
+              },
+              submit: {
+                attributes: {
+                    "data-test-id": "submit-button"
+                }
+              },
+              optionsHtml: filterOptionsHtml
+            }) }}
+        </div>
+
+        <div class="govuk-grid-column-two-thirds">
+
+            {% for x in presenter.interventions %}
+              <div class="gem-c-document-list__item-title">
+                  <h2 class="govuk-heading-m">
+                    <a class="govuk-link" href="aaa">{{x.title}}</a>
+                  </h2>
+              </div>
+              <span class="govuk-tag govuk-tag--yellow gov-tag-heading">General violence offence</span>
+
+             <div>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Accommodation</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Education, training and employability</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Financial management and income</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Relationships</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Lifestyle and associates</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Drug misuse</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Alcohol misuse</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Emotional wellbeing</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Thinking and behaviour</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Attitudes</strong>
+               <strong class="govuk-tag govuk-tag--grey tag-filters">Education, training and employability</strong>
+             </div>
+
+
+
+                  {{ govukSummaryList(summaryListArgs(presenter.interventionSummaryList(x))) }}
+
+                  <p class="govuk-body"npShort description ->> {{ x.description }}</p>
+
+                  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+            {% endfor %}
+        </div>
+    </div>
+{% include "../partials/pagination.njk" %}
 {% endblock %}
+
