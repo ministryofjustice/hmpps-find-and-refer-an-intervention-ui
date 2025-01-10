@@ -1,4 +1,4 @@
-import AuthUserDetails from '../models/hmppsAuth/authUserDetails'
+import AuthUserDetails from '../shared/models/hmppsAuth/authUserDetails'
 
 export enum ListStyle {
   noMarkers,

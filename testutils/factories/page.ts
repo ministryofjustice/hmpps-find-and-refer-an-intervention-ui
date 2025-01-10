@@ -1,5 +1,5 @@
 import { Factory } from 'fishery'
-import { Page } from '../../server/models/pagination'
+import { Page } from '../../server/shared/models/pagination'
 
 class PageFactory<T> extends Factory<Page<T>> {
   pageContent(content: T[]) {
