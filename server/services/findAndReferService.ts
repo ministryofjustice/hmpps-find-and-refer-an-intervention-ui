@@ -1,4 +1,6 @@
-import config from '../config'
+import type { SystemToken } from '@hmpps-auth'
+import config, { ApiConfig } from '../config'
+import type { HmppsAuthClient, RestClientBuilderWithoutToken } from '../data'
 import RestClient from '../data/restClient'
 
 export interface DummyData {
@@ -8,14 +10,15 @@ export interface DummyData {
 }
 
 export default class FindAndReferService {
-  constructor() {}
+  constructor(private readonly hmppsAuthClientBuilder: RestClientBuilderWithoutToken<HmppsAuthClient>) {}
 
-  createRestClient(token: string): RestClient {
-    return new RestClient('Find and Refer Service API Client', config.apis.findAndReferService, token)
-  }
+  createRestClient = (token: Express.User['token'] | SystemToken): RestClient =>
+    new RestClient('Find and Refer Service API Client', config.apis.findAndReferService as ApiConfig, token)
 
-  async getDummy(token: string, id: string): Promise<DummyData> {
-    const restClient = this.createRestClient(token)
+  async getDummy(id: string, username: Express.User['username']): Promise<DummyData> {
+    const hmppsAuthClient = this.hmppsAuthClientBuilder()
+    const systemToken = await hmppsAuthClient.getSystemClientToken(username)
+    const restClient = this.createRestClient(systemToken)
     return (await restClient.get({
       path: `/dummy/${id}`,
       headers: { Accept: 'application/json' },
