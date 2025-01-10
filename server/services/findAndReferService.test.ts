@@ -29,7 +29,7 @@ beforeEach(() => {
 
 describe('Find and Refer Service', () => {
   it('should call get dummy data with the correct params', async () => {
-    const result = await findAndReferService.getDummy('12345', username)
+    await findAndReferService.getDummy('12345', username)
     expect(hmppsAuthClientBuilder).toHaveBeenCalled()
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({ headers: { Accept: 'application/json' }, path: '/dummy/12345' })
