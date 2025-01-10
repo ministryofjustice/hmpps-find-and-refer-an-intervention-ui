@@ -1,4 +1,4 @@
-import InterventionSummary from '../../models/interventionSummary'
+import InterventionSummary from '../models/interventionSummary'
 import { SummaryListItem } from '../../utils/summaryList'
 import Pagination from '../../utils/pagination/pagination'
 
