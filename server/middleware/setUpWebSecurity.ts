@@ -28,6 +28,7 @@ export default function setUpWebSecurity(): Router {
           styleSrc: ["'self'", (_req: Request, res: Response) => `'nonce-${res.locals.cspNonce}'`],
           fontSrc: ["'self'"],
           formAction: [`'self' ${config.apis.hmppsAuth.externalUrl}`],
+          connectSrc: ['*.applicationinsights.azure.com'],
         },
       },
       crossOriginEmbedderPolicy: true,

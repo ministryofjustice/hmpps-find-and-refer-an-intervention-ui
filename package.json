@@ -77,6 +77,8 @@
   },
   "dependencies": {
     "@aws-sdk/client-sqs": "^3.668.0",
+    "@microsoft/applicationinsights-clickanalytics-js": "^3.3.4",
+    "@microsoft/applicationinsights-web": "^3.3.4",
     "@ministryofjustice/frontend": "^3.0.1",
     "@types/jsonwebtoken": "^9.0.7",
     "agentkeepalive": "^4.5.0",

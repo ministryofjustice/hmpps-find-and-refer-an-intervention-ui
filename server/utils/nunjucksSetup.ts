@@ -14,6 +14,8 @@ export default function nunjucksSetup(app: express.Express): void {
   app.locals.applicationName = 'HMPPS Find And Refer An Intervention Ui'
   app.locals.environmentName = config.environmentName
   app.locals.environmentNameColour = config.environmentName === 'PRE-PRODUCTION' ? 'govuk-tag--green' : ''
+  app.locals.applicationInsightsConnectionString = config.applicationInsights.connectionString || ''
+  app.locals.appInsightsApplicationName = config.applicationInsights.cloudRoleName
   let assetManifest: Record<string, string> = {}
 
   try {

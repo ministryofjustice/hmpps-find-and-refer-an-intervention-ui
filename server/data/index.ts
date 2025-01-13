@@ -8,7 +8,7 @@ import applicationInfoSupplier from '../applicationInfo'
 
 const applicationInfo = applicationInfoSupplier()
 initialiseAppInsights()
-buildAppInsightsClient(applicationInfo)
+buildAppInsightsClient(applicationInfo, config.applicationInsights.cloudRoleName)
 
 import HmppsAuthClient from './hmppsAuthClient'
 import { createRedisClient } from './redisClient'

@@ -2,6 +2,39 @@
 
 {% block head %}
   <link href="{{ '/assets/css/app.css' | assetMap }}" rel="stylesheet"/>
+{% if appInsightsConnectionString %}
+<script type="text/javascript" src="/assets/applicationinsights-web.min.js"  nonce="{{ cspNonce }}"></script>
+<script type="text/javascript" src="/assets/applicationinsights-clickanalytics-js.min.js"  nonce="{{ cspNonce }}"></script>
+<script type="text/javascript" nonce="{{ cspNonce }}">
+  const clickPluginInstance = new Microsoft.ApplicationInsights.ClickAnalyticsPlugin();
+  // Click Analytics configuration
+  const clickPluginConfig = {
+    autoCapture : true,
+    dataTags: {
+      useDefaultContentNameOrId: true
+    }
+  }
+  const snippet = {
+    config: {
+      connectionString: "{{ appInsightsConnectionString }}",
+      extensions: [
+        clickPluginInstance
+      ],
+      extensionConfig: {
+        [clickPluginInstance.identifier] : clickPluginConfig
+      },
+      autoTrackPageVisitTime: true
+    }
+  }
+  const init = new Microsoft.ApplicationInsights.ApplicationInsights(snippet)
+  const appInsights = init.loadAppInsights();
+  appInsights.addTelemetryInitializer(function (envelope) {
+    envelope.tags["ai.cloud.role"] = "{{ appInsightsApplicationName }}"
+    envelope.tags["ai.application.ver"] = "{{ buildNumber }}"
+  });
+  appInsights.trackPageView();
+</script>
+{% endif %}
 {% endblock %}
 
 {% block pageTitle %}
