@@ -46,7 +46,7 @@ Then the application can be started using the start dev script which will automa
 npm run start:dev
 ```
 
-### Connecting to local database
+## Connecting to local database
 
 The service uses a postgres database alongside flyaway migrations to create and populate the database. To connect to the
 database locally in your preferred database
@@ -61,7 +61,7 @@ Create new connection using local database credentials;
 | Username | postgres |
 | Password | password |
 
-### Authorization
+## Authorization
 
 The service uses an Oauth 2.0 setup managed through the Hmpps Auth project. To call any endpoints locally a bearer token
 must be generated. This can be done through calling the auth endpoint in the Hmpps-auth service.
@@ -81,7 +81,7 @@ For Client ID and Secret refer to the relevant credentials for the Find and Refe
 For any issues please reach out to the Find and Refer Interventions team in
 slack [#find-refer-interventions-team](https://moj.enterprise.slack.com/archives/C06MPNK0AD6)
 
-### Client Credentials flow
+## Client Credentials flow
 
 These are used by the application to request tokens to make calls to APIs. These are system accounts that will have
 their own sets of roles.
@@ -99,7 +99,7 @@ These credentials are configured using the following env variables:
 
 System tokens are obtained by making a call to HMPPS-Auth using the username of the logged in user. This token can then be added to the appropriate rest client calling to another service.
 
-### Logging in with a test user
+## Logging in with a test user
 
 Once the application is running you should then be able to login with:
 
@@ -109,6 +109,8 @@ password: password123456
 To request specific users and roles then raise a PR
 to [update the seed data](https://github.com/ministryofjustice/hmpps-auth/blob/main/src/main/resources/db/dev/data/auth/V900_3__users.sql)
 for the in-memory DB used by Auth
+
+## Extra commands
 
 ### Run linter
 
