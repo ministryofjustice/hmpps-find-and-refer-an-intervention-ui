@@ -1,7 +1,7 @@
 import * as nunjucks from 'nunjucks'
 import { ListStyle, SummaryListItem, SummaryListItemContent } from './summaryList'
 import { ErrorSummaryArgs, SummaryListArgs, SummaryListArgsRowActionsItem } from './govukFrontendTypes'
-import AuthUserDetails from '../models/hmppsAuth/authUserDetails'
+import AuthUserDetails from '../shared/models/hmppsAuth/authUserDetails'
 
 export type SortableTableHeaders = {
   text: string

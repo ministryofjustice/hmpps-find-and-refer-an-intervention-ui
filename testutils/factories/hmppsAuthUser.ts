@@ -1,5 +1,5 @@
 import { Factory } from 'fishery'
-import AuthUserDetails from '../../server/models/hmppsAuth/authUserDetails'
+import AuthUserDetails from '../../server/shared/models/hmppsAuth/authUserDetails'
 
 export default Factory.define<AuthUserDetails>(({ sequence }) => ({
   userId: sequence.toString(),

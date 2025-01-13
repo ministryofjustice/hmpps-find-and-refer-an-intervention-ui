@@ -1,4 +1,4 @@
-import { Page } from '../../models/pagination'
+import { Page } from '../../shared/models/pagination'
 
 interface MojPaginationArgs {
   classes?: string
