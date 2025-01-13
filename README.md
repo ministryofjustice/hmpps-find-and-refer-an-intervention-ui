@@ -34,10 +34,11 @@ can optionally be run in detached mode in order to retain terminal use
 docker-compose up -d
 ```
 
-Before starting the application copy the .env.example file to a new .env file
+Node requires a .env file to start the application, even if it's blank.
+Before starting the application create a new blank .env file
 
 ```bash
-cp .env.example .test
+touch .env
 ```
 
 Then the application can be started using the start dev script which will automatically restart the application when any file changes are detected;
