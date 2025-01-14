@@ -8,7 +8,7 @@ import { buildAppInsightsClient, initialiseAppInsights } from '../utils/azureApp
 
 const applicationInfo = applicationInfoSupplier()
 initialiseAppInsights()
-buildAppInsightsClient(applicationInfo)
+buildAppInsightsClient(applicationInfo, config.applicationInsights.cloudRoleName)
 
 import config from '../config'
 import HmppsAuditClient from './hmppsAuditClient'
