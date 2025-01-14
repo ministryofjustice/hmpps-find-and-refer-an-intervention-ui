@@ -5,12 +5,12 @@
  */
 import applicationInfoSupplier from '../applicationInfo'
 import { buildAppInsightsClient, initialiseAppInsights } from '../utils/azureAppInsights'
+import config from '../config'
 
 const applicationInfo = applicationInfoSupplier()
 initialiseAppInsights()
 buildAppInsightsClient(applicationInfo, config.applicationInsights.cloudRoleName)
 
-import config from '../config'
 import HmppsAuditClient from './hmppsAuditClient'
 import HmppsAuthClient from './hmppsAuthClient'
 import { createRedisClient } from './redisClient'
