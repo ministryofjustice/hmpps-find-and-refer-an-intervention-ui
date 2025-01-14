@@ -5,6 +5,7 @@
  */
 import { initialiseAppInsights, buildAppInsightsClient } from '../utils/azureAppInsights'
 import applicationInfoSupplier from '../applicationInfo'
+import config from '../config'
 
 const applicationInfo = applicationInfoSupplier()
 initialiseAppInsights()
@@ -14,7 +15,6 @@ import HmppsAuthClient from './hmppsAuthClient'
 import { createRedisClient } from './redisClient'
 import RedisTokenStore from './tokenStore/redisTokenStore'
 import InMemoryTokenStore from './tokenStore/inMemoryTokenStore'
-import config from '../config'
 import HmppsAuditClient from './hmppsAuditClient'
 
 type RestClientBuilder<T> = (token: string) => T
