@@ -27,45 +27,6 @@
     "node": "^20",
     "npm": "^10"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": [
-        "ts-jest",
-        {
-          "isolatedModules": true
-        }
-      ]
-    },
-    "collectCoverageFrom": [
-      "server/**/*.{ts,js,jsx,mjs}"
-    ],
-    "testMatch": [
-      "<rootDir>/(server|job)/**/?(*.)(cy|test).{ts,js,jsx,mjs}"
-    ],
-    "testEnvironment": "node",
-    "reporters": [
-      "default",
-      [
-        "jest-junit",
-        {
-          "outputDirectory": "test_results/jest/"
-        }
-      ],
-      [
-        "./node_modules/jest-html-reporter",
-        {
-          "outputPath": "test_results/unit-test-reports.html"
-        }
-      ]
-    ],
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "json",
-      "node",
-      "ts"
-    ]
-  },
   "lint-staged": {
     "*.{ts,js,css}": [
       "prettier --write",
@@ -156,6 +117,7 @@
     "prettier-plugin-jinja-template": "^2.0.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.11.0"
   },

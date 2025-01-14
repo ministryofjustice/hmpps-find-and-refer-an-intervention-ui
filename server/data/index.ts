@@ -3,21 +3,27 @@
  * Do appinsights first as it does some magic instrumentation work, i.e. it affects other 'require's
  * In particular, applicationinsights automatically collects bunyan logs
  */
-import { initialiseAppInsights, buildAppInsightsClient } from '../utils/azureAppInsights'
 import applicationInfoSupplier from '../applicationInfo'
+import { buildAppInsightsClient, initialiseAppInsights } from '../utils/azureAppInsights'
 import config from '../config'
 
 const applicationInfo = applicationInfoSupplier()
 initialiseAppInsights()
 buildAppInsightsClient(applicationInfo, config.applicationInsights.cloudRoleName)
 
+import HmppsAuditClient from './hmppsAuditClient'
 import HmppsAuthClient from './hmppsAuthClient'
 import { createRedisClient } from './redisClient'
-import RedisTokenStore from './tokenStore/redisTokenStore'
 import InMemoryTokenStore from './tokenStore/inMemoryTokenStore'
-import HmppsAuditClient from './hmppsAuditClient'
+import RedisTokenStore from './tokenStore/redisTokenStore'
 
-type RestClientBuilder<T> = (token: string) => T
+type RestClientBuilder<T> = (token: Express.User['token']) => T
+type RestClientBuilderWithoutToken<T> = () => T
+
+// This should be changed to a redis client when redis is implemented properly
+const tokenStore = new InMemoryTokenStore()
+
+const hmppsAuthClientBuilder: RestClientBuilderWithoutToken<HmppsAuthClient> = () => new HmppsAuthClient(tokenStore)
 
 export const dataAccess = () => ({
   applicationInfo,
@@ -29,4 +35,4 @@ export const dataAccess = () => ({
 
 export type DataAccess = ReturnType<typeof dataAccess>
 
-export { HmppsAuthClient, RestClientBuilder, HmppsAuditClient }
+export { HmppsAuditClient, HmppsAuthClient, hmppsAuthClientBuilder, RestClientBuilder, RestClientBuilderWithoutToken }
