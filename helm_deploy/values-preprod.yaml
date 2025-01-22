@@ -10,6 +10,7 @@ generic-service:
   env:
     INGRESS_URL: "https://find-and-refer-intervention-preprod.hmpps.service.justice.gov.uk"
     HMPPS_AUTH_URL: "https://sign-in-preprod.hmpps.service.justice.gov.uk/auth"
+    FIND_AND_REFER_URL: "https://find-and-refer-intervention-api-preprod.hmpps.service.justice.gov.uk"
     TOKEN_VERIFICATION_API_URL: "https://token-verification-api-preprod.prison.service.justice.gov.uk"
     ENVIRONMENT_NAME: PRE-PRODUCTION
     AUDIT_ENABLED: "false"
