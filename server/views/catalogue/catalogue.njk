@@ -7,7 +7,7 @@
 {% extends "partials/layout.njk" %}
 
 {% set pageTitle = applicationName + " - Home" %}
-{% set mainClasses = "app-container govuk-body" %}
+{% set mainClasses = "" %}
 
 {% block content %}
 
@@ -49,7 +49,6 @@
                     <a class="govuk-link" href="aaa">{{x.title}}</a>
                   </h2>
               </div>
-              <span class="govuk-tag govuk-tag--yellow gov-tag-heading">General violence offence</span>
 
              <div>
                <strong class="govuk-tag govuk-tag--grey tag-filters">Accommodation</strong>
@@ -73,8 +72,8 @@
 
                   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
             {% endfor %}
+          {% include "../partials/pagination.njk" %}
         </div>
     </div>
-{% include "../partials/pagination.njk" %}
 {% endblock %}
 

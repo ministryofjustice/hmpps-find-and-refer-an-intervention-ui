@@ -1,5 +1,5 @@
 import InterventionSummary from '../models/interventionSummary'
-import { SummaryListItem } from '../../utils/summaryList'
+import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import Pagination from '../../utils/pagination/pagination'
 
 export default class CataloguePresenter {
@@ -182,10 +182,6 @@ export default class CataloguePresenter {
   interventionSummaryList(intervention: InterventionSummary): SummaryListItem[] {
     return [
       {
-        key: 'Intervention type',
-        lines: [intervention.interventionType, 'line 2'],
-      },
-      {
         key: 'Setting',
         lines: [intervention.setting],
       },
@@ -194,32 +190,23 @@ export default class CataloguePresenter {
         lines: [intervention.gender],
       },
       {
-        key: 'Min/max age',
-        lines: [intervention.ageRestriction],
+        key: 'Type',
+        lines: [
+          'Commissioned rehabilitative services (CRS) / Accredited programmes / Structured interventions / Toolkit',
+        ],
       },
       {
         key: 'Risk criteria',
-        lines: [intervention.riskCriteria],
+        lines: ['one', 'two', 'three'],
+        listStyle: ListStyle.bulleted,
       },
       {
-        key: 'Suitable for people with learning disabilities or challenges (LDC)',
-        lines: [intervention.suitableForPeopleWithLearningDisabilitiesOrChallenges],
-      },
-      {
-        key: 'Learning disability catered / intended for',
-        lines: [intervention.learningDisabilityCateredIntendedFor],
-      },
-      {
-        key: 'Equivalent non-LDC programme',
-        lines: [intervention.equivalentNonLDCProgramme],
+        key: 'Format',
+        lines: ['1-2-1, group'],
       },
       {
         key: 'Attendance type',
         lines: [intervention.attendanceType],
-      },
-      {
-        key: 'Delivery method',
-        lines: [intervention.deliveryMethod],
       },
     ]
   }
