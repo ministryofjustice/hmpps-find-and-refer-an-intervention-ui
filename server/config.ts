@@ -98,14 +98,6 @@ export default {
       },
       agent: new AgentConfig(),
     },
-    interventionCatalogueService: {
-      url: get('FIND_AND_REFER_URL', 'http://localhost:8080', requiredInProduction),
-      timeout: {
-        response: 10000,
-        deadline: 10000,
-      },
-      agent: new AgentConfig(),
-    },
     tokenVerification: {
       url: get('TOKEN_VERIFICATION_API_URL', 'http://localhost:8100', requiredInProduction),
       timeout: {

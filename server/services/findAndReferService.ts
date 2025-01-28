@@ -30,6 +30,8 @@ export default class FindAndReferService {
     const hmppsAuthClient = this.hmppsAuthClientBuilder()
     const systemToken = await hmppsAuthClient.getSystemClientToken(username)
     const restClient = this.createRestClient(systemToken)
+    console.log('%%%%%%', restClient)
+
     return (await restClient.get({
       path: `/dummy/${id}`,
       headers: { Accept: 'application/json' },
@@ -40,9 +42,12 @@ export default class FindAndReferService {
     username: Express.User['username'],
     paginationParams: PaginationParams,
   ): Promise<Page<InterventionCatalogueItem>> {
+    console.log('here')
     const hmppsAuthClient = this.hmppsAuthClientBuilder()
     const systemToken = await hmppsAuthClient.getSystemClientToken(username)
     const restClient = this.createRestClient(systemToken)
+    console.log('%%%%%%', restClient)
+
     return (await restClient.get({
       path: `/interventions`,
       headers: { Accept: 'application/json' },
