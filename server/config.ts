@@ -91,7 +91,7 @@ export default {
       systemClientSecret: get('CLIENT_CREDS_CLIENT_SECRET', 'clientsecret', requiredInProduction),
     },
     findAndReferService: {
-      url: get('FIND_AND_REFER_URL', 'http://localhost:8080', requiredInProduction),
+      url: get('FIND_AND_REFER_URL', 'http://localhost:8092', requiredInProduction),
       timeout: {
         response: 10000,
         deadline: 10000,
