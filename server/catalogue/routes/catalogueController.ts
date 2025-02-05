@@ -7,10 +7,11 @@ import FindAndReferService from '../../services/findAndReferService'
 export default class CatalogueController {
   constructor(private readonly findAndReferService: FindAndReferService) {}
 
-  async showCancellationConfirmationPage(req: Request, res: Response): Promise<void> {
+  async showCataloguePage(req: Request, res: Response): Promise<void> {
     const { username } = req.user
+    const pageNumber = req.query.page
     const interventionCatalogueItems = await this.findAndReferService.getInterventionsCatalogue(username, {
-      page: 0,
+      page: pageNumber ? Number(pageNumber) - 1 : 0,
       size: 5,
     })
     const presenter = new CataloguePresenter(interventionCatalogueItems)

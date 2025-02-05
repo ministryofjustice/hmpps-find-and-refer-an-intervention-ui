@@ -20,7 +20,7 @@ export default function routes({ auditService, findAndReferService }: Services):
   // })
 
   get('/', async (req, res, next) => {
-    await catalogueController.showCancellationConfirmationPage(req, res)
+    await catalogueController.showCataloguePage(req, res)
   })
 
   get('/test', async (req, res, next) => {

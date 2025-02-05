@@ -44,7 +44,6 @@ export default class FindAndReferService {
     const hmppsAuthClient = this.hmppsAuthClientBuilder()
     const systemToken = await hmppsAuthClient.getSystemClientToken(username)
     const restClient = this.createRestClient(systemToken)
-
     return (await restClient.get({
       path: `/interventions`,
       headers: { Accept: 'application/json' },
