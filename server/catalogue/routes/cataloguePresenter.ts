@@ -1,37 +1,18 @@
 import InterventionSummary from '../models/interventionSummary'
 import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import Pagination from '../../utils/pagination/pagination'
+import { Page } from '../../shared/models/pagination'
+import InterventionCatalogueItem from '../../models/InterventionCatalogueItem'
 
 export default class CataloguePresenter {
   public readonly pagination: Pagination
 
-  interventions = [
-    this.sampleIntervention('intervention 1'),
-    this.sampleIntervention('intervention 2'),
-    this.sampleIntervention('intervention 3'),
-    // this.sampleIntervention('intervention 4'),
-    // this.sampleIntervention('intervention 5'),
-    // this.sampleIntervention('intervention 6'),
-    // this.sampleIntervention('intervention 7'),
-    // this.sampleIntervention('intervention 8'),
-    // this.sampleIntervention('intervention 9'),
-    // this.sampleIntervention('intervention 10'),
-    // this.sampleIntervention('intervention 11'),
-    // this.sampleIntervention('intervention 12'),
-    // this.sampleIntervention('intervention 13'),
-    // this.sampleIntervention('intervention 14'),
-  ]
-
-  constructor(private readonly sampleText: string) {
-    this.pagination = new Pagination({
-      content: this.interventions,
-      totalElements: 14,
-      totalPages: 3,
-      numberOfElements: 5,
-      number: 0,
-      size: 5,
-    })
+  constructor(private interventionCatalogueItems: Page<InterventionCatalogueItem>) {
+    this.pagination = new Pagination(interventionCatalogueItems)
+    this.interventionCatalogueItems = interventionCatalogueItems
   }
+
+  interventions = this.interventionCatalogueItems.content
 
   readonly text = {
     pageHeading: 'Search Results',
@@ -171,61 +152,38 @@ export default class CataloguePresenter {
     // ),
   }
 
-  // get interventions(): InterventionSummary[] {
-  //   return [
-  //     this.sampleIntervention('intervention 1'),
-  //     this.sampleIntervention('intervention 2'),
-  //     this.sampleIntervention('intervention 3'),
-  //   ]
-  // }
-
   interventionSummaryList(intervention: InterventionSummary): SummaryListItem[] {
-    return [
-      {
-        key: 'Setting',
-        lines: [intervention.setting],
-      },
+    const summary: SummaryListItem[] = [
       {
         key: 'Gender',
-        lines: [intervention.gender],
-      },
-      {
-        key: 'Type',
         lines: [
-          'Commissioned rehabilitative services (CRS) / Accredited programmes / Structured interventions / Toolkit',
+          intervention.allowsMales && !intervention.allowsFemales ? 'Male' : '',
+          intervention.allowsFemales && intervention.allowsMales ? ' Male or Female' : '',
+          intervention.allowsFemales && !intervention.allowsMales ? 'Female' : '',
         ],
       },
       {
+        key: 'Type',
+        lines: intervention.attendanceType,
+      },
+      {
         key: 'Risk criteria',
-        lines: ['one', 'two', 'three'],
-        listStyle: ListStyle.bulleted,
+        lines: intervention.riskCriteria,
+        listStyle: intervention.riskCriteria.length > 1 ? ListStyle.bulleted : undefined,
       },
       {
         key: 'Format',
-        lines: ['1-2-1, group'],
+        lines: intervention.deliveryFormat,
       },
+      // {
+      //   key: 'Setting',
+      //   lines: intervention.setting,
+      // },
       {
         key: 'Attendance type',
-        lines: [intervention.attendanceType],
+        lines: intervention.attendanceType,
       },
     ]
-  }
-
-  sampleIntervention(title: string): InterventionSummary {
-    return {
-      title,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at sodales mauris, eget pharetra enim. Donec posuere, ante sed luctus rutrum, ipsum urna bibendum velit, elementum lacinia erat nulla nec elit.',
-      interventionType: 'Commissioned Rehabilitative Service',
-      setting: 'Custody or community',
-      gender: 'Male or female',
-      ageRestriction: 'xx-xx years old',
-      riskCriteria: 'string',
-      suitableForPeopleWithLearningDisabilitiesOrChallenges: 'Yes/No',
-      learningDisabilityCateredIntendedFor: 'string',
-      equivalentNonLDCProgramme: 'string',
-      attendanceType: 'one-to-one',
-      deliveryMethod: 'In person, online',
-    }
+    return summary
   }
 }
