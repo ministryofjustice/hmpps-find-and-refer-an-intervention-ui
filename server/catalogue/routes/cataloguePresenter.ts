@@ -151,7 +151,9 @@ export default class CataloguePresenter {
       ACP = 'Accredited Programmes',
       CRS = 'Commissioned Rehabilitative Services',
     }
-    return InterventionTypes[interventionType.toUpperCase()]
+    return InterventionTypes[interventionType.toUpperCase()] !== undefined
+      ? InterventionTypes[interventionType.toUpperCase()]
+      : ''
   }
 
   interventionSummaryList(intervention: InterventionSummary): SummaryListItem[] {

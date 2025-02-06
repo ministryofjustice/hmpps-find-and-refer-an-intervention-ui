@@ -9,6 +9,7 @@ import type { Services } from '../../services'
 import AuditService from '../../services/auditService'
 import { HmppsUser } from '../../interfaces/hmppsUser'
 import setUpWebSession from '../../middleware/setUpWebSession'
+import FindAndReferService from '../../services/findAndReferService'
 
 jest.mock('../../services/auditService')
 
@@ -57,6 +58,7 @@ export function appWithAllRoutes({
   production = false,
   services = {
     auditService: new AuditService(null) as jest.Mocked<AuditService>,
+    findAndReferService: new FindAndReferService(null) as jest.Mocked<FindAndReferService>,
   },
   userSupplier = () => user,
 }: {
