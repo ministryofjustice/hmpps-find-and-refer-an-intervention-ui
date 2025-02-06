@@ -114,12 +114,12 @@ export default class CataloguePresenter {
 
   readonly typeOptions = [
     {
-      value: 'accredited-programme-',
+      value: 'ACP',
       text: 'Accredited programme (AcP)',
       checked: false,
     },
     {
-      value: 'commissioned-rehabilitative-services',
+      value: 'CRS',
       text: 'Commissioned Rehabilitative Services (CRS)',
       checked: false,
     },
@@ -134,7 +134,7 @@ export default class CataloguePresenter {
       checked: false,
     },
     {
-      value: '-structured-interventions',
+      value: 'SI',
       text: 'Structured interventions',
       checked: false,
     },
