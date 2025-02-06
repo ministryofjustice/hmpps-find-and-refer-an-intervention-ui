@@ -145,11 +145,13 @@ export default class CataloguePresenter {
     },
   ]
 
-  readonly fields = {
-    // keywords: this.utils.stringValue(
-    //     this.ppTeamPhoneNumber!,
-    //     'delius-probation-practitioner-team-phone-number'
-    // ),
+  mapInterventionTypeToFriendlyString(interventionType: string) {
+    enum InterventionTypes {
+      SI = 'Structured Interventions',
+      ACP = 'Accredited Programmes',
+      CRS = 'Commissioned Rehabilitative Services',
+    }
+    return InterventionTypes[interventionType.toUpperCase()]
   }
 
   interventionSummaryList(intervention: InterventionSummary): SummaryListItem[] {
@@ -164,7 +166,7 @@ export default class CataloguePresenter {
       },
       {
         key: 'Type',
-        lines: intervention.attendanceType,
+        lines: [this.mapInterventionTypeToFriendlyString(intervention.interventionType)],
       },
       {
         key: 'Risk criteria',
@@ -175,10 +177,10 @@ export default class CataloguePresenter {
         key: 'Format',
         lines: intervention.deliveryFormat,
       },
-      // {
-      //   key: 'Setting',
-      //   lines: intervention.setting,
-      // },
+      {
+        key: 'Setting',
+        lines: intervention.setting,
+      },
       {
         key: 'Attendance type',
         lines: intervention.attendanceType,
