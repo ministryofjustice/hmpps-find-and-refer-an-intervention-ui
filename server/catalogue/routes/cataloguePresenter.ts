@@ -170,24 +170,32 @@ export default class CataloguePresenter {
         key: 'Type',
         lines: [this.mapInterventionTypeToFriendlyString(intervention.interventionType)],
       },
-      {
+    ]
+    if (intervention.riskCriteria && intervention.riskCriteria.length > 0) {
+      summary.push({
         key: 'Risk criteria',
         lines: intervention.riskCriteria,
         listStyle: intervention.riskCriteria.length > 1 ? ListStyle.bulleted : undefined,
-      },
-      {
+      })
+    }
+    if (intervention.deliveryFormat && intervention.deliveryFormat.length > 0) {
+      summary.push({
         key: 'Format',
         lines: intervention.deliveryFormat,
-      },
-      {
+      })
+    }
+    if (intervention.setting && intervention.setting.length > 0) {
+      summary.push({
         key: 'Setting',
         lines: intervention.setting,
-      },
-      {
+      })
+    }
+    if (intervention.attendanceType && intervention.attendanceType.length > 0) {
+      summary.push({
         key: 'Attendance type',
         lines: intervention.attendanceType,
-      },
-    ]
+      })
+    }
     return summary
   }
 }
