@@ -34,4 +34,15 @@ describe('Find and Refer Service', () => {
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({ headers: { Accept: 'application/json' }, path: '/dummy/12345' })
   })
+
+  it('should call getInterventionsCatalogue with the correct params', async () => {
+    await findAndReferService.getInterventionsCatalogue(username, { page: 0, size: 10 })
+    expect(hmppsAuthClientBuilder).toHaveBeenCalled()
+    expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
+    expect(restClientMock.get).toHaveBeenCalledWith({
+      headers: { Accept: 'application/json' },
+      path: '/interventions',
+      query: { page: 0, size: 10 },
+    })
+  })
 })
