@@ -2,13 +2,13 @@ export default interface InterventionSummary {
   title: string
   description: string
   interventionType: string // Commissioned Rehabilitative Service
-  setting: string // Custody or community
-  gender: string // Male or female
-  ageRestriction: string // xx-xx years old
-  riskCriteria: string
-  suitableForPeopleWithLearningDisabilitiesOrChallenges: string // Yes/No
-  learningDisabilityCateredIntendedFor: string
-  equivalentNonLDCProgramme: string
-  attendanceType: string // one-to-one
-  deliveryMethod: string // In person, online
+  setting: string[] // Custody or community
+  allowsMales: boolean // Male or female
+  allowsFemales: boolean // Male or female
+  riskCriteria: string[]
+  minAge: number
+  maxAge: number
+  attendanceType: string[] // one-to-one
+  deliveryFormat: string[] // In person, online
+  criminogenicNeeds: string[]
 }

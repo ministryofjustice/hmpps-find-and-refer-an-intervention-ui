@@ -10,7 +10,7 @@ export default function routes({ auditService, findAndReferService }: Services):
   const router = Router()
   const get = (path: string | string[], handler: RequestHandler) => router.get(path, asyncMiddleware(handler))
 
-  const catalogueController = new CatalogueController()
+  const catalogueController = new CatalogueController(findAndReferService)
   const testController = new TestController(findAndReferService)
 
   // get('/', async (req, res, next) => {
@@ -20,7 +20,7 @@ export default function routes({ auditService, findAndReferService }: Services):
   // })
 
   get('/', async (req, res, next) => {
-    await catalogueController.showCancellationConfirmationPage(req, res)
+    await catalogueController.showCataloguePage(req, res)
   })
 
   get('/test', async (req, res, next) => {
