@@ -23,7 +23,7 @@ export default class CatalogueController {
       filter.params,
     )
 
-    const presenter = new CataloguePresenter(interventionCatalogueItems)
+    const presenter = new CataloguePresenter(interventionCatalogueItems, filter)
     const view = new CatalogueView(presenter)
 
     ControllerUtils.renderWithLayout(res, view)

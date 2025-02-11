@@ -1,15 +1,19 @@
 import CataloguePresenter from './cataloguePresenter'
+import CatalogueFilter from './catalogueFilter'
 
 describe(`mapInterventionTypeToFriendlyString`, () => {
   it('returns the correct mapping', async () => {
-    const presenter = new CataloguePresenter({
-      content: [],
-      totalElements: 9,
-      totalPages: 2,
-      size: 5,
-      number: 0,
-      numberOfElements: 5,
-    })
+    const presenter = new CataloguePresenter(
+      {
+        content: [],
+        totalElements: 9,
+        totalPages: 2,
+        size: 5,
+        number: 0,
+        numberOfElements: 5,
+      },
+      new CatalogueFilter(),
+    )
     const testValues = [
       { input: 'ACP', output: 'Accredited Programmes' },
       { input: 'SI', output: 'Structured Interventions' },
