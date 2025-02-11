@@ -9,6 +9,7 @@ import TestController from './test/testController'
 export default function routes({ auditService, findAndReferService }: Services): Router {
   const router = Router()
   const get = (path: string | string[], handler: RequestHandler) => router.get(path, asyncMiddleware(handler))
+  const post = (path: string, handler: RequestHandler): Router => router.post(path, asyncMiddleware(handler))
 
   const catalogueController = new CatalogueController(findAndReferService)
   const testController = new TestController(findAndReferService)
@@ -20,6 +21,10 @@ export default function routes({ auditService, findAndReferService }: Services):
   // })
 
   get('/', async (req, res, next) => {
+    await catalogueController.showCataloguePage(req, res)
+  })
+
+  post('/', async (req, res, next) => {
     await catalogueController.showCataloguePage(req, res)
   })
 

@@ -27,22 +27,39 @@ beforeEach(() => {
   findAndReferService.createRestClient = jest.fn().mockReturnValue(restClientMock)
 })
 
-describe('Find and Refer Service', () => {
+describe('Dummy Endpoint', () => {
   it('should call get dummy data with the correct params', async () => {
     await findAndReferService.getDummy('12345', username)
     expect(hmppsAuthClientBuilder).toHaveBeenCalled()
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({ headers: { Accept: 'application/json' }, path: '/dummy/12345' })
   })
+})
 
-  it('should call getInterventionsCatalogue with the correct params', async () => {
-    await findAndReferService.getInterventionsCatalogue(username, { page: 0, size: 10 })
+describe('getInterventionsCatalogue', () => {
+  it('should call getInterventionsCatalogue with the correct params with no filter options', async () => {
+    await findAndReferService.getInterventionsCatalogue(username, { page: 0, size: 10 }, {})
     expect(hmppsAuthClientBuilder).toHaveBeenCalled()
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({
       headers: { Accept: 'application/json' },
       path: '/interventions',
       query: { page: 0, size: 10 },
+    })
+  })
+
+  it('filtering on intervention type should pass correct query parameters', async () => {
+    await findAndReferService.getInterventionsCatalogue(
+      username,
+      { page: 0, size: 10 },
+      { interventionType: ['ACP', 'CRS'] },
+    )
+    expect(hmppsAuthClientBuilder).toHaveBeenCalled()
+    expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
+    expect(restClientMock.get).toHaveBeenCalledWith({
+      headers: { Accept: 'application/json' },
+      path: '/interventions',
+      query: { page: 0, size: 10, interventionType: ['ACP', 'CRS'] },
     })
   })
 })
