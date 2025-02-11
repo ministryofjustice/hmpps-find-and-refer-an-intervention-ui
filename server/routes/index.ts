@@ -4,6 +4,7 @@ import asyncMiddleware from '../middleware/asyncMiddleware'
 import type { Services } from '../services'
 import CatalogueController from '../catalogue/routes/catalogueController'
 import TestController from './test/testController'
+import InterventionController from '../intervention/routes/interventionController'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function routes({ auditService, findAndReferService }: Services): Router {
@@ -11,6 +12,7 @@ export default function routes({ auditService, findAndReferService }: Services):
   const get = (path: string | string[], handler: RequestHandler) => router.get(path, asyncMiddleware(handler))
 
   const catalogueController = new CatalogueController(findAndReferService)
+  const interventionController = new InterventionController(findAndReferService)
   const testController = new TestController(findAndReferService)
 
   // get('/', async (req, res, next) => {
@@ -21,6 +23,10 @@ export default function routes({ auditService, findAndReferService }: Services):
 
   get('/', async (req, res, next) => {
     await catalogueController.showCataloguePage(req, res)
+  })
+
+  get('/intervention', async (req, res, next) => {
+    await interventionController.showInterventionPage(req, res)
   })
 
   get('/test', async (req, res, next) => {
