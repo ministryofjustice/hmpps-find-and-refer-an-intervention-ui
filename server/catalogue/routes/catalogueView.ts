@@ -53,14 +53,14 @@ export default class CatalogueView {
       },
       items: [
         {
-          value: 'Community',
+          value: 'COMMUNITY',
           text: this.presenter.text.settingRadio.items.communityHeading,
-          checked: false,
+          checked: this.presenter.filter.setting?.includes('COMMUNITY') ?? false,
         },
         {
-          value: 'Custody',
+          value: 'CUSTODY',
           text: this.presenter.text.settingRadio.items.custodyHeading,
-          checked: false,
+          checked: this.presenter.filter.setting?.includes('CUSTODY') ?? false,
         },
       ],
     }
