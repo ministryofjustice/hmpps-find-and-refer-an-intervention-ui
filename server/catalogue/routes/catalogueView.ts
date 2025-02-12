@@ -82,12 +82,12 @@ export default class CatalogueView {
         {
           value: 'Male',
           text: this.presenter.text.genderRadio.items.maleHeading,
-          checked: false,
+          checked: this.presenter.filter.gender?.includes('Male') ?? false,
         },
         {
           value: 'Female',
           text: this.presenter.text.genderRadio.items.femaleHeading,
-          checked: false,
+          checked: this.presenter.filter.gender?.includes('Female') ?? false,
         },
       ],
     }

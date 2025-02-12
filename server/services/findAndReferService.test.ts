@@ -74,18 +74,33 @@ describe('getInterventionsCatalogue', () => {
     })
   })
 
-  it('should call getInterventionsCatalogue with the correct params when filtering by a combination of filters', async () => {
+  it('should call getInterventionsCatalogue with the correct params when filtering by gender', async () => {
     await findAndReferService.getInterventionsCatalogue(
       username,
       { page: 0, size: 10 },
-      { interventionType: ['ACP', 'CRS'], setting: 'COMMUNITY' },
+      { allowsMales: true, allowsFemales: true },
     )
     expect(hmppsAuthClientBuilder).toHaveBeenCalled()
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({
       headers: { Accept: 'application/json' },
       path: '/interventions',
-      query: { page: 0, size: 10, interventionType: ['ACP', 'CRS'], setting: 'COMMUNITY' },
+      query: { page: 0, size: 10, allowsMales: true, allowsFemales: true },
+    })
+  })
+
+  it('should call getInterventionsCatalogue with the correct params when filtering by a combination of filters', async () => {
+    await findAndReferService.getInterventionsCatalogue(
+      username,
+      { page: 0, size: 10 },
+      { interventionType: ['ACP', 'CRS'], setting: 'COMMUNITY', allowsMales: true },
+    )
+    expect(hmppsAuthClientBuilder).toHaveBeenCalled()
+    expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
+    expect(restClientMock.get).toHaveBeenCalledWith({
+      headers: { Accept: 'application/json' },
+      path: '/interventions',
+      query: { page: 0, size: 10, interventionType: ['ACP', 'CRS'], setting: 'COMMUNITY', allowsMales: true },
     })
   })
 })
