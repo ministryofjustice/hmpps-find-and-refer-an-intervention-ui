@@ -12,16 +12,18 @@ export default class InterventionPresenter {
       {
         key: 'Needs',
         lines: [
-          'Accommodation',
-          'Education, training and employability',
-          'Financial management and income',
-          'Relationships',
-          'Lifestyle and associates',
-          'Drug misuse',
-          'Alcohol misuse',
-          'Emotional wellbeing',
-          'Thinking and behaviour',
-          'Attitudes',
+          [
+            'Accommodation',
+            'Education, training and employability',
+            'Financial management and income',
+            'Relationships',
+            'Lifestyle and associates',
+            'Drug misuse',
+            'Alcohol misuse',
+            'Emotional wellbeing',
+            'Thinking and behaviour',
+            'Attitudes',
+          ].join(', '),
         ],
       },
       {
