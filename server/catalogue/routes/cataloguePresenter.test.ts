@@ -81,27 +81,17 @@ describe(`filters.`, () => {
       const expectedResult = [
         {
           value: 'ACP',
-          text: 'Accredited programme (AcP)',
+          text: 'Accredited Programmes',
           checked: true,
         },
         {
           value: 'CRS',
-          text: 'Commissioned Rehabilitative Services (CRS)',
+          text: 'Commissioned Rehabilitative Services',
           checked: true,
         },
         {
-          value: 'CFO',
-          text: 'Creating Future Opportunities (CFO)',
-          checked: false,
-        },
-        {
-          value: 'ROIF',
-          text: 'Regional Outcome Innovation Fund (ROIF)',
-          checked: false,
-        },
-        {
           value: 'SI',
-          text: 'Structured interventions',
+          text: 'Structured Interventions',
           checked: false,
         },
         {

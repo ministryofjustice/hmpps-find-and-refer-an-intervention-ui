@@ -51,6 +51,7 @@ export default class CatalogueView {
         },
         classes: 'govuk-checkboxes--small',
       },
+      hint: { text: this.presenter.text.settingRadio.hint },
       items: [
         {
           value: 'Community',
@@ -77,7 +78,6 @@ export default class CatalogueView {
         },
         classes: 'govuk-checkboxes--small',
       },
-      hint: { text: this.presenter.text.genderRadio.hint },
       items: [
         {
           value: 'Male',
