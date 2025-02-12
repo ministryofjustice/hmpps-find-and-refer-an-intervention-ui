@@ -21,8 +21,8 @@ export interface PaginationParams {
 }
 
 export interface CatalogueFilterParams {
-  allowsMale?: boolean
-  allowsFemale?: boolean
+  allowsMales?: boolean
+  allowsFemales?: boolean
   setting?: string
   interventionType?: string[]
 }

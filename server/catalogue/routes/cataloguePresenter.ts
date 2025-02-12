@@ -10,7 +10,7 @@ export default class CataloguePresenter {
 
   constructor(
     private interventionCatalogueItems: Page<InterventionCatalogueItem>,
-    private readonly filter: CatalogueFilter,
+    readonly filter: CatalogueFilter,
   ) {
     this.pagination = new Pagination(interventionCatalogueItems)
     this.interventionCatalogueItems = interventionCatalogueItems

@@ -54,14 +54,14 @@ export default class CatalogueView {
       hint: { text: this.presenter.text.settingRadio.hint },
       items: [
         {
-          value: 'Community',
+          value: 'COMMUNITY',
           text: this.presenter.text.settingRadio.items.communityHeading,
-          checked: false,
+          checked: this.presenter.filter.setting?.includes('COMMUNITY') ?? false,
         },
         {
-          value: 'Custody',
+          value: 'CUSTODY',
           text: this.presenter.text.settingRadio.items.custodyHeading,
-          checked: false,
+          checked: this.presenter.filter.setting?.includes('CUSTODY') ?? false,
         },
       ],
     }
@@ -82,12 +82,12 @@ export default class CatalogueView {
         {
           value: 'Male',
           text: this.presenter.text.genderRadio.items.maleHeading,
-          checked: false,
+          checked: this.presenter.filter.gender?.includes('Male') ?? false,
         },
         {
           value: 'Female',
           text: this.presenter.text.genderRadio.items.femaleHeading,
-          checked: false,
+          checked: this.presenter.filter.gender?.includes('Female') ?? false,
         },
       ],
     }
