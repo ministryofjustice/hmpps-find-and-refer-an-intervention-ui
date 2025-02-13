@@ -198,12 +198,6 @@ export default class CataloguePresenter {
         lines: intervention.deliveryFormat,
       })
     }
-    if (intervention.setting && intervention.setting.length > 0) {
-      summary.push({
-        key: 'Setting',
-        lines: intervention.setting,
-      })
-    }
     if (intervention.attendanceType && intervention.attendanceType.length > 0) {
       summary.push({
         key: 'Attendance type',

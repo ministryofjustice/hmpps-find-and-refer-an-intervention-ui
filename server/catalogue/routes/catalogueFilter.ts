@@ -14,7 +14,7 @@ export default class CatalogueFilter {
 
     filter.gender = request.body['gender-checkbox'] as ('Male' | 'Female')[] | undefined
     filter.interventionType = request.body['type-checkbox'] as string[] | undefined
-    filter.setting = request.body['setting-checkbox'] as ('COMMUNITY' | 'CUSTODY') | undefined
+    filter.setting = request.body['setting-radio'] as ('COMMUNITY' | 'CUSTODY') | undefined
 
     return filter
   }
