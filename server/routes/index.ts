@@ -25,7 +25,7 @@ export default function routes({ auditService, findAndReferService }: Services):
     await catalogueController.showCataloguePage(req, res)
   })
 
-  get('/intervention', async (req, res, next) => {
+  get('/intervention/:id', async (req, res, next) => {
     await interventionController.showInterventionPage(req, res)
   })
 

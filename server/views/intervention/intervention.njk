@@ -1,6 +1,7 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {%- from "govuk/components/table/macro.njk" import govukTable -%}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 
 {% extends "partials/layout.njk" %}
 
@@ -66,8 +67,74 @@
       </ul>
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Locations:</h2>
       <p class="govuk-body govuk-!-margin-top-6">[placeholder]Locations where the programme runs and details for each one of them(how to contact them). If you select a location, you can refer.</p>
-      <h3 class="govuk-heading-s govuk-!-margin-top-8">Locations in community</h3>
+<!--For interventions in the Community -->
       {{ govukTable(locationsInCommunityTableArgs) }}
+<!--For interventions in Custody-->
+      {{ govukAccordion({
+      id: "accordion-default",
+      items: [
+        {
+          heading: {
+            text: "East Midlands"
+          },
+        content: {
+          html: '
+          <table class="govuk-table" data-module="moj-sortable-table">
+            <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header" aria-sort="ascending">Probation Delivery Unit (PDU)</th>
+            </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Derby City</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Derbyshire</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Leicester, Leicestershire and Rutland</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Lincolnshire East and West</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Nottingham City</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Nottinghamshire</td>
+            </tr>
+            </tbody>
+          </table>
+          '
+        }
+      },
+      {
+      heading: {
+      text: "East of England"
+      },
+      content: {
+      html: '<p class="govuk-body">This is the content placeholder. Table to be added at a later date.</p>'
+      }
+      },
+      {
+      heading: {
+      text: "Greater Manchester"
+      },
+      content: {
+      html: '<p class="govuk-body">This is the content placeholder. Table to be added at a later date.</p>'
+      }
+      },
+      {
+      heading: {
+      text: "Kent, Surrey and Sussex"
+      },
+      content: {
+      html: '<p class="govuk-body">This is the content placeholder. Table to be added at a later date.</p>'
+      }
+      }
+      ]
+      }) }}
     </div>
   </div>
 {% endblock %}
