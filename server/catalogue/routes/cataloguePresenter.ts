@@ -1,4 +1,3 @@
-import InterventionSummary from '../models/interventionSummary'
 import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import Pagination from '../../utils/pagination/pagination'
 import { Page } from '../../shared/models/pagination'
@@ -151,7 +150,7 @@ export default class CataloguePresenter {
       : ''
   }
 
-  interventionSummaryList(intervention: InterventionSummary): SummaryListItem[] {
+  interventionSummaryList(intervention: InterventionCatalogueItem): SummaryListItem[] {
     const summary: SummaryListItem[] = [
       {
         key: 'Gender',

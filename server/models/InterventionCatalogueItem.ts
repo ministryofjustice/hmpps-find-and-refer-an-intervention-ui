@@ -12,6 +12,7 @@ export default interface InterventionCatalogueItem {
   riskCriteria: string[]
   attendanceType: string[]
   deliveryFormat: string[]
+  criminogenicNeeds: string[]
   timeToComplete: string
   suitableForPeopleWithLearningDifficulties: boolean
   equivalentNonLdcProgramme: string
