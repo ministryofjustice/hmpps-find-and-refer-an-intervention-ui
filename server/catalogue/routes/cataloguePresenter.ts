@@ -1,4 +1,3 @@
-import InterventionSummary from '../models/interventionSummary'
 import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import Pagination from '../../utils/pagination/pagination'
 import { Page } from '../../shared/models/pagination'
@@ -32,6 +31,7 @@ export default class CataloguePresenter {
         communityHeading: 'Community',
         custodyHeading: 'Custody',
       },
+      hint: 'Select one option',
     },
     genderRadio: {
       heading: 'Gender',
@@ -119,27 +119,17 @@ export default class CataloguePresenter {
   readonly typeOptions = [
     {
       value: 'ACP',
-      text: 'Accredited programme (AcP)',
+      text: 'Accredited Programmes',
       checked: this.filter.interventionType?.includes('ACP') ?? false,
     },
     {
       value: 'CRS',
-      text: 'Commissioned Rehabilitative Services (CRS)',
+      text: 'Commissioned Rehabilitative Services',
       checked: this.filter.interventionType?.includes('CRS') ?? false,
     },
     {
-      value: 'CFO',
-      text: 'Creating Future Opportunities (CFO)',
-      checked: this.filter.interventionType?.includes('CFO') ?? false,
-    },
-    {
-      value: 'ROIF',
-      text: 'Regional Outcome Innovation Fund (ROIF)',
-      checked: this.filter.interventionType?.includes('ROIF') ?? false,
-    },
-    {
       value: 'SI',
-      text: 'Structured interventions',
+      text: 'Structured Interventions',
       checked: this.filter.interventionType?.includes('SI') ?? false,
     },
     {
@@ -160,7 +150,7 @@ export default class CataloguePresenter {
       : ''
   }
 
-  interventionSummaryList(intervention: InterventionSummary): SummaryListItem[] {
+  interventionSummaryList(intervention: InterventionCatalogueItem): SummaryListItem[] {
     const summary: SummaryListItem[] = [
       {
         key: 'Gender',
@@ -182,16 +172,38 @@ export default class CataloguePresenter {
         listStyle: intervention.riskCriteria.length > 1 ? ListStyle.bulleted : undefined,
       })
     }
+    if (intervention.criminogenicNeeds && intervention.criminogenicNeeds.length > 0) {
+      summary.push({
+        key: 'Needs',
+        lines: [intervention.criminogenicNeeds.join(', ')],
+        listStyle: ListStyle.noMarkers,
+      })
+    }
+    if (
+      intervention.setting.includes('CUSTODY') &&
+      intervention.suitableForPeopleWithLearningDifficulties !== undefined
+    ) {
+      summary.push({
+        key: 'Suitable for people with learning disabilities or challenges (LDC)',
+        lines: [intervention.suitableForPeopleWithLearningDifficulties ? 'Yes' : 'No'],
+      })
+    }
+    if (intervention.setting.includes('CUSTODY') && intervention.equivalentNonLdcProgramme) {
+      summary.push({
+        key: 'Equivalent non-LDC programme',
+        lines: [intervention.equivalentNonLdcProgramme],
+      })
+    }
+    if (intervention.timeToComplete) {
+      summary.push({
+        key: 'Time to complete',
+        lines: [intervention.timeToComplete],
+      })
+    }
     if (intervention.deliveryFormat && intervention.deliveryFormat.length > 0) {
       summary.push({
         key: 'Format',
         lines: intervention.deliveryFormat,
-      })
-    }
-    if (intervention.setting && intervention.setting.length > 0) {
-      summary.push({
-        key: 'Setting',
-        lines: intervention.setting,
       })
     }
     if (intervention.attendanceType && intervention.attendanceType.length > 0) {

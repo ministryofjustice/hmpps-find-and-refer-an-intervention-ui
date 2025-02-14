@@ -11,9 +11,10 @@ export default Factory.define<InterventionCatalogueItem>(({ sequence }) => ({
   setting: ['CUSTODY'],
   allowsMales: true,
   allowsFemales: false,
-  minAge: null,
-  maxAge: null,
   riskCriteria: ['Medium, high or very high', 'Yes'],
   attendanceType: ['In Person'],
   deliveryFormat: ['Group'],
+  timeToComplete: 'At least 6 Months',
+  suitableForPeopleWithLearningDifficulties: true,
+  equivalentNonLdcProgramme: 'Kaizen',
 }))
