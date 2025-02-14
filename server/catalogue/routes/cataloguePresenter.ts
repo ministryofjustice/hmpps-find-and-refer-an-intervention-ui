@@ -180,16 +180,25 @@ export default class CataloguePresenter {
         listStyle: ListStyle.noMarkers,
       })
     }
-    if (intervention.setting.includes('CUSTODY')) {
+    if (
+      intervention.setting.includes('CUSTODY') &&
+      intervention.suitableForPeopleWithLearningDifficulties !== undefined
+    ) {
       summary.push({
         key: 'Suitable for people with learning disabilities or challenges (LDC)',
-        lines: ['Yes'],
+        lines: [intervention.suitableForPeopleWithLearningDifficulties ? 'Yes' : 'No'],
       })
     }
-    if (intervention.setting.includes('CUSTODY')) {
+    if (intervention.setting.includes('CUSTODY') && intervention.equivalentNonLdcProgramme) {
       summary.push({
         key: 'Equivalent non-LDC programme',
-        lines: ['Kaizen'],
+        lines: [intervention.equivalentNonLdcProgramme],
+      })
+    }
+    if (intervention.timeToComplete) {
+      summary.push({
+        key: 'Time to complete',
+        lines: [intervention.timeToComplete],
       })
     }
     if (intervention.deliveryFormat && intervention.deliveryFormat.length > 0) {
