@@ -3,11 +3,15 @@ import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import Pagination from '../../utils/pagination/pagination'
 import { Page } from '../../shared/models/pagination'
 import InterventionCatalogueItem from '../../models/InterventionCatalogueItem'
+import CatalogueFilter from './catalogueFilter'
 
 export default class CataloguePresenter {
   public readonly pagination: Pagination
 
-  constructor(private interventionCatalogueItems: Page<InterventionCatalogueItem>) {
+  constructor(
+    private interventionCatalogueItems: Page<InterventionCatalogueItem>,
+    readonly filter: CatalogueFilter,
+  ) {
     this.pagination = new Pagination(interventionCatalogueItems)
     this.interventionCatalogueItems = interventionCatalogueItems
   }
@@ -114,34 +118,34 @@ export default class CataloguePresenter {
 
   readonly typeOptions = [
     {
-      value: 'accredited-programme-',
+      value: 'ACP',
       text: 'Accredited programme (AcP)',
-      checked: false,
+      checked: this.filter.interventionType?.includes('ACP') ?? false,
     },
     {
-      value: 'commissioned-rehabilitative-services',
+      value: 'CRS',
       text: 'Commissioned Rehabilitative Services (CRS)',
-      checked: false,
+      checked: this.filter.interventionType?.includes('CRS') ?? false,
     },
     {
-      value: 'creating-future-opportunities',
+      value: 'CFO',
       text: 'Creating Future Opportunities (CFO)',
-      checked: false,
+      checked: this.filter.interventionType?.includes('CFO') ?? false,
     },
     {
-      value: 'regional-outcome-innovation-fund',
+      value: 'ROIF',
       text: 'Regional Outcome Innovation Fund (ROIF)',
-      checked: false,
+      checked: this.filter.interventionType?.includes('ROIF') ?? false,
     },
     {
-      value: '-structured-interventions',
+      value: 'SI',
       text: 'Structured interventions',
-      checked: false,
+      checked: this.filter.interventionType?.includes('SI') ?? false,
     },
     {
-      value: 'toolkits',
+      value: 'TOOL',
       text: 'Toolkits',
-      checked: false,
+      checked: this.filter.interventionType?.includes('TOOL') ?? false,
     },
   ]
 
