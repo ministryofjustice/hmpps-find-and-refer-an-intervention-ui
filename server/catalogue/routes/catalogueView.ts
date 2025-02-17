@@ -1,6 +1,6 @@
 import CataloguePresenter from './cataloguePresenter'
 import { SummaryListItem } from '../../utils/summaryList'
-import { CheckboxesArgs, InputArgs, SummaryListArgs } from '../../utils/govukFrontendTypes'
+import { CheckboxesArgs, InputArgs, RadiosArgs, SummaryListArgs } from '../../utils/govukFrontendTypes'
 import ViewUtils from '../../utils/viewUtils'
 
 export default class CatalogueView {
@@ -40,10 +40,10 @@ export default class CatalogueView {
     }
   }
 
-  private get settingCheckboxArgs(): CheckboxesArgs {
+  private get settingRadioArgs(): RadiosArgs {
     return {
-      idPrefix: 'setting-checkbox',
-      name: 'setting-checkbox',
+      idPrefix: 'setting-radio',
+      name: 'setting-radio',
       fieldset: {
         legend: {
           text: this.presenter.text.settingRadio.heading,
@@ -51,6 +51,7 @@ export default class CatalogueView {
         },
         classes: 'govuk-checkboxes--small',
       },
+      hint: { text: this.presenter.text.settingRadio.hint },
       items: [
         {
           value: 'COMMUNITY',
@@ -77,7 +78,6 @@ export default class CatalogueView {
         },
         classes: 'govuk-checkboxes--small',
       },
-      hint: { text: this.presenter.text.genderRadio.hint },
       items: [
         {
           value: 'Male',
@@ -183,7 +183,7 @@ export default class CatalogueView {
         summaryListArgs: CatalogueView.summary,
         searchByProgrammeNameInputArgs: this.searchByProgrammeNameInputArgs,
         locationInputArgs: this.locationInputArgs,
-        settingCheckboxArgs: this.settingCheckboxArgs,
+        settingRadioArgs: this.settingRadioArgs,
         genderCheckboxArgs: this.genderCheckboxArgs,
         needsCheckboxArgs: this.needsCheckboxArgs,
         typeCheckboxArgs: this.typeCheckboxArgs,

@@ -47,7 +47,7 @@ describe(`POST /interventions`, () => {
 
     await request(app)
       .post(`/`)
-      .send({ 'type-checkbox': ['ACP', 'CRS'], 'setting-checkbox': 'CUSTODY', 'gender-checkbox': ['Male'] })
+      .send({ 'type-checkbox': ['ACP', 'CRS'], 'setting-radio': 'CUSTODY', 'gender-checkbox': ['Male'] })
       .expect(200)
       .expect(res => {
         expect(res.text).toContain('Search Results')

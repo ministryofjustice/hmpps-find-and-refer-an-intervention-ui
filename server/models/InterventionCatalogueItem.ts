@@ -9,9 +9,11 @@ export default interface InterventionCatalogueItem {
   setting: DeliveryMethodSetting[]
   allowsMales: boolean
   allowsFemales: boolean
-  minAge: number
-  maxAge: number
   riskCriteria: string[]
   attendanceType: string[]
   deliveryFormat: string[]
+  criminogenicNeeds: string[]
+  timeToComplete: string
+  suitableForPeopleWithLearningDifficulties: boolean
+  equivalentNonLdcProgramme: string
 }

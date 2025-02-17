@@ -1,6 +1,7 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {%- from "moj/components/filter/macro.njk" import mojFilter -%}
 
@@ -17,13 +18,9 @@
 
         {%- set filterOptionsHtml %}
             {{ govukInput(searchByProgrammeNameInputArgs) }}
-            {{ govukCheckboxes(settingCheckboxArgs) }}
-            {{ govukInput(locationInputArgs) }}
+            {{ govukRadios(settingRadioArgs) }}
             {{ govukCheckboxes(genderCheckboxArgs) }}
             {{ govukCheckboxes(typeCheckboxArgs) }}
-            {{ govukCheckboxes(needsCheckboxArgs) }}
-            {{ govukCheckboxes(formatCheckboxArgs) }}
-            {{ govukCheckboxes(attendanceTypeCheckboxArgs) }}
         {% endset -%}
 
 
@@ -53,13 +50,6 @@
                     <a class="govuk-link" href="TBC">{{x.title}}</a>
                   </h2>
               </div>
-
-             <div>
-               {% for criminogenicNeed in x.criminogenicNeeds %}
-                <strong class="govuk-tag govuk-tag--grey tag-filters">{{criminogenicNeed}}</strong>
-               {% endfor %}
-             </div>
-
                   {{ govukSummaryList(summaryListArgs(presenter.interventionSummaryList(x))) }}
 
                   <p class="govuk-body"npShort description -> {{ x.description }}</p>

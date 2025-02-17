@@ -4,7 +4,7 @@ import CatalogueFilter from './catalogueFilter'
 describe(CatalogueFilter, () => {
   describe('.fromRequest', () => {
     it('creates a filter from the request’s query params', () => {
-      const body = { 'type-checkbox': ['CRS', 'ACP'], 'setting-checkbox': ['COMMUNITY'], 'gender-checkbox': ['Male'] }
+      const body = { 'type-checkbox': ['CRS', 'ACP'], 'setting-radio': ['COMMUNITY'], 'gender-checkbox': ['Male'] }
 
       const filter = CatalogueFilter.fromRequest({ body } as unknown as Request)
 
