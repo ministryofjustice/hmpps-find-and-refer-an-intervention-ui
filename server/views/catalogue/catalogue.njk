@@ -47,7 +47,7 @@
           {% for x in presenter.interventions %}
               <div class="gem-c-document-list__item-title">
                   <h2 class="govuk-heading-m">
-                    <a class="govuk-link" href="TBC">{{x.title}}</a>
+                    <a class="govuk-link" href="/intervention/{{x.id}}">{{x.title}}</a>
                   </h2>
               </div>
                   {{ govukSummaryList(summaryListArgs(presenter.interventionSummaryList(x))) }}
