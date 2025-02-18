@@ -2,6 +2,7 @@ import express from 'express'
 
 import createError from 'http-errors'
 
+import session from 'express-session'
 import nunjucksSetup from './utils/nunjucksSetup'
 import errorHandler from './errorHandler'
 import { appInsightsMiddleware } from './utils/azureAppInsights'
@@ -20,6 +21,11 @@ import routes from './routes'
 import type { Services } from './services'
 import config from './config'
 
+declare module 'express-session' {
+  export interface SessionData {
+    originPage: string
+  }
+}
 export default function createApp(services: Services): express.Application {
   const app = express()
 

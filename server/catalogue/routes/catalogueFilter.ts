@@ -11,10 +11,9 @@ export default class CatalogueFilter {
 
   static fromRequest(request: Request): CatalogueFilter {
     const filter = new CatalogueFilter()
-
-    filter.gender = request.body['gender-checkbox'] as ('Male' | 'Female')[] | undefined
-    filter.interventionType = request.body['type-checkbox'] as string[] | undefined
-    filter.setting = request.body['setting-radio'] as ('COMMUNITY' | 'CUSTODY') | undefined
+    filter.gender = request.query['gender-checkbox'] as ('Male' | 'Female')[] | undefined
+    filter.interventionType = request.query['type-checkbox'] as string[] | undefined
+    filter.setting = request.query['setting-radio'] as ('COMMUNITY' | 'CUSTODY') | undefined
 
     return filter
   }

@@ -22,8 +22,10 @@ export default class CatalogueController {
       },
       filter.params,
     )
-
-    const presenter = new CataloguePresenter(interventionCatalogueItems, filter)
+    req.session.originPage = req.originalUrl
+    const tempParams = `setting-radio=${filter.params.setting}&gender-checkbox=${filter.params.allowsMales}&type-checkbox=${filter.params.interventionType}`
+    console.log({ ...filter.params })
+    const presenter = new CataloguePresenter(interventionCatalogueItems, filter, tempParams)
     const view = new CatalogueView(presenter)
 
     ControllerUtils.renderWithLayout(res, view)

@@ -1,7 +1,7 @@
 import { SummaryListItem } from '../../utils/summaryList'
 
 export default class InterventionPresenter {
-  constructor() {}
+  constructor(readonly backlinkUri: string | null) {}
 
   readonly text = {
     pageHeading: 'Intervention name',

@@ -13,6 +13,7 @@ describe(`mapInterventionTypeToFriendlyString`, () => {
         numberOfElements: 5,
       },
       new CatalogueFilter(),
+      '1',
     )
     const testValues = [
       { input: 'ACP', output: 'Accredited Programmes' },
@@ -41,6 +42,7 @@ describe(`filters.`, () => {
           numberOfElements: 5,
         },
         filter,
+        '1',
       )
       presenter.typeOptions.forEach(i => expect(i).toMatchObject({ value: i.value, checked: true }))
     })
@@ -58,6 +60,7 @@ describe(`filters.`, () => {
           numberOfElements: 5,
         },
         filter,
+        '1',
       )
       presenter.typeOptions.forEach(i => expect(i).toMatchObject({ checked: false }))
     })
@@ -76,6 +79,7 @@ describe(`filters.`, () => {
           numberOfElements: 5,
         },
         filter,
+        '1',
       )
 
       const expectedResult = [
