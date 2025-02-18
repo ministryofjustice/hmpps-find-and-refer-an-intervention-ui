@@ -24,6 +24,7 @@ import config from './config'
 declare module 'express-session' {
   export interface SessionData {
     originPage: string
+    filterParams: string
   }
 }
 export default function createApp(services: Services): express.Application {

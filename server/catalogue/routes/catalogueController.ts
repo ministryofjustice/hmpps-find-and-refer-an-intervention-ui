@@ -12,20 +12,23 @@ export default class CatalogueController {
     const { username } = req.user
     const pageNumber = req.query.page
 
+    if (pageNumber === undefined) {
+      req.session.filterParams = req.originalUrl.substring(2, req.originalUrl.length)
+    }
+
     const filter = CatalogueFilter.fromRequest(req)
 
     const interventionCatalogueItems = await this.findAndReferService.getInterventionsCatalogue(
       username,
       {
         page: pageNumber ? Number(pageNumber) - 1 : 0,
-        size: 5,
+        size: 1,
       },
       filter.params,
     )
     req.session.originPage = req.originalUrl
-    const tempParams = `setting-radio=${filter.params.setting}&gender-checkbox=${filter.params.allowsMales}&type-checkbox=${filter.params.interventionType}`
-    console.log({ ...filter.params })
-    const presenter = new CataloguePresenter(interventionCatalogueItems, filter, tempParams)
+
+    const presenter = new CataloguePresenter(interventionCatalogueItems, filter, req.session.filterParams)
     const view = new CatalogueView(presenter)
 
     ControllerUtils.renderWithLayout(res, view)
