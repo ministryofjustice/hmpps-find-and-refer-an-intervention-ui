@@ -4,9 +4,9 @@ import CatalogueFilter from './catalogueFilter'
 describe(CatalogueFilter, () => {
   describe('.fromRequest', () => {
     it('creates a filter from the request’s query params', () => {
-      const body = { 'type-checkbox': ['CRS', 'ACP'], 'setting-radio': ['COMMUNITY'], 'gender-checkbox': ['Male'] }
+      const query = { 'type-checkbox': ['CRS', 'ACP'], 'setting-radio': ['COMMUNITY'], 'gender-checkbox': ['Male'] }
 
-      const filter = CatalogueFilter.fromRequest({ body } as unknown as Request)
+      const filter = CatalogueFilter.fromRequest({ query } as unknown as Request)
 
       expect(filter.interventionType).toEqual(['CRS', 'ACP'])
       expect(filter.setting).toEqual(['COMMUNITY'])
