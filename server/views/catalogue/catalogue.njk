@@ -25,8 +25,7 @@
 
 
         <div class="govuk-grid-column-one-third">
-          <form id="filter-form" method="post">
-          <input type="hidden" name="_csrf" value="{{csrfToken}}">
+          <form id="filter-form" method="get">
             {{ mojFilter({
               heading: {
                 text: 'Filter'

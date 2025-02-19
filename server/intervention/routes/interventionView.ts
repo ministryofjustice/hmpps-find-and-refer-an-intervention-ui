@@ -204,6 +204,11 @@ export default class InterventionView {
     }
   }
 
+  private readonly backLinkArgs = {
+    text: 'Back',
+    href: this.presenter.backlinkUri,
+  }
+
   get renderArgs(): [string, Record<string, unknown>] {
     return [
       'intervention/intervention',
@@ -211,6 +216,7 @@ export default class InterventionView {
         presenter: this.presenter,
         summaryListArgs: InterventionView.summary,
         locationsInCommunityTableArgs: this.getLocationsInCommunityTableArgs(),
+        backLinkArgs: this.backLinkArgs,
       },
     ]
   }
