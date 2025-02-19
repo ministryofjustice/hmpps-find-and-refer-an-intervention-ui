@@ -43,6 +43,18 @@
         <div class="govuk-grid-column-two-thirds">
           <h2 class="govuk-heading-s">{{presenter.pagination.page.totalElements}} results</h2>
           <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+          {% if presenter.interventions.length == 0 %}
+            <p class="govuk-body govuk-!-font-weight-bold">There are no matching results.</p>
+            <p class="govuk-body">Improve your search results by:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>removing filters</li>
+              <li>double-checking your spelling</li>
+              <li>using fewer keywords</li>
+              <li>searching for something less specific</li>
+            </ul>
+          {% endif %}
+
           {% for x in presenter.interventions %}
               <div class="gem-c-document-list__item-title">
                   <h2 class="govuk-heading-m">
