@@ -133,6 +133,92 @@ export default class CataloguePresenter {
     },
   ]
 
+  // readonly selectedFilters = [
+  //   {
+  //     heading: {
+  //       text: 'Gender',
+  //     },
+  //     items: [
+  //       {
+  //         href: '/path/to/remove/this',
+  //         text: 'Male',
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     heading: {
+  //       text: 'Type',
+  //     },
+  //     items: [
+  //       {
+  //         href: '/path/to/remove/this',
+  //         text: 'AC',
+  //       },
+  //     ],
+  //   },
+  // ]
+
+  generateRemoveFilterHref(filterName: string, filterValue: string) {
+    const urlToReturn = `/interventions/${this.setting}?${this.params}`
+    if (urlToReturn.includes(`&${filterName}=${filterValue}`)) {
+      return urlToReturn.replace(`&${filterName}=${filterValue}`, '')
+    }
+    return urlToReturn.replace(`${filterName}=${filterValue}`, '')
+  }
+
+  generateFilterPane() {
+    const categories = this.generateSelectedFilters()
+    if (categories.length !== 0) {
+      return {
+        heading: {
+          text: 'Selected filters',
+        },
+
+        clearLink: {
+          text: 'Clear filters',
+          href: `/interventions/${this.setting}`,
+        },
+
+        categories,
+      }
+    }
+    return null
+  }
+
+  generateSelectedFilters() {
+    const selectedFilters = []
+    if (this.filter.gender) {
+      const genders = typeof this.filter.gender === 'string' ? [this.filter.gender] : this.filter.gender
+      selectedFilters.push({
+        heading: {
+          text: 'Gender',
+        },
+        items: genders.map(genderFilter => {
+          return {
+            href: this.generateRemoveFilterHref('gender-checkbox', genderFilter),
+            text: genderFilter,
+          }
+        }),
+      })
+    }
+    if (this.filter.interventionType) {
+      const interventionTypes =
+        typeof this.filter.interventionType === 'string' ? [this.filter.interventionType] : this.filter.interventionType
+      selectedFilters.push({
+        heading: {
+          text: 'Type',
+        },
+        items: interventionTypes.map(interventionTypeFilter => {
+          return {
+            href: this.generateRemoveFilterHref('type-checkbox', interventionTypeFilter),
+            text: this.mapInterventionTypeToFriendlyString(interventionTypeFilter),
+          }
+        }),
+      })
+    }
+    return selectedFilters
+  }
+
   mapInterventionTypeToFriendlyString(interventionType: string) {
     enum InterventionTypes {
       SI = 'Structured Interventions',
