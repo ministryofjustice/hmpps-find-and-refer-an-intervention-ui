@@ -16,19 +16,21 @@ export default function routes({ auditService, findAndReferService }: Services):
   const interventionController = new InterventionController(findAndReferService)
   const testController = new TestController(findAndReferService)
 
-  // get('/', async (req, res, next) => {
-  //   await auditService.logPageView(Page.EXAMPLE_PAGE, { who: res.locals.user.username, correlationId: req.id })
-  //
-  //   res.render('pages/index')
-  // })
-
   get('/', async (req, res, next) => {
-    await catalogueController.showCataloguePage(req, res)
+    res.redirect('/interventions/community')
   })
 
-  post('/', async (req, res, next) => {
-    await catalogueController.showCataloguePage(req, res)
+  get('/interventions/community', async (req, res, next) => {
+    await catalogueController.showCommunityPage(req, res)
   })
+
+  get('/interventions/custody', async (req, res, next) => {
+    await catalogueController.showCustodyPage(req, res)
+  })
+
+  // post('/', async (req, res, next) => {
+  //   await catalogueController.showCataloguePage(req, res)
+  // })
 
   get('/intervention/:id', async (req, res, next) => {
     await interventionController.showInterventionPage(req, res)

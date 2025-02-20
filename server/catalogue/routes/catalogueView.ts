@@ -40,33 +40,6 @@ export default class CatalogueView {
     }
   }
 
-  private get settingRadioArgs(): RadiosArgs {
-    return {
-      idPrefix: 'setting-radio',
-      name: 'setting-radio',
-      fieldset: {
-        legend: {
-          text: this.presenter.text.settingRadio.heading,
-          classes: 'govuk-fieldset__legend--m',
-        },
-        classes: 'govuk-checkboxes--small',
-      },
-      hint: { text: this.presenter.text.settingRadio.hint },
-      items: [
-        {
-          value: 'COMMUNITY',
-          text: this.presenter.text.settingRadio.items.communityHeading,
-          checked: this.presenter.filter.setting?.includes('COMMUNITY') ?? false,
-        },
-        {
-          value: 'CUSTODY',
-          text: this.presenter.text.settingRadio.items.custodyHeading,
-          checked: this.presenter.filter.setting?.includes('CUSTODY') ?? false,
-        },
-      ],
-    }
-  }
-
   private get genderCheckboxArgs(): CheckboxesArgs {
     return {
       idPrefix: 'gender-checkbox',
@@ -183,7 +156,6 @@ export default class CatalogueView {
         summaryListArgs: CatalogueView.summary,
         searchByProgrammeNameInputArgs: this.searchByProgrammeNameInputArgs,
         locationInputArgs: this.locationInputArgs,
-        settingRadioArgs: this.settingRadioArgs,
         genderCheckboxArgs: this.genderCheckboxArgs,
         needsCheckboxArgs: this.needsCheckboxArgs,
         typeCheckboxArgs: this.typeCheckboxArgs,

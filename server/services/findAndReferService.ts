@@ -23,7 +23,6 @@ export interface PaginationParams {
 export interface CatalogueFilterParams {
   allowsMales?: boolean
   allowsFemales?: boolean
-  setting?: string
   interventionType?: string[]
 }
 
@@ -48,6 +47,7 @@ export default class FindAndReferService {
     username: Express.User['username'],
     paginationParams: PaginationParams,
     filter: CatalogueFilterParams,
+    setting: string
   ): Promise<Page<InterventionCatalogueItem>> {
     const hmppsAuthClient = this.hmppsAuthClientBuilder()
     const systemToken = await hmppsAuthClient.getSystemClientToken(username)
@@ -60,5 +60,12 @@ export default class FindAndReferService {
       headers: { Accept: 'application/json' },
       query: { ...paginationParams, ...filterQuery },
     })) as Page<InterventionCatalogueItem>
+
+    // return (await restClient.get({
+    //   path: `/interventions/${setting}`,
+    //   headers: { Accept: 'application/json' },
+    //   query: { ...paginationParams, ...filterQuery },
+    // })) as Page<InterventionCatalogueItem>
+
   }
 }

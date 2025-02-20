@@ -8,12 +8,26 @@ import CatalogueFilter from './catalogueFilter'
 export default class CatalogueController {
   constructor(private readonly findAndReferService: FindAndReferService) {}
 
-  async showCataloguePage(req: Request, res: Response): Promise<void> {
+  // async index(req: Request, res: Response): Promise<void> {
+  //   //are you community or custody based on token
+  //   const setting = 'community'
+  //
+  // }
+
+  async showCommunityPage(req: Request, res: Response): Promise<void> {
+    await this.showCataloguePage(req, res, 'community')
+  }
+
+  async showCustodyPage(req: Request, res: Response): Promise<void> {
+    await this.showCataloguePage(req, res, 'custody')
+  }
+
+  async showCataloguePage(req: Request, res: Response, setting: string): Promise<void> {
     const { username } = req.user
     const pageNumber = req.query.page
 
     if (pageNumber === undefined) {
-      req.session.filterParams = req.originalUrl.substring(2, req.originalUrl.length)
+      req.session.filterParams = req.originalUrl.split('?').pop()
     }
 
     const filter = CatalogueFilter.fromRequest(req)
@@ -25,10 +39,11 @@ export default class CatalogueController {
         size: 5,
       },
       filter.params,
+      setting,
     )
     req.session.originPage = req.originalUrl
 
-    const presenter = new CataloguePresenter(interventionCatalogueItems, filter, req.session.filterParams)
+    const presenter = new CataloguePresenter(interventionCatalogueItems, filter, req.session.filterParams, setting)
     const view = new CatalogueView(presenter)
 
     ControllerUtils.renderWithLayout(res, view)
