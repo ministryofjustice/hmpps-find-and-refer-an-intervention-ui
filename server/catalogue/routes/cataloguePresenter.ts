@@ -133,31 +133,6 @@ export default class CataloguePresenter {
     },
   ]
 
-  // readonly selectedFilters = [
-  //   {
-  //     heading: {
-  //       text: 'Gender',
-  //     },
-  //     items: [
-  //       {
-  //         href: '/path/to/remove/this',
-  //         text: 'Male',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     heading: {
-  //       text: 'Type',
-  //     },
-  //     items: [
-  //       {
-  //         href: '/path/to/remove/this',
-  //         text: 'AC',
-  //       },
-  //     ],
-  //   },
-  // ]
-
   generateRemoveFilterHref(filterName: string, filterValue: string) {
     const urlToReturn = `/interventions/${this.setting}?${this.params}`
     if (urlToReturn.includes(`&${filterName}=${filterValue}`)) {
