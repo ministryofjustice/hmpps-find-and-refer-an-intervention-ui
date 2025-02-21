@@ -1,6 +1,6 @@
 import CataloguePresenter from './cataloguePresenter'
 import { SummaryListItem } from '../../utils/summaryList'
-import { CheckboxesArgs, InputArgs, RadiosArgs, SummaryListArgs } from '../../utils/govukFrontendTypes'
+import { CheckboxesArgs, InputArgs, SummaryListArgs } from '../../utils/govukFrontendTypes'
 import ViewUtils from '../../utils/viewUtils'
 
 export default class CatalogueView {
