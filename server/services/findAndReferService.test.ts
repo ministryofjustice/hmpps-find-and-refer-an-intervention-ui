@@ -38,12 +38,12 @@ describe('Dummy Endpoint', () => {
 
 describe('getInterventionsCatalogue', () => {
   it('should call getInterventionsCatalogue with the correct params with no filter options', async () => {
-    await findAndReferService.getInterventionsCatalogue(username, { page: 0, size: 10 }, {})
+    await findAndReferService.getInterventionsCatalogue(username, { page: 0, size: 10 }, {}, 'community')
     expect(hmppsAuthClientBuilder).toHaveBeenCalled()
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({
       headers: { Accept: 'application/json' },
-      path: '/interventions',
+      path: '/interventions/community',
       query: { page: 0, size: 10 },
     })
   })
@@ -53,24 +53,14 @@ describe('getInterventionsCatalogue', () => {
       username,
       { page: 0, size: 10 },
       { interventionType: ['ACP', 'CRS'] },
+      'custody',
     )
     expect(hmppsAuthClientBuilder).toHaveBeenCalled()
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({
       headers: { Accept: 'application/json' },
-      path: '/interventions',
+      path: '/interventions/custody',
       query: { page: 0, size: 10, interventionType: ['ACP', 'CRS'] },
-    })
-  })
-
-  it('should call getInterventionsCatalogue with the correct params when filtering by setting', async () => {
-    await findAndReferService.getInterventionsCatalogue(username, { page: 0, size: 10 }, { setting: 'CUSTODY' })
-    expect(hmppsAuthClientBuilder).toHaveBeenCalled()
-    expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
-    expect(restClientMock.get).toHaveBeenCalledWith({
-      headers: { Accept: 'application/json' },
-      path: '/interventions',
-      query: { page: 0, size: 10, setting: 'CUSTODY' },
     })
   })
 
@@ -79,12 +69,13 @@ describe('getInterventionsCatalogue', () => {
       username,
       { page: 0, size: 10 },
       { allowsMales: true, allowsFemales: true },
+      'custody',
     )
     expect(hmppsAuthClientBuilder).toHaveBeenCalled()
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({
       headers: { Accept: 'application/json' },
-      path: '/interventions',
+      path: '/interventions/custody',
       query: { page: 0, size: 10, allowsMales: true, allowsFemales: true },
     })
   })
@@ -93,14 +84,15 @@ describe('getInterventionsCatalogue', () => {
     await findAndReferService.getInterventionsCatalogue(
       username,
       { page: 0, size: 10 },
-      { interventionType: ['ACP', 'CRS'], setting: 'COMMUNITY', allowsMales: true },
+      { interventionType: ['ACP', 'CRS'], allowsMales: true },
+      'custody',
     )
     expect(hmppsAuthClientBuilder).toHaveBeenCalled()
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({
       headers: { Accept: 'application/json' },
-      path: '/interventions',
-      query: { page: 0, size: 10, interventionType: ['ACP', 'CRS'], setting: 'COMMUNITY', allowsMales: true },
+      path: '/interventions/custody',
+      query: { page: 0, size: 10, interventionType: ['ACP', 'CRS'], allowsMales: true },
     })
   })
 })

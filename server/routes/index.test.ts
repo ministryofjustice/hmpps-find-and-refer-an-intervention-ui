@@ -40,11 +40,6 @@ describe('GET /', () => {
       .pageContent([interventionCatalogueItem])
       .build() as Page<InterventionCatalogueItem>
     findAndReferService.getInterventionsCatalogue.mockResolvedValue(interventionCatalogueItemPage)
-    return request(app)
-      .get('/')
-      .expect('Content-Type', /html/)
-      .expect(res => {
-        expect(res.text).toContain('HMPPS Find And Refer An Intervention Ui - Home')
-      })
+    return request(app).get('/').expect(302).expect('Location', '/interventions/community')
   })
 })

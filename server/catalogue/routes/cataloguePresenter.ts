@@ -11,6 +11,7 @@ export default class CataloguePresenter {
     private interventionCatalogueItems: Page<InterventionCatalogueItem>,
     readonly filter: CatalogueFilter,
     readonly params: string,
+    readonly setting: string,
   ) {
     this.pagination = new Pagination(interventionCatalogueItems, params)
     this.interventionCatalogueItems = interventionCatalogueItems
@@ -19,20 +20,12 @@ export default class CataloguePresenter {
   interventions = this.interventionCatalogueItems.content
 
   readonly text = {
-    pageHeading: 'Search Results',
+    pageHeading: `Search results for ${this.setting}`,
     searchByProgrammeNameInput: {
       heading: 'Search by programme name',
     },
     locationInput: {
       heading: 'Location (works both PDU and prison?)?',
-    },
-    settingRadio: {
-      heading: 'Setting',
-      items: {
-        communityHeading: 'Community',
-        custodyHeading: 'Custody',
-      },
-      hint: 'Select one option',
     },
     genderRadio: {
       heading: 'Gender',
@@ -139,6 +132,70 @@ export default class CataloguePresenter {
       checked: this.filter.interventionType?.includes('TOOL') ?? false,
     },
   ]
+
+  generateRemoveFilterHref(filterName: string, filterValue: string) {
+    const urlToReturn = `/interventions/${this.setting}?${this.params}`
+    if (urlToReturn.includes(`&${filterName}=${filterValue}`)) {
+      return urlToReturn.replace(`&${filterName}=${filterValue}`, '')
+    }
+    if (urlToReturn.includes(`?${filterName}=${filterValue}&`)) {
+      return urlToReturn.replace(`${filterName}=${filterValue}&`, '')
+    }
+    return urlToReturn.replace(`?${filterName}=${filterValue}`, '')
+  }
+
+  generateFilterPane() {
+    const categories = this.generateSelectedFilters()
+    if (categories.length !== 0) {
+      return {
+        heading: {
+          text: 'Selected filters',
+        },
+
+        clearLink: {
+          text: 'Clear filters',
+          href: `/interventions/${this.setting}`,
+        },
+
+        categories,
+      }
+    }
+    return null
+  }
+
+  generateSelectedFilters() {
+    const selectedFilters = []
+    if (this.filter.gender) {
+      const genders = typeof this.filter.gender === 'string' ? [this.filter.gender] : this.filter.gender
+      selectedFilters.push({
+        heading: {
+          text: 'Gender',
+        },
+        items: genders.map(genderFilter => {
+          return {
+            href: this.generateRemoveFilterHref('gender-checkbox', genderFilter),
+            text: genderFilter,
+          }
+        }),
+      })
+    }
+    if (this.filter.interventionType) {
+      const interventionTypes =
+        typeof this.filter.interventionType === 'string' ? [this.filter.interventionType] : this.filter.interventionType
+      selectedFilters.push({
+        heading: {
+          text: 'Type',
+        },
+        items: interventionTypes.map(interventionTypeFilter => {
+          return {
+            href: this.generateRemoveFilterHref('type-checkbox', interventionTypeFilter),
+            text: this.mapInterventionTypeToFriendlyString(interventionTypeFilter),
+          }
+        }),
+      })
+    }
+    return selectedFilters
+  }
 
   mapInterventionTypeToFriendlyString(interventionType: string) {
     enum InterventionTypes {

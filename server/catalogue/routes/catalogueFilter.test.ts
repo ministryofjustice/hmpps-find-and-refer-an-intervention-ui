@@ -9,7 +9,6 @@ describe(CatalogueFilter, () => {
       const filter = CatalogueFilter.fromRequest({ query } as unknown as Request)
 
       expect(filter.interventionType).toEqual(['CRS', 'ACP'])
-      expect(filter.setting).toEqual(['COMMUNITY'])
       expect(filter.gender).toEqual(['Male'])
     })
   })
@@ -32,22 +31,6 @@ describe(CatalogueFilter, () => {
         const filter = new CatalogueFilter()
         filter.interventionType = ['ACP', 'CRS']
         expect(filter.params.interventionType).toEqual(['ACP', 'CRS'])
-      })
-    })
-
-    describe('setting', () => {
-      it('correctly expects setting to be undefined if no setting passed', () => {
-        const filter = new CatalogueFilter()
-        expect(filter.params.setting).toBeUndefined()
-      })
-
-      it('correctly sets setting', () => {
-        const filter = new CatalogueFilter()
-        filter.setting = 'CUSTODY'
-        expect(filter.params.setting).toEqual('CUSTODY')
-
-        filter.setting = 'COMMUNITY'
-        expect(filter.params.setting).toEqual('COMMUNITY')
       })
     })
 

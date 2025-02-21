@@ -33,24 +33,38 @@ describe(`GET /interventions`, () => {
       .pageContent([interventionCatalogueItem])
       .build() as Page<InterventionCatalogueItem>
     findAndReferService.getInterventionsCatalogue.mockResolvedValue(interventionCatalogueItemPage)
-    await request(app).get(`/`).expect(200)
+    await request(app).get(`/`).expect(302)
   })
 })
 
-describe(`POST /interventions`, () => {
+describe(`GET /interventions/community`, () => {
   it('calls api to get all interventions', async () => {
     const interventionCatalogueItem = interventionCatalogueItemFactory.build()
     const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
       .pageContent([interventionCatalogueItem])
       .build() as Page<InterventionCatalogueItem>
     findAndReferService.getInterventionsCatalogue.mockResolvedValue(interventionCatalogueItemPage)
-
-    await request(app)
-      .post(`/`)
-      .send({ 'type-checkbox': ['ACP', 'CRS'], 'setting-radio': 'CUSTODY', 'gender-checkbox': ['Male'] })
+    return request(app)
+      .get('/interventions/community')
       .expect(200)
       .expect(res => {
-        expect(res.text).toContain('Search Results')
+        expect(res.text).toContain('Search results for community')
+      })
+  })
+})
+
+describe(`GET /interventions/custody`, () => {
+  it('calls api to get all interventions', async () => {
+    const interventionCatalogueItem = interventionCatalogueItemFactory.build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    findAndReferService.getInterventionsCatalogue.mockResolvedValue(interventionCatalogueItemPage)
+    return request(app)
+      .get('/interventions/custody')
+      .expect(200)
+      .expect(res => {
+        expect(res.text).toContain('Search results for custody')
       })
   })
 })

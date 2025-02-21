@@ -14,11 +14,18 @@
 
     <h1 class="govuk-heading-l">{{ presenter.text.pageHeading }}</h1>
 
+     {% if presenter.setting == 'community' %}
+        <p>See results for <a class="govuk-link" href="/interventions/custody">custody</a>.</p>
+     {% endif %}
+
+      {% if presenter.setting == 'custody' %}
+         <p>See results for <a class="govuk-link" href="/interventions/community">community</a>.</p>
+      {% endif %}
+
     <div class="govuk-grid-row">
 
         {%- set filterOptionsHtml %}
             {{ govukInput(searchByProgrammeNameInputArgs) }}
-            {{ govukRadios(settingRadioArgs) }}
             {{ govukCheckboxes(genderCheckboxArgs) }}
             {{ govukCheckboxes(typeCheckboxArgs) }}
         {% endset -%}
@@ -35,7 +42,8 @@
                     "data-test-id": "submit-button"
                 }
               },
-              optionsHtml: filterOptionsHtml
+            selectedFilters: selectedFilters,
+            optionsHtml: filterOptionsHtml
             }) }}
         </form>
         </div>

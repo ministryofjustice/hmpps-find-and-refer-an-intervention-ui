@@ -1,6 +1,6 @@
 import CataloguePresenter from './cataloguePresenter'
 import { SummaryListItem } from '../../utils/summaryList'
-import { CheckboxesArgs, InputArgs, RadiosArgs, SummaryListArgs } from '../../utils/govukFrontendTypes'
+import { CheckboxesArgs, InputArgs, SummaryListArgs } from '../../utils/govukFrontendTypes'
 import ViewUtils from '../../utils/viewUtils'
 
 export default class CatalogueView {
@@ -37,33 +37,6 @@ export default class CatalogueView {
       },
       value: '', // this.presenter.fields.keywords,
       errorMessage: ViewUtils.govukErrorMessage(null), // ViewUtils.govukErrorMessage(this.presenter.errorMessage),
-    }
-  }
-
-  private get settingRadioArgs(): RadiosArgs {
-    return {
-      idPrefix: 'setting-radio',
-      name: 'setting-radio',
-      fieldset: {
-        legend: {
-          text: this.presenter.text.settingRadio.heading,
-          classes: 'govuk-fieldset__legend--m',
-        },
-        classes: 'govuk-checkboxes--small',
-      },
-      hint: { text: this.presenter.text.settingRadio.hint },
-      items: [
-        {
-          value: 'COMMUNITY',
-          text: this.presenter.text.settingRadio.items.communityHeading,
-          checked: this.presenter.filter.setting?.includes('COMMUNITY') ?? false,
-        },
-        {
-          value: 'CUSTODY',
-          text: this.presenter.text.settingRadio.items.custodyHeading,
-          checked: this.presenter.filter.setting?.includes('CUSTODY') ?? false,
-        },
-      ],
     }
   }
 
@@ -183,13 +156,13 @@ export default class CatalogueView {
         summaryListArgs: CatalogueView.summary,
         searchByProgrammeNameInputArgs: this.searchByProgrammeNameInputArgs,
         locationInputArgs: this.locationInputArgs,
-        settingRadioArgs: this.settingRadioArgs,
         genderCheckboxArgs: this.genderCheckboxArgs,
         needsCheckboxArgs: this.needsCheckboxArgs,
         typeCheckboxArgs: this.typeCheckboxArgs,
         formatCheckboxArgs: this.formatCheckboxArgs,
         attendanceTypeCheckboxArgs: this.attendanceTypeCheckboxArgs,
         pagination: this.presenter.pagination.mojPaginationArgs,
+        selectedFilters: this.presenter.generateFilterPane(),
       },
     ]
   }
