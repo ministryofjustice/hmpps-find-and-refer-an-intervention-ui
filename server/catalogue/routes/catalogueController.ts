@@ -30,7 +30,7 @@ export default class CatalogueController {
       username,
       {
         page: pageNumber ? Number(pageNumber) - 1 : 0,
-        size: 5,
+        size: 1,
       },
       filter.params,
       setting,

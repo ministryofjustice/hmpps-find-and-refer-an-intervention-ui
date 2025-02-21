@@ -138,7 +138,10 @@ export default class CataloguePresenter {
     if (urlToReturn.includes(`&${filterName}=${filterValue}`)) {
       return urlToReturn.replace(`&${filterName}=${filterValue}`, '')
     }
-    return urlToReturn.replace(`${filterName}=${filterValue}`, '')
+    if (urlToReturn.includes(`?${filterName}=${filterValue}&`)) {
+      return urlToReturn.replace(`${filterName}=${filterValue}&`, '')
+    }
+    return urlToReturn.replace(`?${filterName}=${filterValue}`, '')
   }
 
   generateFilterPane() {
