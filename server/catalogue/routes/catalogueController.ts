@@ -8,12 +8,6 @@ import CatalogueFilter from './catalogueFilter'
 export default class CatalogueController {
   constructor(private readonly findAndReferService: FindAndReferService) {}
 
-  // async index(req: Request, res: Response): Promise<void> {
-  //   //are you community or custody based on token
-  //   const setting = 'community'
-  //
-  // }
-
   async showCommunityPage(req: Request, res: Response): Promise<void> {
     await this.showCataloguePage(req, res, 'community')
   }

@@ -47,7 +47,7 @@ export default class FindAndReferService {
     username: Express.User['username'],
     paginationParams: PaginationParams,
     filter: CatalogueFilterParams,
-    setting: string
+    setting: string,
   ): Promise<Page<InterventionCatalogueItem>> {
     const hmppsAuthClient = this.hmppsAuthClientBuilder()
     const systemToken = await hmppsAuthClient.getSystemClientToken(username)
@@ -56,16 +56,9 @@ export default class FindAndReferService {
     const filterQuery: Record<string, unknown> = { ...filter }
 
     return (await restClient.get({
-      path: `/interventions`,
+      path: `/interventions/${setting}`,
       headers: { Accept: 'application/json' },
       query: { ...paginationParams, ...filterQuery },
     })) as Page<InterventionCatalogueItem>
-
-    // return (await restClient.get({
-    //   path: `/interventions/${setting}`,
-    //   headers: { Accept: 'application/json' },
-    //   query: { ...paginationParams, ...filterQuery },
-    // })) as Page<InterventionCatalogueItem>
-
   }
 }

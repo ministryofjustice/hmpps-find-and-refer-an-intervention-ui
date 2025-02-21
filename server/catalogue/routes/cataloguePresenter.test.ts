@@ -13,7 +13,8 @@ describe(`mapInterventionTypeToFriendlyString`, () => {
         numberOfElements: 5,
       },
       new CatalogueFilter(),
-      'setting-radio=COMMUNITY&gender-checkbox=Male',
+      'gender-checkbox=Male',
+      'community',
     )
     const testValues = [
       { input: 'ACP', output: 'Accredited Programmes' },
@@ -42,7 +43,8 @@ describe(`filters.`, () => {
           numberOfElements: 5,
         },
         filter,
-        'setting-radio=COMMUNITY&gender-checkbox=Male&page=2',
+        'gender-checkbox=Male&page=2',
+        'community',
       )
       presenter.typeOptions.forEach(i => expect(i).toMatchObject({ value: i.value, checked: true }))
     })
@@ -60,7 +62,8 @@ describe(`filters.`, () => {
           numberOfElements: 5,
         },
         filter,
-        'setting-radio=COMMUNITY',
+        '',
+        'community',
       )
       presenter.typeOptions.forEach(i => expect(i).toMatchObject({ checked: false }))
     })
@@ -79,7 +82,8 @@ describe(`filters.`, () => {
           numberOfElements: 5,
         },
         filter,
-        'setting-radio=COMMUNITY&gender-checkbox=Male&page=2',
+        'gender-checkbox=Male&page=2',
+        'community',
       )
 
       const expectedResult = [
