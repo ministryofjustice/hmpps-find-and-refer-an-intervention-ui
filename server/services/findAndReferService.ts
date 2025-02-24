@@ -24,6 +24,7 @@ export interface CatalogueFilterParams {
   allowsMales?: boolean
   allowsFemales?: boolean
   interventionType?: string[]
+  searchByProgrammeName?: string
 }
 
 export default class FindAndReferService {
