@@ -4,12 +4,17 @@ import CatalogueFilter from './catalogueFilter'
 describe(CatalogueFilter, () => {
   describe('.fromRequest', () => {
     it('creates a filter from the request’s query params', () => {
-      const query = { 'type-checkbox': ['CRS', 'ACP'], 'setting-radio': ['COMMUNITY'], 'gender-checkbox': ['Male'] }
+      const query = {
+        'type-checkbox': ['CRS', 'ACP'],
+        'gender-checkbox': ['Male'],
+        'search-by-programme-name-input': 'Building',
+      }
 
       const filter = CatalogueFilter.fromRequest({ query } as unknown as Request)
 
       expect(filter.interventionType).toEqual(['CRS', 'ACP'])
       expect(filter.gender).toEqual(['Male'])
+      expect(filter.programmeName).toEqual('Building')
     })
   })
 
@@ -62,6 +67,20 @@ describe(CatalogueFilter, () => {
         filter.gender = ['Male', 'Female']
         expect(filter.params.allowsMales).toEqual(true)
         expect(filter.params.allowsFemales).toEqual(true)
+      })
+    })
+
+    describe('programmeName', () => {
+      it('correctly expects programmeName to be undefined if no type passed', () => {
+        const filter = new CatalogueFilter()
+        expect(filter.params.interventionType).toBeUndefined()
+      })
+
+      it('correctly sets programmeName ', () => {
+        const filter = new CatalogueFilter()
+        filter.programmeName = 'Hello'
+
+        expect(filter.params.programmeName).toEqual('Hello')
       })
     })
   })

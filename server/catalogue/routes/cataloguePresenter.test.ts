@@ -167,7 +167,7 @@ describe(`generateRemoveFilterHref`, () => {
 describe(`generateFilterPane`, () => {
   it('should return the correct filter pane object for filters supplied', async () => {
     const testObject = {
-      filter: { interventionType: ['ACP'], gender: ['Male'] } as CatalogueFilter,
+      filter: { interventionType: ['ACP'], gender: ['Male'], programmeName: 'Building' } as CatalogueFilter,
       expectedResult: {
         heading: {
           text: 'Selected filters',
@@ -179,11 +179,22 @@ describe(`generateFilterPane`, () => {
         categories: [
           {
             heading: {
+              text: 'Programme Name',
+            },
+            items: [
+              {
+                href: '/interventions/community?gender-checkbox=Male&type-checkbox=ACP',
+                text: 'Building',
+              },
+            ],
+          },
+          {
+            heading: {
               text: 'Gender',
             },
             items: [
               {
-                href: '/interventions/community?type-checkbox=ACP',
+                href: '/interventions/community?search-by-programme-name-input=Building&type-checkbox=ACP',
                 text: 'Male',
               },
             ],
@@ -194,7 +205,7 @@ describe(`generateFilterPane`, () => {
             },
             items: [
               {
-                href: '/interventions/community?gender-checkbox=Male',
+                href: '/interventions/community?search-by-programme-name-input=Building&gender-checkbox=Male',
                 text: 'Accredited Programmes',
               },
             ],
@@ -213,7 +224,7 @@ describe(`generateFilterPane`, () => {
         numberOfElements: 5,
       },
       testObject.filter,
-      'gender-checkbox=Male&type-checkbox=ACP',
+      'search-by-programme-name-input=Building&gender-checkbox=Male&type-checkbox=ACP',
       'community',
     )
     expect(presenter.generateFilterPane()).toEqual(testObject.expectedResult)

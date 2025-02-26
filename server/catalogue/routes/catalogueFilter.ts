@@ -6,13 +6,13 @@ export default class CatalogueFilter {
 
   gender: ('Male' | 'Female')[] | undefined
 
-  searchByProgrammeName: string
+  programmeName: string | undefined
 
   static fromRequest(request: Request): CatalogueFilter {
     const filter = new CatalogueFilter()
     filter.gender = request.query['gender-checkbox'] as ('Male' | 'Female')[] | undefined
     filter.interventionType = request.query['type-checkbox'] as string[] | undefined
-    filter.searchByProgrammeName = request.query['search-by-programme-name-input'] as string
+    filter.programmeName = request.query['search-by-programme-name-input'] as string
 
     return filter
   }
@@ -34,8 +34,8 @@ export default class CatalogueFilter {
       }
     }
 
-    if (this.searchByProgrammeName !== undefined) {
-      params.searchByProgrammeName = this.searchByProgrammeName
+    if (this.programmeName !== undefined) {
+      params.programmeName = this.programmeName
     }
 
     return params

@@ -165,6 +165,22 @@ export default class CataloguePresenter {
 
   generateSelectedFilters() {
     const selectedFilters = []
+    if (this.filter.programmeName) {
+      selectedFilters.push({
+        heading: {
+          text: 'Programme Name',
+        },
+        items: [
+          {
+            href: this.generateRemoveFilterHref(
+              'search-by-programme-name-input',
+              this.filter.programmeName.replace(/ /g, '+'),
+            ),
+            text: this.filter.programmeName,
+          },
+        ],
+      })
+    }
     if (this.filter.gender) {
       const genders = typeof this.filter.gender === 'string' ? [this.filter.gender] : this.filter.gender
       selectedFilters.push({
