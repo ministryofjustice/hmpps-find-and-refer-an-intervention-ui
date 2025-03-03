@@ -16,4 +16,4 @@ generic-service:
     AUDIT_ENABLED: "false"
 
 generic-prometheus-alerts:
-  alertSeverity: tbc
+  alertSeverity: NON_PROD_ALERTS_SEVERITY_LABEL
