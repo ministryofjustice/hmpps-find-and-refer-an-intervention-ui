@@ -2,14 +2,18 @@
 # Per environment values which override defaults in hmpps-find-and-refer-an-intervention-ui/values.yaml
 
 generic-service:
+  replicaCount: 2
+
   ingress:
     host: find-and-refer-intervention.hmpps.service.justice.gov.uk
 
   env:
     INGRESS_URL: "https://find-and-refer-intervention.hmpps.service.justice.gov.uk"
     HMPPS_AUTH_URL: "https://sign-in.hmpps.service.justice.gov.uk/auth"
+    FIND_AND_REFER_URL: "https://find-and-refer-intervention-api.hmpps.service.justice.gov.uk"
     TOKEN_VERIFICATION_API_URL: "https://token-verification-api.prison.service.justice.gov.uk"
+    ENVIRONMENT_NAME: PRODUCTION
     AUDIT_ENABLED: "false"
 
 generic-prometheus-alerts:
-  alertSeverity: tbc
+  alertSeverity: PROD_ALERTS_SEVERITY_LABEL
