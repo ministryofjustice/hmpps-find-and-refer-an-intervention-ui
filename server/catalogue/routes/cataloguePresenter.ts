@@ -1,7 +1,7 @@
-import { ListStyle, SummaryListItem } from '../../utils/summaryList'
-import Pagination from '../../utils/pagination/pagination'
-import { Page } from '../../shared/models/pagination'
 import InterventionCatalogueItem from '../../models/InterventionCatalogueItem'
+import { Page } from '../../shared/models/pagination'
+import Pagination from '../../utils/pagination/pagination'
+import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import CatalogueFilter from './catalogueFilter'
 
 export default class CataloguePresenter {
@@ -127,9 +127,9 @@ export default class CataloguePresenter {
       checked: this.filter.interventionType?.includes('SI') ?? false,
     },
     {
-      value: 'TOOL',
+      value: 'TOOLKITS',
       text: 'Toolkits',
-      checked: this.filter.interventionType?.includes('TOOL') ?? false,
+      checked: this.filter.interventionType?.includes('TOOLKITS') ?? false,
     },
   ]
 
