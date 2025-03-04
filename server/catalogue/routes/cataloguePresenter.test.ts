@@ -1,5 +1,5 @@
-import CataloguePresenter from './cataloguePresenter'
 import CatalogueFilter from './catalogueFilter'
+import CataloguePresenter from './cataloguePresenter'
 
 describe(`mapInterventionTypeToFriendlyString`, () => {
   it('returns the correct mapping', async () => {
@@ -31,7 +31,7 @@ describe(`filters.`, () => {
   describe(`intervention type`, () => {
     it('set to true if set in filter', async () => {
       const filter = new CatalogueFilter()
-      filter.interventionType = ['ACP', 'CRS', 'SI', 'TOOL', 'ROIF', 'CFO']
+      filter.interventionType = ['ACP', 'CRS', 'SI', 'TOOLKITS', 'ROIF', 'CFO']
 
       const presenter = new CataloguePresenter(
         {
@@ -103,7 +103,7 @@ describe(`filters.`, () => {
           checked: false,
         },
         {
-          value: 'TOOL',
+          value: 'TOOLKITS',
           text: 'Toolkits',
           checked: false,
         },
