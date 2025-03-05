@@ -14,6 +14,16 @@ Most software can be installed using [homebrew](https://brew.sh/).
 
 ## Running the application locally
 
+After setting up the dependencies (below), run the application locally with with: 
+
+```bash
+npm run start:dev
+```
+
+The dev server comes with Hot Module Reloading (reloads and restarts when any file changes are detected)
+
+### Docker
+
 This project includes docker compose files to start the required dependencies for running the UI locally.
 
 Run the following command to pull the relevant dependencies for the project.
@@ -34,18 +44,22 @@ can optionally be run in detached mode in order to retain terminal use
 docker-compose up -d
 ```
 
-Node requires a .env file to start the application, even if it's blank.
-Before starting the application create a new blank .env file
+### Environment Files (.env)
+
+Node requires a .env file to start the application, but the project does not make heavy use of environmental variables. 
+
+Before starting the application create a new blank .env file by either creating a blank .env file:
 
 ```bash
 touch .env
 ```
 
-Then the application can be started using the start dev script which will automatically restart the application when any file changes are detected;
+or copying the example file:
 
 ```bash
-npm run start:dev
+cp .env.example .env
 ```
+
 
 ## Connecting to local database
 
