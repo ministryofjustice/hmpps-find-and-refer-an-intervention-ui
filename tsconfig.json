@@ -20,14 +20,6 @@
       "@hmpps-auth": ["./server/@types/hmppsAuth/index.d.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "assets/**/*.js",
-    "integration_tests",
-    "dist",
-    "cypress.config.ts",
-    "esbuild",
-    "test_results"
-  ],
+  "exclude": ["node_modules", "assets/**/*.js", "integration_tests", "dist", "esbuild", "test_results"],
   "include": ["**/*.js", "**/*.ts"]
 }
