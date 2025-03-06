@@ -133,17 +133,6 @@ export default class CataloguePresenter {
     },
   ]
 
-  generateRemoveFilterHref(filterName: string, filterValue: string) {
-    const urlToReturn = `/interventions/${this.setting}?${this.params}`
-    if (urlToReturn.includes(`&${filterName}=${filterValue}`)) {
-      return urlToReturn.replace(`&${filterName}=${filterValue}`, '')
-    }
-    if (urlToReturn.includes(`?${filterName}=${filterValue}&`)) {
-      return urlToReturn.replace(`${filterName}=${filterValue}&`, '')
-    }
-    return urlToReturn.replace(`?${filterName}=${filterValue}`, '')
-  }
-
   generateFilterPane() {
     const categories = this.generateSelectedFilters()
     if (categories.length !== 0) {
@@ -165,6 +154,23 @@ export default class CataloguePresenter {
 
   generateSelectedFilters() {
     const selectedFilters = []
+
+    if (this.filter.programmeName) {
+      const searchParams = new URLSearchParams(this.params)
+      searchParams.delete('search-by-programme-name-input')
+
+      selectedFilters.push({
+        heading: {
+          text: 'Programme Name',
+        },
+        items: [
+          {
+            href: `/interventions/${this.setting}${searchParams.size === 0 ? '' : `?${searchParams.toString()}`}`,
+            text: this.filter.programmeName,
+          },
+        ],
+      })
+    }
     if (this.filter.gender) {
       const genders = typeof this.filter.gender === 'string' ? [this.filter.gender] : this.filter.gender
       selectedFilters.push({
@@ -172,8 +178,10 @@ export default class CataloguePresenter {
           text: 'Gender',
         },
         items: genders.map(genderFilter => {
+          const searchParams = new URLSearchParams(this.params)
+          searchParams.delete('gender-checkbox', genderFilter)
           return {
-            href: this.generateRemoveFilterHref('gender-checkbox', genderFilter),
+            href: `/interventions/${this.setting}${searchParams.size === 0 ? '' : `?${searchParams.toString()}`}`,
             text: genderFilter,
           }
         }),
@@ -187,8 +195,10 @@ export default class CataloguePresenter {
           text: 'Type',
         },
         items: interventionTypes.map(interventionTypeFilter => {
+          const searchParams = new URLSearchParams(this.params)
+          searchParams.delete('type-checkbox', interventionTypeFilter)
           return {
-            href: this.generateRemoveFilterHref('type-checkbox', interventionTypeFilter),
+            href: `/interventions/${this.setting}${searchParams.size === 0 ? '' : `?${searchParams.toString()}`}`,
             text: this.mapInterventionTypeToFriendlyString(interventionTypeFilter),
           }
         }),
