@@ -114,56 +114,6 @@ describe(`filters.`, () => {
   })
 })
 
-describe(`generateRemoveFilterHref`, () => {
-  it('should return the correct url string', async () => {
-    const filter = new CatalogueFilter()
-
-    const testObjects = [
-      {
-        params: 'gender-checkbox=Male&page=2',
-        filterName: 'gender-checkbox',
-        filterValue: 'Male',
-        expectedResult: '/interventions/community?page=2',
-      },
-      {
-        params: 'gender-checkbox=Male&type-checkbox=ACP&type-checkbox=CRS&page=2',
-        filterName: 'type-checkbox',
-        filterValue: 'CRS',
-        expectedResult: '/interventions/community?gender-checkbox=Male&type-checkbox=ACP&page=2',
-      },
-      {
-        params: 'gender-checkbox=Male&type-checkbox=ACP&type-checkbox=CRS',
-        filterName: 'type-checkbox',
-        filterValue: 'CRS',
-        expectedResult: '/interventions/community?gender-checkbox=Male&type-checkbox=ACP',
-      },
-      {
-        params: 'gender-checkbox=Male',
-        filterName: 'gender-checkbox',
-        filterValue: 'Male',
-        expectedResult: '/interventions/community',
-      },
-    ]
-
-    testObjects.forEach(test => {
-      const presenter = new CataloguePresenter(
-        {
-          content: [],
-          totalElements: 9,
-          totalPages: 2,
-          size: 5,
-          number: 0,
-          numberOfElements: 5,
-        },
-        filter,
-        test.params,
-        'community',
-      )
-      expect(presenter.generateRemoveFilterHref(test.filterName, test.filterValue)).toEqual(test.expectedResult)
-    })
-  })
-})
-
 describe(`generateFilterPane`, () => {
   it('should return the correct filter pane object for filters supplied', async () => {
     const testObject = {

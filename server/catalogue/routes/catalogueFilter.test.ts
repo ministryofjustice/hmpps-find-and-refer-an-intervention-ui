@@ -19,12 +19,16 @@ describe(CatalogueFilter, () => {
   })
 
   describe('params', () => {
-    describe('interventionType', () => {
-      it('correctly expects interventionType to be undefined if no type passed', () => {
+    describe('No params', () => {
+      it('correctly expects fields to be undefined if no type passed', () => {
         const filter = new CatalogueFilter()
-        expect(filter.params.interventionType).toBeUndefined()
+        expect(filter.interventionType).toBeUndefined()
+        expect(filter.gender).toBeUndefined()
+        expect(filter.programmeName).toBeUndefined()
       })
+    })
 
+    describe('interventionType', () => {
       it('correctly sets interventionType if only one type is passed', () => {
         const filter = new CatalogueFilter()
         filter.interventionType = ['CRS']
@@ -40,12 +44,6 @@ describe(CatalogueFilter, () => {
     })
 
     describe('gender', () => {
-      it('correctly expects allowsMales and allowsFemales to be undefined if no gender passed', () => {
-        const filter = new CatalogueFilter()
-        expect(filter.params.allowsMales).toBeUndefined()
-        expect(filter.params.allowsFemales).toBeUndefined()
-      })
-
       it('correctly sets allowsMales to true and not allowsFemales if only that gender is passed', () => {
         const filter = new CatalogueFilter()
         filter.gender = ['Male']
@@ -71,11 +69,6 @@ describe(CatalogueFilter, () => {
     })
 
     describe('programmeName', () => {
-      it('correctly expects programmeName to be undefined if no type passed', () => {
-        const filter = new CatalogueFilter()
-        expect(filter.params.interventionType).toBeUndefined()
-      })
-
       it('correctly sets programmeName ', () => {
         const filter = new CatalogueFilter()
         filter.programmeName = 'Hello'

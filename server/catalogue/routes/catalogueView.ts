@@ -21,8 +21,7 @@ export default class CatalogueView {
         text: this.presenter.text.searchByProgrammeNameInput.heading,
         classes: 'govuk-label--m',
       },
-      value: this.presenter.filter.programmeName ? this.presenter.filter.programmeName : null,
-      errorMessage: ViewUtils.govukErrorMessage(null), // ViewUtils.govukErrorMessage(this.presenter.errorMessage),
+      value: this.presenter.filter.programmeName ?? this.presenter.filter.programmeName,
     }
   }
 
