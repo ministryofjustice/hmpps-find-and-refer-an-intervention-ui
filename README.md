@@ -118,12 +118,8 @@ System tokens are obtained by making a call to HMPPS-Auth using the username of 
 
 Once the application is running you should then be able to login with:
 
-username: AUTH_USER
+username: robert.mercury
 password: password123456
-
-To request specific users and roles then raise a PR
-to [update the seed data](https://github.com/ministryofjustice/hmpps-auth/blob/main/src/main/resources/db/dev/data/auth/V900_3__users.sql)
-for the in-memory DB used by Auth
 
 ## Extra commands
 
