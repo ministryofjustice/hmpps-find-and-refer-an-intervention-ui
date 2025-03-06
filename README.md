@@ -118,7 +118,12 @@ System tokens are obtained by making a call to HMPPS-Auth using the username of 
 
 Once the application is running you should then be able to login with:
 
-username: robert.mercury
+Community User
+username: bernard.beaks
+password: secret
+
+Custody User
+username: FR_USER
 password: password123456
 
 ## Extra commands

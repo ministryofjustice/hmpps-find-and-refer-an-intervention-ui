@@ -1,6 +1,6 @@
 import type { Express } from 'express'
 import request from 'supertest'
-import { appWithAllRoutes, user } from './testutils/appSetup'
+import { appWithAllRoutes, deliusUser, nomisUser } from './testutils/appSetup'
 import AuditService from '../services/auditService'
 import FindAndReferService from '../services/findAndReferService'
 import interventionCatalogueItemFactory from '../../testutils/factories/interventionCatalogueItem'
@@ -19,22 +19,34 @@ const findAndReferService = new FindAndReferService(hmppsAuthClientBuilder) as j
 
 let app: Express
 
-beforeEach(() => {
-  app = appWithAllRoutes({
-    services: {
-      auditService,
-      findAndReferService,
-    },
-    userSupplier: () => user,
-  })
-})
-
 afterEach(() => {
   jest.resetAllMocks()
 })
 
 describe('GET /', () => {
-  it('should render index page', () => {
+  it('should render custody page for nomis user', () => {
+    app = appWithAllRoutes({
+      services: {
+        auditService,
+        findAndReferService,
+      },
+      userSupplier: () => nomisUser,
+    })
+    const interventionCatalogueItem = interventionCatalogueItemFactory.build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    findAndReferService.getInterventionsCatalogue.mockResolvedValue(interventionCatalogueItemPage)
+    return request(app).get('/').expect(302).expect('Location', '/interventions/custody')
+  })
+  it('should render community page for delius user', () => {
+    app = appWithAllRoutes({
+      services: {
+        auditService,
+        findAndReferService,
+      },
+      userSupplier: () => deliusUser,
+    })
     const interventionCatalogueItem = interventionCatalogueItemFactory.build()
     const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
       .pageContent([interventionCatalogueItem])
