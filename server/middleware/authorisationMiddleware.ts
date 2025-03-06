@@ -19,12 +19,12 @@ export default function authorisationMiddleware(
       }
 
       if (allowedAuthSources.length && !allowedAuthSources.includes(authSource.toLowerCase())) {
-        logger.error('User is not authorised to access this')
+        logger.error(`User is not authorised to access this, invalid auth source, ${authSource}`)
         return res.redirect('/authError')
       }
 
       if (authorisedAuthorities.length && !roles.some(role => authorisedAuthorities.includes(role))) {
-        logger.error('User is not authorised to access this')
+        logger.error(`User is not authorised to access this, invalid roles, ${roles}`)
         return res.redirect('/authError')
       }
       return next()
