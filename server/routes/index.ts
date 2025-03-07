@@ -17,7 +17,15 @@ export default function routes({ auditService, findAndReferService }: Services):
   const testController = new TestController(findAndReferService)
 
   get('/', async (req, res, next) => {
-    res.redirect('/interventions/community')
+    if (res.locals?.user.isPrisonUser) {
+      res.redirect('/interventions/custody')
+      return
+    }
+    if (res.locals?.user.isCommunityUser) {
+      res.redirect('/interventions/community')
+      return
+    }
+    res.redirect('/authError')
   })
 
   get('/interventions/community', async (req, res, next) => {

@@ -13,15 +13,29 @@ import FindAndReferService from '../../services/findAndReferService'
 
 jest.mock('../../services/auditService')
 
-export const user: HmppsUser = {
-  name: 'FIRST LAST',
+export const nomisUser: HmppsUser = {
+  name: 'NOMIS USER',
   userId: 'id',
   token: 'token',
   username: 'user1',
-  displayName: 'First Last',
+  displayName: 'Nomis User',
   authSource: 'nomis',
   staffId: 1234,
   userRoles: [],
+  isPrisonUser: true,
+  isCommunityUser: false,
+}
+
+export const deliusUser: HmppsUser = {
+  name: 'DELIUS USER',
+  userId: 'id',
+  token: 'token',
+  username: 'user1',
+  displayName: 'Delius User',
+  authSource: 'delius',
+  userRoles: [],
+  isPrisonUser: false,
+  isCommunityUser: true,
 }
 
 export const flashProvider = jest.fn()
@@ -60,7 +74,7 @@ export function appWithAllRoutes({
     auditService: new AuditService(null) as jest.Mocked<AuditService>,
     findAndReferService: new FindAndReferService(null) as jest.Mocked<FindAndReferService>,
   },
-  userSupplier = () => user,
+  userSupplier = () => nomisUser,
 }: {
   production?: boolean
   services?: Partial<Services>

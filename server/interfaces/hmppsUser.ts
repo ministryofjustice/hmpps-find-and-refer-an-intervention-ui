@@ -11,6 +11,8 @@ export interface BaseUser {
   displayName: string
   userRoles: string[]
   token: string
+  isPrisonUser: boolean
+  isCommunityUser: boolean
 }
 
 /**

@@ -25,10 +25,15 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:9090/auth/health"]
     environment:
       - SERVER_PORT=9090
-      - SPRING_PROFILES_ACTIVE=dev,delius,local-postgres
-      - DELIUS_ENDPOINT_URL=http://wiremock:8080/delius
+      - SPRING_PROFILES_ACTIVE=dev,delius,local-postgres,nomis
       - SPRING_DATASOURCE_URL=jdbc:postgresql://auth-db:5432/auth-db
       - APPLICATION_AUTHENTICATION_UI_ALLOWLIST=0.0.0.0/0
+      - NOMIS_ENDPOINT_URL=http://nomis-user-roles-api:8081
+      - DELIUS_ENABLED=true
+      - DELIUS_ENDPOINT_URL=http://wiremock:8080/delius
+      - DELIUS_ENDPOINT_TIMEOUT=1s
+      - DELIUS_CLIENT_CLIENT-ID=delius-auth-api-client
+      - DELIUS_CLIENT_CLIENT-SECRET=delius-auth-api-client
 
   auth-db:
     image: postgres:15
@@ -58,6 +63,23 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=local
       - POSTGRES_URI=postgres:5432
+
+  nomis-user-roles-api:
+    image: quay.io/hmpps/nomis-user-roles-api:latest
+    container_name: nomis-user-roles-api
+    networks:
+      - hmpps
+    depends_on:
+      - hmpps-auth
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8081/health/ping" ]
+    environment:
+      - SERVER_PORT=8081
+      - SPRING_PROFILES_ACTIVE=dev
+      - API_BASE_URL_OAUTH=http://hmpps-auth:9090/auth
+      - SPRING_FLYWAY_LOCATIONS=classpath:db/migration,classpath:db/dev,filesystem:/seed
 
   wiremock:
     image: wiremock/wiremock
