@@ -2,14 +2,14 @@
   "mappings": [
     {
       "request": {
-        "urlPattern": "/delius/user/bernard.beaks",
+        "urlPattern": "/delius/user/REFER_MONITOR_PP",
         "method": "GET"
       },
       "response": {
         "status": 200,
         "jsonBody": {
           "userId": 2500099998,
-          "username": "bernard.beaks",
+          "username": "REFER_MONITOR_PP",
           "firstName": "Bernard",
           "surname": "Beaks",
           "email": "bernard.beaks@digital.justice.gov.uk",
@@ -28,7 +28,7 @@
         "method": "POST",
         "bodyPatterns": [
           {
-            "equalToJson": "{\"username\":\"BERNARD.BEAKS\",\"password\":\"secret\"}"
+            "equalToJson": "{\"username\":\"REFER_MONITOR_PP\",\"password\":\"R8Mpassword\"}"
           }
         ]
       },
