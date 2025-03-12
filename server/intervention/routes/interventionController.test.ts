@@ -1,13 +1,8 @@
 import { Express } from 'express'
 import request from 'supertest'
 import FindAndReferService from '../../services/findAndReferService'
-import InterventionCatalogueItem from '../../models/InterventionCatalogueItem'
-import interventionCatalogueItemFactory from '../../../testutils/factories/interventionCatalogueItem'
 import interventionDetailsFactory from '../../../testutils/factories/interventionDetails'
-import pageFactory from '../../../testutils/factories/page'
-import { Page } from '../../shared/models/pagination'
 import { appWithAllRoutes } from '../../routes/testutils/appSetup'
-// import interventionDetails from "../../../testutils/factories/interventionDetails";
 
 jest.mock('../../services/findAndReferService')
 jest.mock('../../data/hmppsAuthClient')
@@ -28,46 +23,15 @@ beforeEach(() => {
   })
 })
 
-// describe(`GET /interventions`, () => {
-//   it('calls api to get all interventions', async () => {
-//     const interventionCatalogueItem = interventionCatalogueItemFactory.build()
-//     const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
-//       .pageContent([interventionCatalogueItem])
-//       .build() as Page<InterventionCatalogueItem>
-//     findAndReferService.getInterventionsCatalogue.mockResolvedValue(interventionCatalogueItemPage)
-//     await request(app).get(`/`).expect(302)
-//   })
-// })
-
 describe(`GET //intervention/:id`, () => {
   it('calls api to get intervention details', async () => {
-    const interventionCatalogueItem = interventionCatalogueItemFactory
-    // const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
-    //   .pageContent([interventionCatalogueItem])
-    //   .build() as Page<InterventionCatalogueItem>
-    const interventionDetails = interventionDetailsFactory.build().
-    findAndReferService.getInterventionsDetails().mockResolvedValue(interventionCatalogueItemPage)
+    const interventionDetails = interventionDetailsFactory.community().build()
+    findAndReferService.getInterventionsDetails.mockResolvedValue(interventionDetails)
     return request(app)
-      .get('/interventions/community')
+      .get('/intervention/123')
       .expect(200)
       .expect(res => {
-        expect(res.text).toContain('Search results for community')
-      })
-  })
-})
-
-describe(`GET /interventions/custody`, () => {
-  it('calls api to get all interventions', async () => {
-    const interventionCatalogueItem = interventionCatalogueItemFactory.build()
-    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
-      .pageContent([interventionCatalogueItem])
-      .build() as Page<InterventionCatalogueItem>
-    findAndReferService.getInterventionsCatalogue.mockResolvedValue(interventionCatalogueItemPage)
-    return request(app)
-      .get('/interventions/custody')
-      .expect(200)
-      .expect(res => {
-        expect(res.text).toContain('Search results for custody')
+        expect(res.text).toContain(`${interventionDetails.title}`)
       })
   })
 })
