@@ -17,128 +17,81 @@
   <h1 class="govuk-heading-l" data-test-id="intervention-name">{{ presenter.text.pageHeading }}</h1>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-tag govuk-tag--yellow gov-tag-heading">General violence offence</span>
+
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Criteria</h2>
       {{ govukSummaryList(summaryListArgs(presenter.interventionSummaryList())) }}
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Overview (Intervention summary)</h2>
-      <p class="govuk-body">
-        Long description ->> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porta, nibh quis convallis pharetra, eros sem cursus dolor, sit amet euismod eros leo sed libero. Pellentesque posuere cursus dui, at placerat orci suscipit quis. Nam massa ex, scelerisque id finibus id, viverra vel dui. Phasellus malesuada arcu eget enim iaculis aliquet. Proin rutrum purus et est laoreet, rhoncus viverra leo pulvinar. Cras vel tellus sit amet lorem elementum faucibus tincidunt in tortor. Nulla non ornare arcu. Nulla lobortis tortor sit amet ante fringilla ultricies quis id ligula. Phasellus viverra facilisis tellus vel pulvinar. Curabitur commodo, ligula vitae posuere ornare, risus massa pellentesque nunc, nec dictum quam nisl ut velit.
-      </p>
-      <p class="govuk-body">
-        Sed dictum lectus eros, non sollicitudin enim mattis eu. Fusce at congue lectus. Fusce porttitor diam id iaculis dignissim. Duis mattis diam eget nibh ornare, eget venenatis tortor pharetra. Nulla efficitur varius lorem a tincidunt. Nullam finibus ornare tellus at dapibus. Vivamus accumsan leo sed malesuada aliquam. Duis nibh quam, pretium suscipit enim a, rhoncus malesuada velit. Aliquam pretium vehicula purus nec iaculis. Vestibulum pellentesque iaculis gravida. Integer commodo nisi vitae eros vulputate laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi id mattis mi.
-      </p>
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-visually-hidden">Warning</span>
-          Enabling / qualifiying previous interventions warning here.
-        </strong>
-      </div>
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">What you need to know/ 'requirements' [TBC]</h2>
-      <p class="govuk-body">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porta, nibh quis convallis pharetra, eros sem cursus dolor, sit amet euismod eros leo sed libero. Pellentesque posuere cursus dui, at placerat orci suscipit quis. Nam massa ex, scelerisque id finibus id, viverra vel dui. Phasellus malesuada arcu eget enim iaculis aliquet. Proin rutrum purus et est laoreet, rhoncus viverra leo pulvinar. Cras vel tellus sit amet lorem elementum faucibus tincidunt in tortor. Nulla non ornare arcu. Nulla lobortis tortor sit amet ante fringilla ultricies quis id ligula. Phasellus viverra facilisis tellus vel pulvinar. Curabitur commodo, ligula vitae posuere ornare, risus massa pellentesque nunc, nec dictum quam nisl ut velit.
-      </p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>for offence type</li>
-        <li>victim type</li>
-        <li>Min remaining sentence duration</li>
-        <li>Remaining Licence / Community Order</li>
-      </ul>
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">What they will study (Topics/curriculum) [to be agreed if this section stays]</h2>
-      <h3 class="govuk-heading-s govuk-!-margin-top-8">Number of sessions</h3>
-      <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <h3 class="govuk-heading-s govuk-!-margin-top-8">Time to complete</h3>
-      <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <h3 class="govuk-heading-s govuk-!-margin-top-8">Modules</h3>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-        <li>Nullam venenatis magna sed massa vulputate blandit.</li>
-        <li>Sed congue sem vel felis tempor, in dapibus mauris posuere.</li>
-      </ul>
-      <p class="govuk-body">Possible outcomes-&gt; Goals aiming to achieve [to be agreed if this section stays]</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>In viverra ligula in lobortis finibus.</li>
-        <li>Proin aliquam metus id dignissim dictum.</li>
-        <li>Nam vulputate neque sed ligula mattis, sed pulvinar purus aliquet.</li>
-      </ul>
-      <h3 class="govuk-heading-s govuk-!-margin-top-8"> Generic needs ? / Reason for referral [TBC]</h3>
-      <p class="govuk-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <h2 class="govuk-heading-m">Get help with your referal or intervention [TBC]</h2>
-      <ul class="govuk-list">
-        <li>Phone: 020 7946 0101</li>
-        <li>Monday to Friday, 9am to 5pm (except public holidays)</li>
-        <li>Email: name@example.com</li>
-      </ul>
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Locations:</h2>
-      <p class="govuk-body govuk-!-margin-top-6">[placeholder]Locations where the programme runs and details for each one of them(how to contact them). If you select a location, you can refer.</p>
-<!--For interventions in the Community -->
-      {{ govukTable(locationsInCommunityTableArgs) }}
-<!--For interventions in Custody-->
-      {{ govukAccordion({
-      id: "accordion-default",
-      items: [
-        {
-          heading: {
-            text: "East Midlands"
-          },
-        content: {
-          html: '
-          <table class="govuk-table" data-module="moj-sortable-table">
-            <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header" aria-sort="ascending">Probation Delivery Unit (PDU)</th>
-            </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Derby City</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Derbyshire</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Leicester, Leicestershire and Rutland</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Lincolnshire East and West</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Nottingham City</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Nottinghamshire</td>
-            </tr>
-            </tbody>
-          </table>
-          '
-        }
-      },
-      {
-      heading: {
-      text: "East of England"
-      },
-      content: {
-      html: '<p class="govuk-body">This is the content placeholder. Table to be added at a later date.</p>'
-      }
-      },
-      {
-      heading: {
-      text: "Greater Manchester"
-      },
-      content: {
-      html: '<p class="govuk-body">This is the content placeholder. Table to be added at a later date.</p>'
-      }
-      },
-      {
-      heading: {
-      text: "Kent, Surrey and Sussex"
-      },
-      content: {
-      html: '<p class="govuk-body">This is the content placeholder. Table to be added at a later date.</p>'
-      }
-      }
-      ]
-      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Description:</h2>
+      <p>{{ presenter.intervention.description }}</p>
+
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location:</h2>
+      {% if presenter.intervention.custodyLocations.length > 0 %}
+        <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.custodyLocationDescription }}</p>
+        {{ govukTable(getLocationsInCustodyTableArgs) }}
+      {% endif %}
+
+      {% if presenter.intervention.communityLocations.length > 0 %}
+        <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.communityLocationDescription }}</p>
+        {% macro locationTable(pdus) %}
+            {% set rows = [] %}
+            {% for pdu in pdus %}
+              {% set rows = (rows.push([
+                {
+                  text: pdu
+                }
+              ]), rows) %}
+            {% endfor %}
+
+         {{ govukTable({
+              attributes: {
+                "data-module": "moj-sortable-table"
+              },
+              head: [
+                {
+                  text: "Name",
+                  attributes: {
+                    "aria-sort": "ascending"
+                  }
+                }
+              ],
+              rows: rows
+            })
+            }}
+        {% endmacro %}
+
+          {% set locations = [] %}
+
+          {% for communityLocation in presenter.intervention.communityLocations %}
+            {% set locations = (locations.push(
+                {
+                  heading: {
+                    text: communityLocation.name
+                  },
+                  content: {
+                    html: locationTable(communityLocation.locations)
+                  }
+                }
+              ), locations) %}
+          {% endfor %}
+
+          {{ govukAccordion({
+          id: "accordion-default",
+          items: locations
+          }) }}
+      {% endif %}
+
+
+
+
+
+
+
+
     </div>
   </div>
 {% endblock %}
+
+
+
+

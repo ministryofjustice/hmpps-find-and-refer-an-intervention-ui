@@ -1,6 +1,6 @@
 import InterventionPresenter from './interventionPresenter'
 import { SummaryListItem } from '../../utils/summaryList'
-import { SummaryListArgs, TableArgs } from '../../utils/govukFrontendTypes'
+import { AccordionArgs, SummaryListArgs, TableArgs } from '../../utils/govukFrontendTypes'
 import ViewUtils from '../../utils/viewUtils'
 
 export default class InterventionView {
@@ -204,6 +204,51 @@ export default class InterventionView {
     }
   }
 
+  // private getLocationsInCommunityAccordianArgs(): AccordionArgs {
+  //   return {
+  //     id: 'a',
+  //     items: this.presenter.interventionCommunityLocations
+  //   }
+  // }
+
+  // private getLocationsInCommunityAccordianArgs(html1: string): AccordionArgs {
+  //   return {
+  //     id: 'a',
+  //     items: this.presenter.intervention.communityLocations.map(location => ({
+  //       heading: {
+  //         text: location.name,
+  //       },
+  //       content: {
+  //         // text: location.locations.join(', '),
+  //         // html: this.table(location.locations),
+  //         html: html1.location,
+  //       },
+  //     })),
+  //   }
+  // }
+
+  table(locations: string[]): TableArgs {
+    return {
+      attributes: {
+        'data-module': 'moj-sortable-table',
+      },
+      head: [
+        {
+          text: 'Probation Delivery Unit (PDU)',
+          attributes: {
+            'aria-sort': 'ascending',
+          },
+        },
+      ],
+      rows: locations.map(location => [
+        {
+          // text: location
+          html: 'asdas',
+        },
+      ]),
+    }
+  }
+
   private readonly backLinkArgs = {
     text: 'Back',
     href: this.presenter.backlinkUri,
@@ -215,7 +260,8 @@ export default class InterventionView {
       {
         presenter: this.presenter,
         summaryListArgs: InterventionView.summary,
-        locationsInCommunityTableArgs: this.getLocationsInCommunityTableArgs(),
+        getLocationsInCustodyTableArgs: this.getLocationsInCustodyTableArgs(),
+        // getLocationsInCommunityAccordianArgs: this.getLocationsInCommunityAccordianArgs(),
         backLinkArgs: this.backLinkArgs,
       },
     ]
