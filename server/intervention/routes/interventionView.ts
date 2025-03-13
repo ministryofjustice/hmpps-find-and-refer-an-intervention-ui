@@ -1,6 +1,6 @@
 import InterventionPresenter from './interventionPresenter'
 import { SummaryListItem } from '../../utils/summaryList'
-import { AccordionArgs, SummaryListArgs, TableArgs } from '../../utils/govukFrontendTypes'
+import { SummaryListArgs, TableArgs } from '../../utils/govukFrontendTypes'
 import ViewUtils from '../../utils/viewUtils'
 
 export default class InterventionView {
@@ -9,102 +9,6 @@ export default class InterventionView {
   static summary(items: SummaryListItem[]): SummaryListArgs {
     return {
       ...ViewUtils.summaryListArgs(items),
-    }
-  }
-
-  private getLocationsInCommunityTableArgs(): TableArgs {
-    return {
-      attributes: {
-        'data-module': 'moj-sortable-table',
-      },
-      head: [
-        {
-          text: 'Location',
-          attributes: {
-            'aria-sort': 'ascending',
-          },
-        },
-        {
-          text: 'PDU',
-          attributes: {
-            'aria-sort': 'none',
-          },
-        },
-        {
-          text: 'Location details',
-          attributes: {
-            'aria-sort': 'none',
-          },
-        },
-      ],
-      rows: [
-        [
-          {
-            html: "<a href='#'>Aylesbury (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Brinsford (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Erlestoke (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Frankland (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Stoke Heath (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Swinton Hall (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-      ],
     }
   }
 
@@ -204,51 +108,6 @@ export default class InterventionView {
     }
   }
 
-  // private getLocationsInCommunityAccordianArgs(): AccordionArgs {
-  //   return {
-  //     id: 'a',
-  //     items: this.presenter.interventionCommunityLocations
-  //   }
-  // }
-
-  // private getLocationsInCommunityAccordianArgs(html1: string): AccordionArgs {
-  //   return {
-  //     id: 'a',
-  //     items: this.presenter.intervention.communityLocations.map(location => ({
-  //       heading: {
-  //         text: location.name,
-  //       },
-  //       content: {
-  //         // text: location.locations.join(', '),
-  //         // html: this.table(location.locations),
-  //         html: html1.location,
-  //       },
-  //     })),
-  //   }
-  // }
-
-  table(locations: string[]): TableArgs {
-    return {
-      attributes: {
-        'data-module': 'moj-sortable-table',
-      },
-      head: [
-        {
-          text: 'Probation Delivery Unit (PDU)',
-          attributes: {
-            'aria-sort': 'ascending',
-          },
-        },
-      ],
-      rows: locations.map(location => [
-        {
-          // text: location
-          html: 'asdas',
-        },
-      ]),
-    }
-  }
-
   private readonly backLinkArgs = {
     text: 'Back',
     href: this.presenter.backlinkUri,
@@ -261,7 +120,6 @@ export default class InterventionView {
         presenter: this.presenter,
         summaryListArgs: InterventionView.summary,
         getLocationsInCustodyTableArgs: this.getLocationsInCustodyTableArgs(),
-        // getLocationsInCommunityAccordianArgs: this.getLocationsInCommunityAccordianArgs(),
         backLinkArgs: this.backLinkArgs,
       },
     ]
