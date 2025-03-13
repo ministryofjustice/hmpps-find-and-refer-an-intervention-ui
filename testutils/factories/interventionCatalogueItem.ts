@@ -15,6 +15,6 @@ export default Factory.define<InterventionCatalogueItem>(({ sequence }) => ({
   attendanceType: ['In Person'],
   deliveryFormat: ['Group'],
   timeToComplete: 'At least 6 Months',
-  suitableForPeopleWithLearningDifficulties: true,
+  suitableForPeopleWithLearningDifficulties: 'true',
   equivalentNonLdcProgramme: 'Kaizen',
 }))

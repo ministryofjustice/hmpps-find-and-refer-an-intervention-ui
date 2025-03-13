@@ -14,6 +14,6 @@ export default interface InterventionCatalogueItem {
   deliveryFormat: string[]
   criminogenicNeeds: string[]
   timeToComplete: string
-  suitableForPeopleWithLearningDifficulties: boolean
+  suitableForPeopleWithLearningDifficulties: string
   equivalentNonLdcProgramme: string
 }

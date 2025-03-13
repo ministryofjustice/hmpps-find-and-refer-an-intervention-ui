@@ -12,102 +12,6 @@ export default class InterventionView {
     }
   }
 
-  private getLocationsInCommunityTableArgs(): TableArgs {
-    return {
-      attributes: {
-        'data-module': 'moj-sortable-table',
-      },
-      head: [
-        {
-          text: 'Location',
-          attributes: {
-            'aria-sort': 'ascending',
-          },
-        },
-        {
-          text: 'PDU',
-          attributes: {
-            'aria-sort': 'none',
-          },
-        },
-        {
-          text: 'Location details',
-          attributes: {
-            'aria-sort': 'none',
-          },
-        },
-      ],
-      rows: [
-        [
-          {
-            html: "<a href='#'>Aylesbury (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Brinsford (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Erlestoke (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Frankland (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Stoke Heath (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-        [
-          {
-            html: "<a href='#'>Swinton Hall (HMP)</a>",
-          },
-          {
-            text: 'PDU name',
-          },
-          {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
-          },
-        ],
-      ],
-    }
-  }
-
   private getLocationsInCustodyTableArgs(): TableArgs {
     return {
       attributes: {
@@ -215,7 +119,7 @@ export default class InterventionView {
       {
         presenter: this.presenter,
         summaryListArgs: InterventionView.summary,
-        locationsInCommunityTableArgs: this.getLocationsInCommunityTableArgs(),
+        getLocationsInCustodyTableArgs: this.getLocationsInCustodyTableArgs(),
         backLinkArgs: this.backLinkArgs,
       },
     ]
