@@ -31,5 +31,3 @@ export default interface InterventionDetails {
   communityLocations?: CommunityLocation[]
   custodyLocations?: CustodyLocation[]
 }
-
-
