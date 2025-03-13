@@ -1,6 +1,6 @@
 import { Factory } from 'fishery'
-import InterventionDetails, { CommunityLocation, CustodyLocation } from '../../server/models/InterventionDetails'
-import  { InterventionType } from '../../server/models/InterventionCatalogueItem'
+import InterventionDetails from '../../server/models/InterventionDetails'
+import { InterventionType } from '../../server/models/InterventionCatalogueItem'
 
 class InterventionDetailsFactory extends Factory<InterventionDetails> {
   custody() {

@@ -24,6 +24,16 @@
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Description:</h2>
       <p>{{ presenter.intervention.description }}</p>
 
+      {% if presenter.intervention.interventionType == 'CRS' %}
+           <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes:</h2>
+           <p>list of outcomes to be added here</p>
+      {% endif %}
+
+      {% if presenter.intervention.sessionDetails %}
+           <h2 class="govuk-heading-m govuk-!-margin-top-8">Session Details:</h2>
+          <p>{{ presenter.intervention.sessionDetails}}</p>
+      {% endif %}
+
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Location:</h2>
       {% if presenter.intervention.custodyLocations.length > 0 %}
