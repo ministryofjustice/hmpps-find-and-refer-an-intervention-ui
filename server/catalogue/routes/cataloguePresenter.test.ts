@@ -129,7 +129,7 @@ describe(`generateFilterPane`, () => {
         categories: [
           {
             heading: {
-              text: 'Programme Name',
+              text: 'Programme name',
             },
             items: [
               {

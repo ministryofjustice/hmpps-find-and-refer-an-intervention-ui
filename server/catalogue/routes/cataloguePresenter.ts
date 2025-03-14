@@ -161,7 +161,7 @@ export default class CataloguePresenter {
 
       selectedFilters.push({
         heading: {
-          text: 'Programme Name',
+          text: 'Programme name',
         },
         items: [
           {
@@ -204,6 +204,7 @@ export default class CataloguePresenter {
         }),
       })
     }
+
     return selectedFilters
   }
 
@@ -212,6 +213,7 @@ export default class CataloguePresenter {
       SI = 'Structured Interventions',
       ACP = 'Accredited Programmes',
       CRS = 'Commissioned Rehabilitative Services',
+      TOOLKITS = 'Toolkits',
     }
     return InterventionTypes[interventionType.toUpperCase()] !== undefined
       ? InterventionTypes[interventionType.toUpperCase()]
