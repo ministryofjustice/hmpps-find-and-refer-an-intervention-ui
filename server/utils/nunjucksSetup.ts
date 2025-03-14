@@ -1,17 +1,17 @@
 /* eslint-disable no-param-reassign */
-import path from 'path'
-import nunjucks from 'nunjucks'
 import express from 'express'
 import fs from 'fs'
-import { initialiseName } from './utils'
-import config from '../config'
+import nunjucks from 'nunjucks'
+import path from 'path'
 import logger from '../../logger'
+import config from '../config'
+import { initialiseName } from './utils'
 
 export default function nunjucksSetup(app: express.Express): void {
   app.set('view engine', 'njk')
 
   app.locals.asset_path = '/assets/'
-  app.locals.applicationName = 'HMPPS Find And Refer An Intervention Ui'
+  app.locals.applicationName = 'HMPPS Find and refer an intervention'
   app.locals.environmentName = config.environmentName
   app.locals.environmentNameColour = config.environmentName === 'PRE-PRODUCTION' ? 'govuk-tag--green' : ''
   app.locals.applicationInsightsConnectionString = config.applicationInsights.connectionString || ''
