@@ -98,26 +98,3 @@ describe(`interventionSummaryList`, () => {
     expect(presenter.interventionSummaryList()).toStrictEqual(expectedResult)
   })
 })
-
-describe(`genderText`, () => {
-  it(`returns 'Male' if only allowsMale is true`, async () => {
-    const interventionDetails = interventionDetailsFactory.community().build()
-    const presenter = new InterventionPresenter('backlink-uri', interventionDetails)
-
-    expect(presenter.genderText(true, false)).toEqual('Male')
-  })
-
-  it(`returns 'Female' if only allowsFemale is true`, async () => {
-    const interventionDetails = interventionDetailsFactory.community().build()
-    const presenter = new InterventionPresenter('backlink-uri', interventionDetails)
-
-    expect(presenter.genderText(false, true)).toEqual('Female')
-  })
-
-  it(`returns ''Male or Female'' if both allowsMale and allowsFemale are true`, async () => {
-    const interventionDetails = interventionDetailsFactory.community().build()
-    const presenter = new InterventionPresenter('backlink-uri', interventionDetails)
-
-    expect(presenter.genderText(true, true)).toEqual('Male or Female')
-  })
-})

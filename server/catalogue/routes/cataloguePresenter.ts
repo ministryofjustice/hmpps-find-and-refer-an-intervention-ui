@@ -3,6 +3,7 @@ import { Page } from '../../shared/models/pagination'
 import Pagination from '../../utils/pagination/pagination'
 import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import CatalogueFilter from './catalogueFilter'
+import InterventionsUtils from '../../utils/interventionUtils'
 
 export default class CataloguePresenter {
   public readonly pagination: Pagination
@@ -199,7 +200,7 @@ export default class CataloguePresenter {
           searchParams.delete('type-checkbox', interventionTypeFilter)
           return {
             href: `/interventions/${this.setting}${searchParams.size === 0 ? '' : `?${searchParams.toString()}`}`,
-            text: this.mapInterventionTypeToFriendlyString(interventionTypeFilter),
+            text: InterventionsUtils.mapInterventionTypeToFriendlyString(interventionTypeFilter),
           }
         }),
       })
@@ -208,31 +209,15 @@ export default class CataloguePresenter {
     return selectedFilters
   }
 
-  mapInterventionTypeToFriendlyString(interventionType: string) {
-    enum InterventionTypes {
-      SI = 'Structured Interventions',
-      ACP = 'Accredited Programmes',
-      CRS = 'Commissioned Rehabilitative Services',
-      TOOLKITS = 'Toolkits',
-    }
-    return InterventionTypes[interventionType.toUpperCase()] !== undefined
-      ? InterventionTypes[interventionType.toUpperCase()]
-      : ''
-  }
-
   interventionSummaryList(intervention: InterventionCatalogueItem): SummaryListItem[] {
     const summary: SummaryListItem[] = [
       {
         key: 'Gender',
-        lines: [
-          intervention.allowsMales && !intervention.allowsFemales ? 'Male' : '',
-          intervention.allowsFemales && intervention.allowsMales ? ' Male or Female' : '',
-          intervention.allowsFemales && !intervention.allowsMales ? 'Female' : '',
-        ],
+        lines: [InterventionsUtils.formatGenderText(intervention.allowsMales, intervention.allowsFemales)],
       },
       {
         key: 'Type',
-        lines: [this.mapInterventionTypeToFriendlyString(intervention.interventionType)],
+        lines: [InterventionsUtils.mapInterventionTypeToFriendlyString(intervention.interventionType)],
       },
     ]
     if (intervention.riskCriteria && intervention.riskCriteria.length > 0) {

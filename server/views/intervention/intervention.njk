@@ -26,7 +26,7 @@
 
       {% if presenter.intervention.interventionType == 'CRS' %}
            <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes:</h2>
-           <p>list of outcomes to be added here</p>
+           <p>{{ presenter.intervention.expectedOutcomes }}</p>
       {% endif %}
 
       {% if presenter.intervention.sessionDetails %}
@@ -48,7 +48,7 @@
             {% for pdu in pdus %}
               {% set rows = (rows.push([
                 {
-                  text: pdu
+                  html: presenter.generateCRSLocationUrl(presenter.intervention.id, pdu)
                 }
               ]), rows) %}
             {% endfor %}
@@ -76,10 +76,10 @@
             {% set locations = (locations.push(
                 {
                   heading: {
-                    text: communityLocation.name
+                    text: communityLocation.pccRegion
                   },
                   content: {
-                    html: locationTable(communityLocation.locations)
+                    html: locationTable(communityLocation.pdus)
                   }
                 }
               ), locations) %}
