@@ -1,5 +1,6 @@
 import { SummaryListItem } from '../../utils/summaryList'
-import InterventionDetails from '../../models/InterventionDetails'
+import InterventionDetails, { PDU } from '../../models/InterventionDetails'
+import InterventionsUtils from '../../utils/interventionUtils'
 
 export default class InterventionPresenter {
   constructor(
@@ -17,7 +18,7 @@ export default class InterventionPresenter {
     const summary: SummaryListItem[] = [
       {
         key: 'Gender',
-        lines: [this.genderText(this.intervention.allowsMales, this.intervention.allowsFemales)],
+        lines: [InterventionsUtils.formatGenderText(this.intervention.allowsMales, this.intervention.allowsFemales)],
       },
       {
         key: 'Type',
@@ -53,26 +54,22 @@ export default class InterventionPresenter {
         lines: [this.intervention.timeToComplete],
       })
     }
-    summary.push(
-      {
+    if (this.intervention.deliveryFormat) {
+      summary.push({
         key: 'Format',
         lines: this.intervention.deliveryFormat,
-      },
-      {
+      })
+    }
+    if (this.intervention.attendanceType) {
+      summary.push({
         key: 'Attendance type',
         lines: this.intervention.attendanceType,
-      },
-    )
+      })
+    }
     return summary
   }
 
-  genderText(allowsMale: boolean, allowsFemale: boolean): string {
-    if (allowsMale && allowsFemale) {
-      return 'Male or Female'
-    }
-    if (allowsMale && !allowsFemale) {
-      return 'Male'
-    }
-    return 'Female'
+  generateCRSLocationUrl(interventionId: string, location: PDU) {
+    return `<a href=/crsDetails/${interventionId}/pdu/${location.id}>${location.pduName}</a>`
   }
 }

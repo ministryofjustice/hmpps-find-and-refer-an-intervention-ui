@@ -1,5 +1,10 @@
 import { InterventionType } from './InterventionCatalogueItem'
 
+export interface PDU {
+  id: string
+  pduName: string
+}
+
 export interface CustodyLocation {
   name: string
   category: string
@@ -7,8 +12,8 @@ export interface CustodyLocation {
 }
 
 export interface CommunityLocation {
-  name: string
-  locations: string[]
+  pccRegion: string
+  pdus: PDU[]
 }
 
 export default interface InterventionDetails {
@@ -30,4 +35,5 @@ export default interface InterventionDetails {
   sessionDetails?: string
   communityLocations?: CommunityLocation[]
   custodyLocations?: CustodyLocation[]
+  expectedOutcomes?: string[]
 }

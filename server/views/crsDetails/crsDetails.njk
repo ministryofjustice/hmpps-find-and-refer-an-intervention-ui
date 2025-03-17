@@ -1,0 +1,21 @@
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% extends "partials/layout.njk" %}
+
+{% set pageTitle = applicationName + " - Home" %}
+{% set mainClasses = "" %}
+
+{% block content %}
+
+{{ govukBackLink(backLinkArgs) }}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l" data-test-id="intervention-name">{{ presenter.crsDetails.npsRegion }}: {{presenter.crsDetails.title}}</h1>
+    <p>{{ presenter.crsDetails.description }}</p>
+    {{ govukSummaryList(summaryListArgs(presenter.crsDetailsSummaryList())) }}
+
+  </div>
+</div>
+
+{% endblock %}
