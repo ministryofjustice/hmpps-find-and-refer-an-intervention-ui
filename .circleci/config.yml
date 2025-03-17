@@ -63,6 +63,8 @@ jobs:
           path: test_results/unit/xml
 
   end_to_end_test:
+    environment:
+      FIND_AND_REFER_URL: https://find-and-refer-intervention-dev.hmpps.service.justice.gov.uk/
     docker:
       - image: mcr.microsoft.com/playwright:v1.49.1-noble
     circleci_ip_ranges: true # opt-in to jobs running on a restricted set of IPs
