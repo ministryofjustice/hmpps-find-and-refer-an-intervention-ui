@@ -54,11 +54,13 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: unit tests
-          command: npm run test:ci
+          command: npm run test:unit:ci
       - store_test_results:
-          path: test_results
+          path: test_results/unit/xml
       - store_artifacts:
-          path: test_results/unit-test-reports.html
+          path: test_results/unit
+      - store_artifacts:
+          path: test_results/unit/xml
 
 workflows:
   version: 2
