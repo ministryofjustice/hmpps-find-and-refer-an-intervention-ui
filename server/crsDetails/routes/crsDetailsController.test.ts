@@ -28,7 +28,7 @@ describe(`GET /crsDetails`, () => {
     const crsInterventionDetails = crsInterventionDetailsFactory.build()
     findAndReferService.getCRSDetails.mockResolvedValue(crsInterventionDetails)
     return request(app)
-      .get('/crsDetails/123/pdu/456')
+      .get('/crsDetails/123/456/community')
       .expect(200)
       .expect(res => {
         expect(res.text).toContain(`${crsInterventionDetails.npsRegion}: ${crsInterventionDetails.title}`)

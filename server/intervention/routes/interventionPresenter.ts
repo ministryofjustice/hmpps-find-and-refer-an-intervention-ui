@@ -6,6 +6,7 @@ export default class InterventionPresenter {
   constructor(
     readonly backlinkUri: string | null,
     readonly intervention: InterventionDetails,
+    readonly setting: string,
   ) {}
 
   readonly text = {
@@ -22,7 +23,7 @@ export default class InterventionPresenter {
       },
       {
         key: 'Type',
-        lines: [this.intervention.interventionType],
+        lines: [InterventionsUtils.mapInterventionTypeToFriendlyString(this.intervention.interventionType)],
       },
     ]
     if (this.intervention.riskCriteria) {
@@ -31,23 +32,27 @@ export default class InterventionPresenter {
         lines: this.intervention.riskCriteria,
       })
     }
-    summary.push({
-      key: 'Needs',
-      lines: [this.intervention.criminogenicNeeds.join(', ')],
-    })
+    if (this.intervention.interventionType === 'CRS') {
+      summary.push({
+        key: 'Needs',
+        lines: [this.intervention.criminogenicNeeds.join(', ')],
+      })
+    }
+    if (this.setting.toLowerCase() === 'custody') {
+      if (this.intervention.suitableForPeopleWithLearningDifficulties) {
+        summary.push({
+          key: 'Suitable for people with learning disabilities or challenges (LDC)',
+          lines: [this.intervention.suitableForPeopleWithLearningDifficulties ? 'Yes' : 'No'],
+        })
+      }
+      if (this.intervention.equivalentNonLdcProgramme) {
+        summary.push({
+          key: 'Equivalent non-LDC programme',
+          lines: [this.intervention.equivalentNonLdcProgramme],
+        })
+      }
+    }
 
-    if (this.intervention.suitableForPeopleWithLearningDifficulties) {
-      summary.push({
-        key: 'Suitable for people with learning disabilities or challenges (LDC)',
-        lines: [this.intervention.suitableForPeopleWithLearningDifficulties ? 'Yes' : 'No'],
-      })
-    }
-    if (this.intervention.equivalentNonLdcProgramme) {
-      summary.push({
-        key: 'Equivalent non-LDC programme',
-        lines: [this.intervention.equivalentNonLdcProgramme],
-      })
-    }
     if (this.intervention.timeToComplete) {
       summary.push({
         key: 'Time to complete',
@@ -70,6 +75,6 @@ export default class InterventionPresenter {
   }
 
   generateCRSLocationUrl(interventionId: string, location: PDU) {
-    return `<a href=/crsDetails/${interventionId}/pdu/${location.id}>${location.pduName}</a>`
+    return `<a href=/crsDetails/${interventionId}/${location.id}/${this.setting}>${location.pduName}</a>`
   }
 }
