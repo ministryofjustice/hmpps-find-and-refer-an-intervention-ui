@@ -36,6 +36,12 @@ export default class CrsDetailsPresenter {
         lines: [this.crsDetails.provider],
       })
     }
+    if (this.crsDetails.minAge && this.crsDetails.maxAge) {
+      summary.push({
+        key: 'Age group',
+        lines: [`${this.crsDetails.minAge}-${this.crsDetails.maxAge}`],
+      })
+    }
     summary.push({
       key: 'Gender',
       lines: [InterventionsUtils.formatGenderText(this.crsDetails.allowsMales, this.crsDetails.allowsFemales)],
