@@ -2,6 +2,8 @@ version: 2.1
 orbs:
   hmpps: ministryofjustice/hmpps@10
   slack: circleci/slack@4.12.5
+  node: circleci/node@4.5.2
+
 parameters:
   releases-slack-channel:
     type: string
@@ -63,7 +65,6 @@ jobs:
           path: test_results/unit/xml
 
   end_to_end_test:
-    parallelism: 4
     docker:
       - image: mcr.microsoft.com/playwright:v1.49.1-noble
     circleci_ip_ranges: true # opt-in to jobs running on a restricted set of IPs
@@ -75,9 +76,7 @@ jobs:
       - run:
           name: Update npm
           command: 'npm install -g npm@latest'
-      - run:
-          name: Install Dependencies
-          command: npm ci --no-audit
+      - node/install-packages
       - run:
           name: E2E Check
           command: |
