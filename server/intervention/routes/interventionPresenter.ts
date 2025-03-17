@@ -32,13 +32,15 @@ export default class InterventionPresenter {
         lines: this.intervention.riskCriteria,
       })
     }
-    if (this.intervention.interventionType === 'CRS') {
-      summary.push({
-        key: 'Needs',
-        lines: [this.intervention.criminogenicNeeds.join(', ')],
-      })
+    if (!(this.intervention.interventionType === 'ACP' && this.setting.toLowerCase() === 'custody')) {
+      if (this.intervention.criminogenicNeeds) {
+        summary.push({
+          key: 'Needs',
+          lines: [this.intervention.criminogenicNeeds.join(', ')],
+        })
+      }
     }
-    if (this.setting.toLowerCase() === 'custody') {
+    if (this.intervention.interventionType === 'ACP' && this.setting.toLowerCase() === 'custody') {
       if (this.intervention.suitableForPeopleWithLearningDifficulties) {
         summary.push({
           key: 'Suitable for people with learning disabilities or challenges (LDC)',
@@ -53,24 +55,29 @@ export default class InterventionPresenter {
       }
     }
 
-    if (this.intervention.timeToComplete) {
+    if (this.intervention.interventionType === 'ACP' && this.intervention.timeToComplete) {
       summary.push({
         key: 'Time to complete',
         lines: [this.intervention.timeToComplete],
       })
     }
-    if (this.intervention.deliveryFormat) {
-      summary.push({
-        key: 'Format',
-        lines: this.intervention.deliveryFormat,
-      })
+    if (!(this.intervention.interventionType === 'CRS' && this.setting.toLowerCase() === 'community')) {
+      if (this.intervention.deliveryFormat) {
+        summary.push({
+          key: 'Format',
+          lines: this.intervention.deliveryFormat,
+        })
+      }
     }
-    if (this.intervention.attendanceType) {
-      summary.push({
-        key: 'Attendance type',
-        lines: this.intervention.attendanceType,
-      })
+    if (!(this.intervention.interventionType === 'ACP' && this.setting.toLowerCase() === 'custody')) {
+      if (this.intervention.attendanceType) {
+        summary.push({
+          key: 'Attendance type',
+          lines: this.intervention.attendanceType,
+        })
+      }
     }
+
     return summary
   }
 

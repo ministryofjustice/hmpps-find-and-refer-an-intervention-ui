@@ -13,7 +13,6 @@ export default class InterventionController {
 
     const intervention = await this.findAndReferService.getInterventionsDetails(username, id)
 
-    console.log(intervention)
     const presenter = new InterventionPresenter(req.session.originPage, intervention, setting)
     const view = new InterventionView(presenter)
     await ControllerUtils.renderWithLayout(res, view)
