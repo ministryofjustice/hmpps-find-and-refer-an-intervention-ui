@@ -26,7 +26,9 @@
 
       {% if presenter.intervention.interventionType == 'CRS' %}
            <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes:</h2>
-           <p>{{ presenter.intervention.expectedOutcomes }}</p>
+             {% for outcome in presenter.intervention.expectedOutcomes %}
+             <p>{{ outcome }}</p>
+             {% endfor %}
       {% endif %}
 
       {% if presenter.intervention.sessionDetails %}

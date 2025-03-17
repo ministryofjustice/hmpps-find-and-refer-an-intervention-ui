@@ -25,7 +25,7 @@ export default class CrsDetailsPresenter {
     }
     if (this.crsDetails.serviceCategories && this.crsDetails.serviceCategories.length > 0) {
       summary.push({
-        key: 'Service Categories:',
+        key: 'Service Categories',
         lines: this.crsDetails.serviceCategories,
         listStyle: this.crsDetails.serviceCategories.length > 1 ? ListStyle.bulleted : undefined,
       })
