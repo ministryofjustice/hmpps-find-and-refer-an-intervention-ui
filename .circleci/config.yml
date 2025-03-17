@@ -62,6 +62,26 @@ jobs:
       - store_artifacts:
           path: test_results/unit/xml
 
+  end_to_end_test:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.48.0-focal
+    circleci_ip_ranges: true # opt-in to jobs running on a restricted set of IPs
+    steps:
+      - run:
+          name: Clone E2E repo
+          command: |
+            git clone https://github.com/ministryofjustice/hmpps-find-and-refer-an-intervention-e2e.git .
+      - run:
+          name: Update npm
+          command: 'npm install -g npm@latest'
+      - node/install-packages
+      - run:
+          name: E2E Check
+          command: |
+            npx playwright test --ui
+      - store_artifacts:
+          path: playwright-report
+
 workflows:
   version: 2
   build-test-and-deploy:
@@ -97,6 +117,14 @@ workflows:
             - unit_test
             - build_docker
           helm_timeout: 5m
+      - end_to_end_test:
+          context: hmpps-common-vars
+          # filters:
+          #   branches:
+          #     only:
+          #       - main
+          # requires:
+          #   - deploy_dev
       - hmpps/deploy_env:
           name: deploy_preprod
           env: 'preprod'
