@@ -74,10 +74,13 @@ jobs:
       - run:
           name: Update npm
           command: 'npm install -g npm@latest'
+       - run:
+          name: Install Dependencies
+          command: npm ci --no-audit
       - run:
           name: E2E Check
           command: |
-            npx playwright test --ui
+            npx playwright test
       - store_artifacts:
           path: playwright-report
 
