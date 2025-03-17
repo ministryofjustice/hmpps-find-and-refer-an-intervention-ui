@@ -4,6 +4,7 @@ import type { HmppsAuthClient, RestClientBuilderWithoutToken } from '../data'
 import RestClient from '../data/restClient'
 import { Page } from '../shared/models/pagination'
 import InterventionCatalogueItem from '../models/InterventionCatalogueItem'
+import InterventionDetails from '../models/InterventionDetails'
 
 export interface DummyData {
   dummyId: number
@@ -61,5 +62,16 @@ export default class FindAndReferService {
       headers: { Accept: 'application/json' },
       query: { ...paginationParams, ...filterQuery },
     })) as Page<InterventionCatalogueItem>
+  }
+
+  async getInterventionsDetails(username: Express.User['username'], id: string): Promise<InterventionDetails> {
+    const hmppsAuthClient = this.hmppsAuthClientBuilder()
+    const systemToken = await hmppsAuthClient.getSystemClientToken(username)
+    const restClient = this.createRestClient(systemToken)
+
+    return (await restClient.get({
+      path: `/interventions/details/${id}`,
+      headers: { Accept: 'application/json' },
+    })) as InterventionCatalogueItem
   }
 }

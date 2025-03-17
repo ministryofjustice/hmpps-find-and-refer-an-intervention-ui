@@ -12,9 +12,7 @@
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true
-      },
+      "typescript": {},
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
       }
