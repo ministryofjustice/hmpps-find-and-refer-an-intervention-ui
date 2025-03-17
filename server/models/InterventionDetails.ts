@@ -35,4 +35,5 @@ export default interface InterventionDetails {
   sessionDetails?: string
   communityLocations?: CommunityLocation[]
   custodyLocations?: CustodyLocation[]
+  expectedOutcomes?: string[]
 }

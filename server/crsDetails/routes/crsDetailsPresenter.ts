@@ -25,7 +25,7 @@ export default class CrsDetailsPresenter {
     }
     if (this.crsDetails.serviceCategories && this.crsDetails.serviceCategories.length > 0) {
       summary.push({
-        key: 'Service Categories:',
+        key: 'Service Categories',
         lines: this.crsDetails.serviceCategories,
         listStyle: this.crsDetails.serviceCategories.length > 1 ? ListStyle.bulleted : undefined,
       })
@@ -34,6 +34,12 @@ export default class CrsDetailsPresenter {
       summary.push({
         key: 'Provider',
         lines: [this.crsDetails.provider],
+      })
+    }
+    if (this.crsDetails.minAge && this.crsDetails.maxAge) {
+      summary.push({
+        key: 'Age group',
+        lines: [`${this.crsDetails.minAge}-${this.crsDetails.maxAge}`],
       })
     }
     summary.push({
