@@ -38,12 +38,12 @@
 
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Location:</h2>
-      {% if presenter.intervention.custodyLocations.length > 0 %}
+      {% if presenter.setting == 'custody' and presenter.intervention.custodyLocations.length > 0 %}
         <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.custodyLocationDescription }}</p>
-        {{ govukTable(getLocationsInCustodyTableArgs) }}
+        {{ govukTable(presenter.getLocationsInCustodyTableArgs()) }}
       {% endif %}
 
-      {% if presenter.intervention.communityLocations.length > 0 %}
+      {% if presenter.setting == 'community' and presenter.intervention.communityLocations.length > 0 %}
         <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.communityLocationDescription }}</p>
         {% macro locationTable(pdus) %}
             {% set rows = [] %}

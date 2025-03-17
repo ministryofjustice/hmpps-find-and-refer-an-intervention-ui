@@ -6,7 +6,7 @@ export interface PDU {
 }
 
 export interface CustodyLocation {
-  name: string
+  prisonName: string
   category: string
   county: string
 }

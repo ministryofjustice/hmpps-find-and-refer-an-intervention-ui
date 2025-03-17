@@ -23,12 +23,12 @@ beforeEach(() => {
   })
 })
 
-describe(`GET //intervention/:id`, () => {
+describe(`GET //intervention/:id/:setting`, () => {
   it('calls api to get intervention details', async () => {
     const interventionDetails = interventionDetailsFactory.community().build()
     findAndReferService.getInterventionsDetails.mockResolvedValue(interventionDetails)
     return request(app)
-      .get('/intervention/123')
+      .get('/intervention/123/community')
       .expect(200)
       .expect(res => {
         expect(res.text).toContain(`${interventionDetails.title}`)
