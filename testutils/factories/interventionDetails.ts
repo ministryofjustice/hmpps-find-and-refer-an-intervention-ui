@@ -7,12 +7,12 @@ class InterventionDetailsFactory extends Factory<InterventionDetails> {
     return this.params({
       custodyLocations: [
         {
-          name: 'London',
+          prisonName: 'London',
           category: 'A',
           county: 'London',
         },
         {
-          name: 'Manchester',
+          prisonName: 'Manchester',
           category: 'M',
           county: 'Manchester',
         },
@@ -22,16 +22,28 @@ class InterventionDetailsFactory extends Factory<InterventionDetails> {
 
   community() {
     return this.params({
-      custodyLocations: [
+      communityLocations: [
         {
-          name: 'London',
-          category: 'A',
-          county: 'London',
+          pccRegion: 'Cleveland',
+          pdus: [
+            {
+              id: '1',
+              pduName: 'Redcar, Cleveland and Middlesbrough',
+            },
+            {
+              id: '2',
+              pduName: 'Stockton and Hartlepool',
+            },
+          ],
         },
         {
-          name: 'Manchester',
-          category: 'M',
-          county: 'Manchester',
+          pccRegion: 'Durham',
+          pdus: [
+            {
+              id: '1',
+              pduName: 'County Durham and Darlington',
+            },
+          ],
         },
       ],
     })

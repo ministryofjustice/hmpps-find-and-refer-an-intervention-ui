@@ -187,3 +187,62 @@ describe(`interventionSummaryList`, () => {
     expect(presenter.interventionSummaryList()).toStrictEqual(expectedResult)
   })
 })
+
+describe(`getLocationsInCustodyTableArgs`, () => {
+  it('returns a TableArgs object with the correct data', async () => {
+    const interventionDetails = interventionDetailsFactory.custody().build()
+    const presenter = new InterventionPresenter('backlink-uri', interventionDetails, 'custody')
+
+    const expectedResult = {
+      attributes: {
+        'data-module': 'moj-sortable-table',
+      },
+      head: [
+        {
+          text: 'Location',
+          attributes: {
+            'aria-sort': 'ascending',
+          },
+        },
+        {
+          text: 'Category',
+          attributes: {
+            'aria-sort': 'none',
+          },
+        },
+        {
+          text: 'County',
+          attributes: {
+            'aria-sort': 'none',
+          },
+        },
+      ],
+      rows: [
+        [
+          {
+            html: `<a href='#'>London</a>`,
+          },
+          {
+            text: 'A',
+          },
+          {
+            text: 'London',
+          },
+        ],
+        [
+          {
+            html: `<a href='#'>Manchester</a>`,
+          },
+          {
+            text: 'M',
+          },
+          {
+            text: 'Manchester',
+          },
+        ],
+      ],
+    }
+
+    expect(presenter.getLocationsInCustodyTableArgs()).toStrictEqual(expectedResult)
+  })
+})

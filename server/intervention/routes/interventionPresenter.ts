@@ -1,6 +1,7 @@
 import { SummaryListItem } from '../../utils/summaryList'
-import InterventionDetails, { PDU } from '../../models/InterventionDetails'
+import InterventionDetails, { CustodyLocation, PDU } from '../../models/InterventionDetails'
 import InterventionsUtils from '../../utils/interventionUtils'
+import { TableArgs } from '../../utils/govukFrontendTypes'
 
 export default class InterventionPresenter {
   constructor(
@@ -79,6 +80,53 @@ export default class InterventionPresenter {
     }
 
     return summary
+  }
+
+  getLocationsInCustodyTableArgs(): TableArgs {
+    return {
+      attributes: {
+        'data-module': 'moj-sortable-table',
+      },
+      head: [
+        {
+          text: 'Location',
+          attributes: {
+            'aria-sort': 'ascending',
+          },
+        },
+        {
+          text: 'Category',
+          attributes: {
+            'aria-sort': 'none',
+          },
+        },
+        {
+          text: 'County',
+          attributes: {
+            'aria-sort': 'none',
+          },
+        },
+      ],
+      rows: this.generateCustodyTableRows(this.intervention.custodyLocations),
+    }
+  }
+
+  generateCustodyTableRows(locations: CustodyLocation[]) {
+    const locationRows = []
+    locations.forEach(location => {
+      locationRows.push([
+        {
+          html: `<a href='#'>${location.prisonName}</a>`,
+        },
+        {
+          text: location.category,
+        },
+        {
+          text: location.county,
+        },
+      ])
+    })
+    return locationRows
   }
 
   generateCRSLocationUrl(interventionId: string, location: PDU) {

@@ -13,53 +13,6 @@ export default class InterventionView {
     }
   }
 
-  private getLocationsInCustodyTableArgs(locations: CustodyLocation[]): TableArgs {
-    return {
-      attributes: {
-        'data-module': 'moj-sortable-table',
-      },
-      head: [
-        {
-          text: 'Location',
-          attributes: {
-            'aria-sort': 'ascending',
-          },
-        },
-        {
-          text: 'Category',
-          attributes: {
-            'aria-sort': 'none',
-          },
-        },
-        {
-          text: 'County',
-          attributes: {
-            'aria-sort': 'none',
-          },
-        },
-      ],
-      rows: this.generateCustodyTableRows(this.presenter.intervention.custodyLocations),
-    }
-  }
-
-  generateCustodyTableRows(locations: CustodyLocation[]) {
-    const locationRows = []
-    locations.forEach(location => {
-      locationRows.push([
-        {
-          html: `<a href='#'>${location.name}</a>`,
-        },
-        {
-          text: location.category,
-        },
-        {
-          text: location.county,
-        },
-      ])
-    })
-    return locationRows
-  }
-
   private readonly backLinkArgs = {
     text: 'Back',
     href: this.presenter.backlinkUri,
@@ -71,7 +24,6 @@ export default class InterventionView {
       {
         presenter: this.presenter,
         summaryListArgs: InterventionView.summary,
-        getLocationsInCustodyTableArgs: this.getLocationsInCustodyTableArgs,
         backLinkArgs: this.backLinkArgs,
       },
     ]
