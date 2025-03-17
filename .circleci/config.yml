@@ -76,7 +76,9 @@ jobs:
       - run:
           name: Update npm
           command: 'npm install -g npm@latest'
-      - node/install-packages
+      - run:
+          name: Install Dependencies
+          command: npm ci --no-audit
       - run:
           name: E2E Check
           command: |
@@ -110,10 +112,10 @@ workflows:
           pipeline_id: <<pipeline.id>>
           pipeline_number: <<pipeline.number>>
           context: hmpps-common-vars
-          filters:
-            branches:
-              only:
-                - main
+          # filters:
+          #   branches:
+          #     only:
+          #       - main
           requires:
             - helm_lint
             - unit_test
@@ -125,8 +127,8 @@ workflows:
           #   branches:
           #     only:
           #       - main
-          # requires:
-          #   - deploy_dev
+          requires:
+            - deploy_dev
       - hmpps/deploy_env:
           name: deploy_preprod
           env: 'preprod'
