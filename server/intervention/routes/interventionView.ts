@@ -1,8 +1,7 @@
 import InterventionPresenter from './interventionPresenter'
 import { SummaryListItem } from '../../utils/summaryList'
-import { SummaryListArgs, TableArgs } from '../../utils/govukFrontendTypes'
+import { SummaryListArgs } from '../../utils/govukFrontendTypes'
 import ViewUtils from '../../utils/viewUtils'
-import { CustodyLocation } from '../../models/InterventionDetails'
 
 export default class InterventionView {
   constructor(private readonly presenter: InterventionPresenter) {}
