@@ -30,10 +30,6 @@ describe(`interventionSummaryList`, () => {
         lines: ['Medium, high or very high', 'Yes'],
       },
       {
-        key: 'Needs',
-        lines: ['Thinking, Behaviours and Attitudes'],
-      },
-      {
         key: 'Time to complete',
         lines: ['At least 6 Months'],
       },

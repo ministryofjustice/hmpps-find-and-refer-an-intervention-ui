@@ -33,7 +33,7 @@ export default class InterventionPresenter {
         lines: this.intervention.riskCriteria,
       })
     }
-    if (!(this.intervention.interventionType === 'ACP' && this.setting.toLowerCase() === 'custody')) {
+    if (this.intervention.interventionType === 'CRS') {
       if (this.intervention.criminogenicNeeds) {
         summary.push({
           key: 'Needs',
