@@ -7,6 +7,9 @@ parameters:
   releases-slack-channel:
     type: string
     default: find-refer-interventions-dev-notification
+  node-version:
+    type: string
+    default: 20.17-browsers
 
 jobs:
   build:
