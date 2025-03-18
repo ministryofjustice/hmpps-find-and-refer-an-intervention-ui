@@ -5,6 +5,7 @@ import type { Services } from '../services'
 import CatalogueController from '../catalogue/routes/catalogueController'
 import TestController from './test/testController'
 import InterventionController from '../intervention/routes/interventionController'
+import CrsDetailsController from '../crsDetails/routes/crsDetailsController'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function routes({ auditService, findAndReferService }: Services): Router {
@@ -14,6 +15,7 @@ export default function routes({ auditService, findAndReferService }: Services):
 
   const catalogueController = new CatalogueController(findAndReferService)
   const interventionController = new InterventionController(findAndReferService)
+  const crsDetailsController = new CrsDetailsController(findAndReferService)
   const testController = new TestController(findAndReferService)
 
   get('/', async (req, res, next) => {
@@ -40,8 +42,12 @@ export default function routes({ auditService, findAndReferService }: Services):
   //   await catalogueController.showCataloguePage(req, res)
   // })
 
-  get('/intervention/:id', async (req, res, next) => {
+  get('/intervention/:id/:setting', async (req, res, next) => {
     await interventionController.showInterventionPage(req, res)
+  })
+
+  get('/crsDetails/:id/:pduId/:setting', async (req, res, next) => {
+    await crsDetailsController.showCrsDetailsPage(req, res)
   })
 
   get('/test', async (req, res, next) => {

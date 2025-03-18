@@ -1,8 +1,8 @@
 import { Express } from 'express'
 import request from 'supertest'
 import FindAndReferService from '../../services/findAndReferService'
-import interventionDetailsFactory from '../../../testutils/factories/interventionDetails'
 import { appWithAllRoutes } from '../../routes/testutils/appSetup'
+import crsInterventionDetailsFactory from '../../../testutils/factories/crsInterventionDetails'
 
 jest.mock('../../services/findAndReferService')
 jest.mock('../../data/hmppsAuthClient')
@@ -23,15 +23,15 @@ beforeEach(() => {
   })
 })
 
-describe(`GET //intervention/:id/:setting`, () => {
-  it('calls api to get intervention details', async () => {
-    const interventionDetails = interventionDetailsFactory.community().build()
-    findAndReferService.getInterventionsDetails.mockResolvedValue(interventionDetails)
+describe(`GET /crsDetails`, () => {
+  it('calls api to get all interventions', async () => {
+    const crsInterventionDetails = crsInterventionDetailsFactory.build()
+    findAndReferService.getCRSDetails.mockResolvedValue(crsInterventionDetails)
     return request(app)
-      .get('/intervention/123/community')
+      .get('/crsDetails/123/456/community')
       .expect(200)
       .expect(res => {
-        expect(res.text).toContain(`${interventionDetails.title}`)
+        expect(res.text).toContain(`${crsInterventionDetails.npsRegion}: ${crsInterventionDetails.title}`)
       })
   })
 })

@@ -1,14 +1,14 @@
-import InterventionPresenter from './interventionPresenter'
+import CrsDetailsPresenter from './crsDetailsPresenter'
 import { SummaryListItem } from '../../utils/summaryList'
 import { SummaryListArgs } from '../../utils/govukFrontendTypes'
 import ViewUtils from '../../utils/viewUtils'
 
-export default class InterventionView {
-  constructor(private readonly presenter: InterventionPresenter) {}
+export default class CrsDetailsView {
+  constructor(private readonly presenter: CrsDetailsPresenter) {}
 
   static summary(items: SummaryListItem[]): SummaryListArgs {
     return {
-      ...ViewUtils.summaryListArgs(items),
+      ...ViewUtils.summaryListArgs(items, { showBorders: false }),
     }
   }
 
@@ -19,11 +19,11 @@ export default class InterventionView {
 
   get renderArgs(): [string, Record<string, unknown>] {
     return [
-      'intervention/intervention',
+      'crsDetails/crsDetails',
       {
         presenter: this.presenter,
-        summaryListArgs: InterventionView.summary,
         backLinkArgs: this.backLinkArgs,
+        summaryListArgs: CrsDetailsView.summary,
       },
     ]
   }
