@@ -76,9 +76,10 @@ jobs:
       - run:
           name: Update npm
           command: 'npm install -g npm@latest'
+      - node/install-packages
       - run:
-          name: Install Dependencies
-          command: npm ci --no-audit
+          name: Install Playwright
+          command: npx playwright install
       - run:
           name: E2E Check
           command: |
@@ -127,8 +128,8 @@ workflows:
           #   branches:
           #     only:
           #       - main
-          requires:
-            - deploy_dev
+          # requires:
+          #   - deploy_dev
       - hmpps/deploy_env:
           name: deploy_preprod
           env: 'preprod'
