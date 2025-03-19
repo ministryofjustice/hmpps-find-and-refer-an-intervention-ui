@@ -37,14 +37,15 @@
       {% endif %}
 
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location:</h2>
       {% if presenter.setting == 'custody' and presenter.intervention.custodyLocations.length > 0 %}
-        <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.custodyLocationDescription }}</p>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location:</h2>
+      <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.custodyLocationDescription }}</p>
         {{ govukTable(presenter.getLocationsInCustodyTableArgs()) }}
       {% endif %}
 
       {% if presenter.setting == 'community' and presenter.intervention.communityLocations.length > 0 %}
-        <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.communityLocationDescription }}</p>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location:</h2>
+      <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.communityLocationDescription }}</p>
         {% macro locationTable(pdus) %}
             {% set rows = [] %}
             {% for pdu in pdus %}
