@@ -123,7 +123,7 @@ username: REFER_MONITOR_PP
 password: R8Mpassword
 
 Custody User
-username: FR_USER
+username: FRI_USER_ACP_REF_TEAM
 password: password123456
 
 ## Extra commands
