@@ -21,30 +21,30 @@
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Criteria</h2>
       {{ govukSummaryList(summaryListArgs(presenter.interventionSummaryList())) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Description:</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Description</h2>
       <p>{{ presenter.intervention.description }}</p>
 
       {% if presenter.intervention.interventionType == 'CRS' %}
-           <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes:</h2>
+           <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes</h2>
              {% for outcome in presenter.intervention.expectedOutcomes %}
              <p>{{ outcome }}</p>
              {% endfor %}
       {% endif %}
 
       {% if presenter.intervention.sessionDetails %}
-           <h2 class="govuk-heading-m govuk-!-margin-top-8">Session Details:</h2>
+           <h2 class="govuk-heading-m govuk-!-margin-top-8">Session Details</h2>
           <p>{{ presenter.intervention.sessionDetails}}</p>
       {% endif %}
 
 
       {% if presenter.setting == 'custody' and presenter.intervention.custodyLocations.length > 0 %}
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location:</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location</h2>
       <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.custodyLocationDescription }}</p>
         {{ govukTable(presenter.getLocationsInCustodyTableArgs()) }}
       {% endif %}
 
       {% if presenter.setting == 'community' and presenter.intervention.communityLocations.length > 0 %}
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location:</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location</h2>
       <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.communityLocationDescription }}</p>
         {% macro locationTable(pdus) %}
             {% set rows = [] %}
@@ -62,7 +62,7 @@
               },
               head: [
                 {
-                  text: "Name",
+                  text: "Probation Delivery Unit (PDU)",
                   attributes: {
                     "aria-sort": "ascending"
                   }
