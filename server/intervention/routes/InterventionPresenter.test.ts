@@ -151,37 +151,6 @@ describe(`interventionSummaryList`, () => {
     expect(presenter.interventionSummaryList()).toStrictEqual(expectedResult)
   })
 
-  it('returns a summarylist object with the correct data, SI, custody', async () => {
-    const interventionDetails = interventionDetailsFactory.SI().custody().build()
-
-    const presenter = new InterventionPresenter('backlink-uri', interventionDetails, 'custody')
-
-    const expectedResult = [
-      {
-        key: 'Gender',
-        lines: ['Male'],
-      },
-      {
-        key: 'Type',
-        lines: ['Structured Interventions'],
-      },
-      {
-        key: 'Needs',
-        lines: ['Thinking, Behaviours and Attitudes'],
-      },
-      {
-        key: 'Format',
-        lines: ['Group'],
-      },
-      {
-        key: 'Attendance type',
-        lines: ['In Person'],
-      },
-    ]
-
-    expect(presenter.interventionSummaryList()).toStrictEqual(expectedResult)
-  })
-
   it('returns a summarylist object with the correct data, SI, community', async () => {
     const interventionDetails = interventionDetailsFactory.SI().community().build()
 
