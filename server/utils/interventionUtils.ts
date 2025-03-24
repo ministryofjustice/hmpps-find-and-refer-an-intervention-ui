@@ -14,7 +14,7 @@ export default class InterventionsUtils {
       SI = 'Structured Interventions',
       ACP = 'Accredited Programmes',
       CRS = 'Commissioned Rehabilitative Services',
-      TOOL = 'Toolkits',
+      TOOLKITS = 'Toolkits',
     }
     return InterventionTypes[interventionType.toUpperCase()] !== undefined
       ? InterventionTypes[interventionType.toUpperCase()]

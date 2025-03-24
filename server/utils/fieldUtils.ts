@@ -54,7 +54,7 @@ export const CatalogueFields = {
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
   } as AvailableCatalogueFields,
-  TOOL_community: {
+  TOOLKITS_community: {
     gender: true,
     type: true,
     riskCriteria: true,

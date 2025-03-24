@@ -11,9 +11,9 @@ class InterventionCatalogueItemFactory extends Factory<InterventionCatalogueItem
     })
   }
 
-  TOOLKIT() {
+  TOOLKITS() {
     return this.params({
-      interventionType: 'TOOL' as InterventionType,
+      interventionType: 'TOOLKITS' as InterventionType,
     })
   }
 

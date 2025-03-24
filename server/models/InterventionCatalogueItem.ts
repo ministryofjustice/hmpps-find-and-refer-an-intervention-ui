@@ -1,4 +1,4 @@
-export type InterventionType = 'SI' | 'ACP' | 'CRS' | 'TOOL'
+export type InterventionType = 'SI' | 'ACP' | 'CRS' | 'TOOLKITS'
 export type DeliveryMethodSetting = 'COMMUNITY' | 'CUSTODY'
 
 export default interface InterventionCatalogueItem {

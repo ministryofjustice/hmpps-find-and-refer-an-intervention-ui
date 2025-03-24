@@ -17,7 +17,7 @@ describe(`mapInterventionTypeToFriendlyString`, () => {
       { input: 'ACP', output: 'Accredited Programmes' },
       { input: 'SI', output: 'Structured Interventions' },
       { input: 'CRS', output: 'Commissioned Rehabilitative Services' },
-      { input: 'TOOL', output: 'Toolkits' },
+      { input: 'TOOLKITS', output: 'Toolkits' },
       { input: '', output: '' },
       { input: 'OTHER', output: '' },
     ]

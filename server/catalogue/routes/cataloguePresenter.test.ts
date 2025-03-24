@@ -347,7 +347,7 @@ describe(`interventionSummaryList`, () => {
 
   it('returns a summarylist object with the correct data, toolkits, community', async () => {
     const filter = {} as CatalogueFilter
-    const interventionCatalogueItem = interventionCatalogueItemFactory.TOOLKIT().build()
+    const interventionCatalogueItem = interventionCatalogueItemFactory.TOOLKITS().build()
     const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
       .pageContent([interventionCatalogueItem])
       .build() as Page<InterventionCatalogueItem>
