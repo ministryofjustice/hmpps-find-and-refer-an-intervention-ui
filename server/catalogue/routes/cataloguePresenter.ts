@@ -225,7 +225,7 @@ export default class CataloguePresenter {
       },
     ]
 
-    if (intervention.riskCriteria && intervention.riskCriteria.length > 0) {
+    if (fieldsToShow.riskCriteria && intervention.riskCriteria && intervention.riskCriteria.length > 0) {
       summary.push({
         key: 'Risk criteria',
         lines: intervention.riskCriteria,
