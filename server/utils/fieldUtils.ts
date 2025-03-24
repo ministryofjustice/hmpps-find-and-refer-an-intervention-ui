@@ -65,6 +65,17 @@ export const CatalogueFields = {
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
   } as AvailableCatalogueFields,
+  TOOLKITS_community: {
+    gender: true,
+    type: true,
+    riskCriteria: true,
+    criminogenicNeeds: true,
+    timeToComplete: false,
+    deliveryFormat: true,
+    attendanceType: true,
+    suitableForPeopleWithLearningDifficulties: false,
+    equivalentNonLdcProgramme: false,
+  } as AvailableCatalogueFields,
 }
 
 export type AvailableInterventionDetailsFields = {

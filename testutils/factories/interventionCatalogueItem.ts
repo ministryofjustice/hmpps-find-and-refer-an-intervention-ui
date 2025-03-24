@@ -17,6 +17,12 @@ class InterventionCatalogueItemFactory extends Factory<InterventionCatalogueItem
     })
   }
 
+  TOOLKITS() {
+    return this.params({
+      interventionType: 'TOOLKITS' as InterventionType,
+    })
+  }
+
   missingFields() {
     return this.params({
       criminogenicNeeds: [],

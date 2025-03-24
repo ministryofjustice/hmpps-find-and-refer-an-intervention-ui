@@ -379,6 +379,46 @@ describe(`interventionSummaryList`, () => {
     expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
   })
 
+  it('returns a summarylist object with the correct data, toolkits, community', async () => {
+    const filter = {} as CatalogueFilter
+    const interventionCatalogueItem = interventionCatalogueItemFactory.TOOLKITS().build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    const presenter = new CataloguePresenter(interventionCatalogueItemPage, filter, '', 'community')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Toolkits'],
+      },
+      {
+        key: 'Risk criteria',
+        lines: ['Medium, high or very high', 'Yes'],
+        listStyle: 1,
+      },
+      {
+        key: 'Needs',
+        lines: ['Thinking, Behaviours and Attitudes'],
+        listStyle: 0,
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
+        key: 'Attendance type',
+        lines: ['In Person'],
+      },
+    ]
+
+    expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
+  })
+
   it('returns a summarylist object with the correct data, missing data', async () => {
     const filter = {} as CatalogueFilter
     const interventionCatalogueItem = interventionCatalogueItemFactory.missingFields().build()
