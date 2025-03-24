@@ -54,6 +54,12 @@ class InterventionDetailsFactory extends Factory<InterventionDetails> {
       interventionType: 'CRS' as InterventionType,
     })
   }
+
+  SI() {
+    return this.params({
+      interventionType: 'SI' as InterventionType,
+    })
+  }
 }
 
 export default InterventionDetailsFactory.define(({ sequence }) => ({
