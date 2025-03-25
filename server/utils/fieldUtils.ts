@@ -146,4 +146,15 @@ export const InterventionDetailsFields = {
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
   } as AvailableInterventionDetailsFields,
+  TOOLKITS_community: {
+    gender: true,
+    type: true,
+    riskCriteria: true,
+    criminogenicNeeds: true,
+    timeToComplete: false,
+    deliveryFormat: true,
+    attendanceType: true,
+    suitableForPeopleWithLearningDifficulties: false,
+    equivalentNonLdcProgramme: false,
+  } as AvailableInterventionDetailsFields,
 }
