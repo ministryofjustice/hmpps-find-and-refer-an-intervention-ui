@@ -100,10 +100,6 @@ describe(`interventionSummaryList`, () => {
         lines: ['Commissioned Rehabilitative Services'],
       },
       {
-        key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
-      },
-      {
         key: 'Needs',
         lines: ['Thinking, Behaviours and Attitudes'],
       },
@@ -129,10 +125,6 @@ describe(`interventionSummaryList`, () => {
       {
         key: 'Type',
         lines: ['Commissioned Rehabilitative Services'],
-      },
-      {
-        key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
       },
       {
         key: 'Needs',
