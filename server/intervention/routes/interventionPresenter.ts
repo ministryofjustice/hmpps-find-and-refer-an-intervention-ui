@@ -32,14 +32,18 @@ export default class InterventionPresenter {
       },
     ]
 
-    if (fieldsToShow.riskCriteria && this.intervention.riskCriteria) {
+    if (fieldsToShow.riskCriteria && this.intervention.riskCriteria && this.intervention.riskCriteria.length > 0) {
       summary.push({
         key: 'Risk criteria',
         lines: this.intervention.riskCriteria,
       })
     }
 
-    if (fieldsToShow.criminogenicNeeds && this.intervention.criminogenicNeeds) {
+    if (
+      fieldsToShow.criminogenicNeeds &&
+      this.intervention.criminogenicNeeds &&
+      this.intervention.criminogenicNeeds.length > 0
+    ) {
       summary.push({
         key: 'Needs',
         lines: [this.intervention.criminogenicNeeds.join(', ')],

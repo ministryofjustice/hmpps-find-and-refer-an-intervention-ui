@@ -100,10 +100,6 @@ describe(`interventionSummaryList`, () => {
         lines: ['Commissioned Rehabilitative Services'],
       },
       {
-        key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
-      },
-      {
         key: 'Needs',
         lines: ['Thinking, Behaviours and Attitudes'],
       },
@@ -129,10 +125,6 @@ describe(`interventionSummaryList`, () => {
       {
         key: 'Type',
         lines: ['Commissioned Rehabilitative Services'],
-      },
-      {
-        key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
       },
       {
         key: 'Needs',
@@ -184,6 +176,7 @@ describe(`interventionSummaryList`, () => {
 
   it('returns a summarylist object without optional fields when they are not available', async () => {
     const interventionDetails = interventionDetailsFactory.build({
+      riskCriteria: [],
       suitableForPeopleWithLearningDifficulties: null,
       equivalentNonLdcProgramme: null,
       timeToComplete: null,
@@ -200,10 +193,6 @@ describe(`interventionSummaryList`, () => {
       {
         key: 'Type',
         lines: ['Accredited Programmes'],
-      },
-      {
-        key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
       },
       {
         key: 'Format',

@@ -24,7 +24,7 @@
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Description</h2>
       <p>{{ presenter.intervention.description }}</p>
 
-      {% if presenter.intervention.interventionType == 'CRS' %}
+      {% if presenter.intervention.interventionType == 'CRS' and presenter.intervention.expectedOutcomes %}
            <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes</h2>
              {% for outcome in presenter.intervention.expectedOutcomes %}
              <p>{{ outcome }}</p>

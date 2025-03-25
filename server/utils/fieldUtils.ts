@@ -35,7 +35,7 @@ export const CatalogueFields = {
   CRS_community: {
     gender: true,
     type: true,
-    riskCriteria: true,
+    riskCriteria: false,
     criminogenicNeeds: true,
     timeToComplete: false,
     deliveryFormat: false,
@@ -46,7 +46,7 @@ export const CatalogueFields = {
   CRS_custody: {
     gender: true,
     type: true,
-    riskCriteria: true,
+    riskCriteria: false,
     criminogenicNeeds: true,
     timeToComplete: false,
     deliveryFormat: true,
@@ -116,7 +116,7 @@ export const InterventionDetailsFields = {
   CRS_community: {
     gender: true,
     type: true,
-    riskCriteria: true,
+    riskCriteria: false,
     criminogenicNeeds: true,
     timeToComplete: false,
     deliveryFormat: false,
@@ -127,7 +127,7 @@ export const InterventionDetailsFields = {
   CRS_custody: {
     gender: true,
     type: true,
-    riskCriteria: true,
+    riskCriteria: false,
     criminogenicNeeds: true,
     timeToComplete: false,
     deliveryFormat: true,
