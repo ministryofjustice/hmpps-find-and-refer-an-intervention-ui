@@ -4,6 +4,7 @@ import Pagination from '../../utils/pagination/pagination'
 import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import CatalogueFilter from './catalogueFilter'
 import InterventionsUtils from '../../utils/interventionUtils'
+import { AvailableCatalogueFields, CatalogueFields } from '../../utils/fieldUtils'
 
 export default class CataloguePresenter {
   public readonly pagination: Pagination
@@ -210,6 +211,9 @@ export default class CataloguePresenter {
   }
 
   interventionSummaryList(intervention: InterventionCatalogueItem): SummaryListItem[] {
+    const fieldsToShow: AvailableCatalogueFields =
+      CatalogueFields[`${intervention.interventionType}_${this.setting.toLowerCase()}`]
+
     const summary: SummaryListItem[] = [
       {
         key: 'Gender',
@@ -220,22 +224,25 @@ export default class CataloguePresenter {
         lines: [InterventionsUtils.mapInterventionTypeToFriendlyString(intervention.interventionType)],
       },
     ]
-    if (intervention.riskCriteria && intervention.riskCriteria.length > 0) {
+
+    if (fieldsToShow.riskCriteria && intervention.riskCriteria && intervention.riskCriteria.length > 0) {
       summary.push({
         key: 'Risk criteria',
         lines: intervention.riskCriteria,
         listStyle: intervention.riskCriteria.length > 1 ? ListStyle.bulleted : undefined,
       })
     }
-    if (intervention.criminogenicNeeds && intervention.criminogenicNeeds.length > 0) {
+
+    if (fieldsToShow.criminogenicNeeds && intervention.criminogenicNeeds && intervention.criminogenicNeeds.length > 0) {
       summary.push({
         key: 'Needs',
         lines: [intervention.criminogenicNeeds.join(', ')],
         listStyle: ListStyle.noMarkers,
       })
     }
+
     if (
-      intervention.setting.includes('CUSTODY') &&
+      fieldsToShow.suitableForPeopleWithLearningDifficulties &&
       intervention.suitableForPeopleWithLearningDifficulties !== undefined
     ) {
       summary.push({
@@ -243,30 +250,35 @@ export default class CataloguePresenter {
         lines: [intervention.suitableForPeopleWithLearningDifficulties ? 'Yes' : 'No'],
       })
     }
-    if (intervention.setting.includes('CUSTODY') && intervention.equivalentNonLdcProgramme) {
+
+    if (fieldsToShow.equivalentNonLdcProgramme && intervention.equivalentNonLdcProgramme) {
       summary.push({
         key: 'Equivalent non-LDC programme',
         lines: [intervention.equivalentNonLdcProgramme],
       })
     }
-    if (intervention.timeToComplete) {
+
+    if (fieldsToShow.timeToComplete && intervention.timeToComplete) {
       summary.push({
         key: 'Time to complete',
         lines: [intervention.timeToComplete],
       })
     }
-    if (intervention.deliveryFormat && intervention.deliveryFormat.length > 0) {
+
+    if (fieldsToShow.deliveryFormat && intervention.deliveryFormat && intervention.deliveryFormat.length > 0) {
       summary.push({
         key: 'Format',
         lines: intervention.deliveryFormat,
       })
     }
-    if (intervention.attendanceType && intervention.attendanceType.length > 0) {
+
+    if (fieldsToShow.attendanceType && intervention.attendanceType && intervention.attendanceType.length > 0) {
       summary.push({
         key: 'Attendance type',
         lines: intervention.attendanceType,
       })
     }
+
     return summary
   }
 }

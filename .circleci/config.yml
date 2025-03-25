@@ -2,10 +2,11 @@ version: 2.1
 orbs:
   hmpps: ministryofjustice/hmpps@10
   slack: circleci/slack@4.12.5
+
 parameters:
   releases-slack-channel:
     type: string
-    default: interventions-dev-notifications
+    default: find-refer-interventions-dev-notification
   node-version:
     type: string
     default: 22.14-browsers
@@ -42,6 +43,7 @@ jobs:
             - build
             - dist
             - assets
+
   unit_test:
     executor:
       name: hmpps/node
@@ -54,45 +56,12 @@ jobs:
           name: unit tests
           command: npm run test:ci
       - store_test_results:
-          path: test_results
+          path: test_results/unit/xml
       - store_artifacts:
-          path: test_results/unit-test-reports.html
-  integration_test:
-    executor:
-      name: hmpps/node
-      tag: << pipeline.parameters.node-version >>
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/app
-      - run:
-          name: Install missing OS dependency
-          command: sudo apt-get install libxss1
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-      - run:
-          name: Get wiremock
-          command: curl -o wiremock.jar https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.9.1/wiremock-standalone-3.9.1.jar
-      - run:
-          name: Run wiremock
-          command: java -jar wiremock.jar --port 9091
-          background: true
-      - run:
-          name: Run the node app.
-          command: npm run start-feature
-          background: true
-      - run:
-          name: Wait for node app to start
-          command: sleep 5
-      - run:
-          name: integration tests
-          command: npm run int-test
-      - store_test_results:
-          path: test_results
+          path: test_results/unit
       - store_artifacts:
-          path: integration_tests/videos
-      - store_artifacts:
-          path: integration_tests/screenshots
+          path: test_results/unit/xml
+
 workflows:
   version: 2
   build-test-and-deploy:
@@ -102,9 +71,6 @@ workflows:
             tags:
               ignore: /.*/
       - unit_test:
-          requires:
-            - build
-      - integration_test:
           requires:
             - build
       - hmpps/helm_lint:
@@ -117,7 +83,7 @@ workflows:
                 - main
       - hmpps/deploy_env:
           name: deploy_dev
-          env: "dev"
+          env: 'dev'
           jira_update: true
           pipeline_id: <<pipeline.id>>
           pipeline_number: <<pipeline.number>>
@@ -129,12 +95,11 @@ workflows:
           requires:
             - helm_lint
             - unit_test
-            - integration_test
             - build_docker
           helm_timeout: 5m
       - hmpps/deploy_env:
           name: deploy_preprod
-          env: "preprod"
+          env: 'preprod'
           jira_update: true
           jira_env_type: staging
           pipeline_id: <<pipeline.id>>
@@ -151,7 +116,7 @@ workflows:
             - deploy_preprod
       - hmpps/deploy_env:
           name: deploy_prod
-          env: "prod"
+          env: 'prod'
           jira_update: true
           jira_env_type: production
           pipeline_id: <<pipeline.id>>

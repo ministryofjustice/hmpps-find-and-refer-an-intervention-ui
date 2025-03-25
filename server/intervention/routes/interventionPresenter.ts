@@ -2,6 +2,7 @@ import { SummaryListItem } from '../../utils/summaryList'
 import InterventionDetails, { CustodyLocation, PDU } from '../../models/InterventionDetails'
 import InterventionsUtils from '../../utils/interventionUtils'
 import { TableArgs } from '../../utils/govukFrontendTypes'
+import { AvailableInterventionDetailsFields, InterventionDetailsFields } from '../../utils/fieldUtils'
 
 export default class InterventionPresenter {
   constructor(
@@ -17,6 +18,9 @@ export default class InterventionPresenter {
   }
 
   interventionSummaryList(): SummaryListItem[] {
+    const fieldsToShow: AvailableInterventionDetailsFields =
+      InterventionDetailsFields[`${this.intervention.interventionType}_${this.setting.toLowerCase()}`]
+
     const summary: SummaryListItem[] = [
       {
         key: 'Gender',
@@ -27,28 +31,31 @@ export default class InterventionPresenter {
         lines: [InterventionsUtils.mapInterventionTypeToFriendlyString(this.intervention.interventionType)],
       },
     ]
-    if (this.intervention.riskCriteria) {
+
+    if (fieldsToShow.riskCriteria && this.intervention.riskCriteria) {
       summary.push({
         key: 'Risk criteria',
         lines: this.intervention.riskCriteria,
       })
     }
-    if (this.intervention.interventionType === 'CRS') {
-      if (this.intervention.criminogenicNeeds) {
-        summary.push({
-          key: 'Needs',
-          lines: [this.intervention.criminogenicNeeds.join(', ')],
-        })
-      }
+
+    if (fieldsToShow.criminogenicNeeds && this.intervention.criminogenicNeeds) {
+      summary.push({
+        key: 'Needs',
+        lines: [this.intervention.criminogenicNeeds.join(', ')],
+      })
     }
-    if (this.intervention.interventionType === 'ACP' && this.setting.toLowerCase() === 'custody') {
-      if (this.intervention.suitableForPeopleWithLearningDifficulties) {
-        summary.push({
-          key: 'Suitable for people with learning disabilities or challenges (LDC)',
-          lines: [this.intervention.suitableForPeopleWithLearningDifficulties ? 'Yes' : 'No'],
-        })
-      }
-      if (this.intervention.equivalentNonLdcProgramme) {
+
+    if (
+      fieldsToShow.suitableForPeopleWithLearningDifficulties &&
+      this.intervention.suitableForPeopleWithLearningDifficulties
+    ) {
+      summary.push({
+        key: 'Suitable for people with learning disabilities or challenges (LDC)',
+        lines: [this.intervention.suitableForPeopleWithLearningDifficulties ? 'Yes' : 'No'],
+      })
+
+      if (fieldsToShow.equivalentNonLdcProgramme && this.intervention.equivalentNonLdcProgramme) {
         summary.push({
           key: 'Equivalent non-LDC programme',
           lines: [this.intervention.equivalentNonLdcProgramme],
@@ -56,29 +63,26 @@ export default class InterventionPresenter {
       }
     }
 
-    if (this.intervention.interventionType === 'ACP' && this.intervention.timeToComplete) {
+    if (fieldsToShow.timeToComplete && this.intervention.timeToComplete) {
       summary.push({
         key: 'Time to complete',
         lines: [this.intervention.timeToComplete],
       })
     }
-    if (!(this.intervention.interventionType === 'CRS' && this.setting.toLowerCase() === 'community')) {
-      if (this.intervention.deliveryFormat) {
-        summary.push({
-          key: 'Format',
-          lines: this.intervention.deliveryFormat,
-        })
-      }
-    }
-    if (!(this.intervention.interventionType === 'ACP' && this.setting.toLowerCase() === 'custody')) {
-      if (this.intervention.attendanceType) {
-        summary.push({
-          key: 'Attendance type',
-          lines: this.intervention.attendanceType,
-        })
-      }
+
+    if (fieldsToShow.deliveryFormat && this.intervention.deliveryFormat) {
+      summary.push({
+        key: 'Format',
+        lines: this.intervention.deliveryFormat,
+      })
     }
 
+    if (fieldsToShow.attendanceType && this.intervention.attendanceType) {
+      summary.push({
+        key: 'Attendance type',
+        lines: this.intervention.attendanceType,
+      })
+    }
     return summary
   }
 
