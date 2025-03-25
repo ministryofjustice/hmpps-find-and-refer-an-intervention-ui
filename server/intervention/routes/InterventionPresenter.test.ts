@@ -182,6 +182,41 @@ describe(`interventionSummaryList`, () => {
     expect(presenter.interventionSummaryList()).toStrictEqual(expectedResult)
   })
 
+  it('returns a summarylist object with the correct data, Toolkits, community', async () => {
+    const interventionDetails = interventionDetailsFactory.TOOLKITS().community().build()
+
+    const presenter = new InterventionPresenter('backlink-uri', interventionDetails, 'community')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Toolkits'],
+      },
+      {
+        key: 'Risk criteria',
+        lines: ['Medium, high or very high', 'Yes'],
+      },
+      {
+        key: 'Needs',
+        lines: ['Thinking, Behaviours and Attitudes'],
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
+        key: 'Attendance type',
+        lines: ['In Person'],
+      },
+    ]
+
+    expect(presenter.interventionSummaryList()).toStrictEqual(expectedResult)
+  })
+
   it('returns a summarylist object without optional fields when they are not available', async () => {
     const interventionDetails = interventionDetailsFactory.build({
       suitableForPeopleWithLearningDifficulties: null,
