@@ -57,7 +57,7 @@ export const CatalogueFields = {
   SI_community: {
     gender: true,
     type: true,
-    riskCriteria: false,
+    riskCriteria: true,
     criminogenicNeeds: true,
     timeToComplete: false,
     deliveryFormat: true,
@@ -138,7 +138,7 @@ export const InterventionDetailsFields = {
   SI_community: {
     gender: true,
     type: true,
-    riskCriteria: false,
+    riskCriteria: true,
     criminogenicNeeds: true,
     timeToComplete: false,
     deliveryFormat: true,

@@ -202,7 +202,6 @@ describe(`interventionSummaryList`, () => {
       {
         key: 'Risk criteria',
         lines: ['Medium, high or very high', 'Yes'],
-        listStyle: 1,
       },
       {
         key: 'Needs',
@@ -246,7 +245,6 @@ describe(`interventionSummaryList`, () => {
       {
         key: 'Risk criteria',
         lines: ['Medium, high or very high', 'Yes'],
-        listStyle: 1,
       },
       {
         key: 'Suitable for people with learning disabilities or challenges (LDC)',
@@ -353,6 +351,10 @@ describe(`interventionSummaryList`, () => {
         lines: ['Structured Interventions'],
       },
       {
+        key: 'Risk criteria',
+        lines: ['Medium, high or very high', 'Yes'],
+      },
+      {
         key: 'Needs',
         lines: ['Thinking, Behaviours and Attitudes'],
         listStyle: 0,
@@ -389,7 +391,6 @@ describe(`interventionSummaryList`, () => {
       {
         key: 'Risk criteria',
         lines: ['Medium, high or very high', 'Yes'],
-        listStyle: 1,
       },
       {
         key: 'Needs',
