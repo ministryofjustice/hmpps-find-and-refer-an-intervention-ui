@@ -158,6 +158,10 @@ describe(`interventionSummaryList`, () => {
         lines: ['Structured Interventions'],
       },
       {
+        key: 'Risk criteria',
+        lines: ['Medium, high or very high', 'Yes'],
+      },
+      {
         key: 'Needs',
         lines: ['Thinking, Behaviours and Attitudes'],
       },

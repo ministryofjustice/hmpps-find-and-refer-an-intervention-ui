@@ -229,7 +229,6 @@ export default class CataloguePresenter {
       summary.push({
         key: 'Risk criteria',
         lines: intervention.riskCriteria,
-        listStyle: intervention.riskCriteria.length > 1 ? ListStyle.bulleted : undefined,
       })
     }
 
