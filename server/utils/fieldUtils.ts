@@ -76,6 +76,17 @@ export const CatalogueFields = {
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
   } as AvailableCatalogueFields,
+  TOOLKITS_custody: {
+    gender: true,
+    type: true,
+    riskCriteria: true,
+    criminogenicNeeds: true,
+    timeToComplete: false,
+    deliveryFormat: true,
+    attendanceType: true,
+    suitableForPeopleWithLearningDifficulties: false,
+    equivalentNonLdcProgramme: false,
+  } as AvailableCatalogueFields,
 }
 
 export type AvailableInterventionDetailsFields = {
@@ -147,6 +158,17 @@ export const InterventionDetailsFields = {
     equivalentNonLdcProgramme: false,
   } as AvailableInterventionDetailsFields,
   TOOLKITS_community: {
+    gender: true,
+    type: true,
+    riskCriteria: true,
+    criminogenicNeeds: true,
+    timeToComplete: false,
+    deliveryFormat: true,
+    attendanceType: true,
+    suitableForPeopleWithLearningDifficulties: false,
+    equivalentNonLdcProgramme: false,
+  } as AvailableInterventionDetailsFields,
+  TOOLKITS_custody: {
     gender: true,
     type: true,
     riskCriteria: true,
