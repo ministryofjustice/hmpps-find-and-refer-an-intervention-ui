@@ -21,7 +21,8 @@ describe('FormUtils', () => {
       const result = await validationResultForBody({ 'interpreter-language': '' })
       expect(result.array()).toEqual([
         {
-          param: 'needs-interpreter',
+          path: 'needs-interpreter',
+          type: 'field',
           msg: 'Select yes if an interpreter is needed',
           value: undefined,
           location: 'body',
@@ -33,7 +34,8 @@ describe('FormUtils', () => {
       const result = await validationResultForBody({ 'needs-interpreter': 'true', 'interpreter-language': '' })
       expect(result.array()).toEqual([
         {
-          param: 'needs-interpreter',
+          path: 'needs-interpreter',
+          type: 'field',
           msg: 'Select yes if an interpreter is needed',
           value: 'true',
           location: 'body',
@@ -45,7 +47,8 @@ describe('FormUtils', () => {
       const result = await validationResultForBody({ 'needs-interpreter': 'yes', 'interpreter-language': '' })
       expect(result.array()).toEqual([
         {
-          param: 'interpreter-language',
+          path: 'interpreter-language',
+          type: 'field',
           msg: 'Enter the language for which an interpreter is needed',
           value: '',
           location: 'body',
@@ -77,8 +80,8 @@ describe('FormUtils', () => {
       const result = await FormUtils.runValidations({ request, validations })
 
       expect(result.array()).toEqual([
-        { location: 'body', msg: 'field2 is empty', param: 'field2', value: '' },
-        { location: 'body', msg: 'field3 is empty', param: 'field3', value: '' },
+        { location: 'body', msg: 'field2 is empty', path: 'field2', type: 'field', value: '' },
+        { location: 'body', msg: 'field3 is empty', path: 'field3', type: 'field', value: '' },
       ])
     })
 
@@ -91,8 +94,12 @@ describe('FormUtils', () => {
       const result = await FormUtils.runValidations({ request, validations })
       const secondResult = await FormUtils.runValidations({ request, validations: secondValidations })
 
-      expect(result.array()).toEqual([{ location: 'body', msg: 'field2 is empty', param: 'field2', value: '' }])
-      expect(secondResult.array()).toEqual([{ location: 'body', msg: 'field3 is empty', param: 'field3', value: '' }])
+      expect(result.array()).toEqual([
+        { location: 'body', msg: 'field2 is empty', path: 'field2', type: 'field', value: '' },
+      ])
+      expect(secondResult.array()).toEqual([
+        { location: 'body', msg: 'field3 is empty', path: 'field3', type: 'field', value: '' },
+      ])
     })
   })
 })
