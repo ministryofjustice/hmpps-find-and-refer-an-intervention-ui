@@ -290,6 +290,10 @@ describe(`interventionSummaryList`, () => {
         listStyle: 0,
       },
       {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
         key: 'Attendance type',
         lines: ['In Person'],
       },
