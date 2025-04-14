@@ -104,6 +104,10 @@ describe(`interventionSummaryList`, () => {
         lines: ['Thinking, Behaviours and Attitudes'],
       },
       {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
         key: 'Attendance type',
         lines: ['In Person'],
       },
