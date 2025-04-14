@@ -10,7 +10,7 @@ This repository contains the ui code for the `Find and Refer an Intervention UI`
 Most software can be installed using [homebrew](https://brew.sh/).
 
 - Docker
-- Node (v20)
+- Node (>=22)
 
 ## Running the application locally
 
@@ -60,7 +60,7 @@ or copying the example file:
 cp .env.example .env
 ```
 
-## Connecting to local database
+### Connecting to local database
 
 The service uses a postgres database alongside flyaway migrations to create and populate the database. To connect to the
 database locally in your preferred database
@@ -75,10 +75,9 @@ Create new connection using local database credentials;
 | Username | root  |
 | Password | dev   |
 
-## Authorization
+## Authorization and Authentication
 
-The service uses an Oauth 2.0 setup managed through the Hmpps Auth project. To call any endpoints locally a bearer token
-must be generated. This can be done through calling the auth endpoint in the Hmpps-auth service.
+The service uses an Oauth 2.0 setup managed through the Hmpps Auth project. To call any endpoints locally a bearer token must be generated. This can be done through calling the auth endpoint in the Hmpps-auth service.
 
 | Variable         | Value                                          |
 | ---------------- | ---------------------------------------------- |
@@ -90,14 +89,13 @@ must be generated. This can be done through calling the auth endpoint in the Hmp
 
 For Client ID and Secret refer to the relevant credentials for the Find and Refer Project.
 
-## Client Credentials flow
+### Client Credentials flow
 
-These are used by the application to request tokens to make calls to APIs. These are system accounts that will have
-their own sets of roles.
+These are used by the application to request tokens to make calls to APIs. These are system accounts that will have their own sets of roles.
 
 Most API calls that occur as part of the request/response cycle will be on behalf of a user.
-To make a call on behalf of a user, a username should be passed when requesting a system token. The username will then
-become part of the JWT and can be used downstream for auditing purposes.
+
+To make a call on behalf of a user, a username should be passed when requesting a system token. The username will then become part of the JWT and can be used downstream for auditing purposes.
 
 These tokens are cached until expiration.
 
@@ -108,7 +106,7 @@ These credentials are configured using the following env variables:
 
 System tokens are obtained by making a call to HMPPS-Auth using the username of the logged in user. This token can then be added to the appropriate rest client calling to another service.
 
-## Logging in with a test user
+### Logging in with a test user
 
 Once the application is running you should then be able to login with:
 
@@ -133,27 +131,101 @@ password: password123456
 
 ## Deployments
 
-All deployments and environments are managed through Kubernetes. For information on how to connect to the Cloud
-Platform's Kubernetes cluster follow the setup
+Deployments are part of our CI process, on the `main` branch using the `build-test-and-deploy` Workflow.
+
+[This is a link](https://app.circleci.com/pipelines/github/ministryofjustice/hmpps-find-and-refer-an-intervention-ui?branch=main) to the most recent runs of that Workflow.
+
+Deployments require a manual approval step.
+
+### Testing a Deployment
+
+The Find & Refer an Intervention Service is not presently live.  We therefore do not have a Production environment available. 
+
+It is only possible to do User Acceptance Testing (UAT), i.e. click around a browser, on our Dev environment.
+
+To test a deployment to production, we have to examine the logs of a pod, to assert if it has spun up successfully or not.  This is obviously not ideal.
+
+### Kubernetes
+
+All deployments and environments are managed through Kubernetes. 
+
+For information on how to connect to the Cloud Platform's Kubernetes cluster follow the setup
 guide [here](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/getting-started/kubectl-config.html#connecting-to-the-cloud-platform-39-s-kubernetes-cluster).
 
 For further Kubernetes commands a useful cheat sheet is
-provided [here](https://kubernetes.io/docs/reference/kubectl/quick-reference/).
+provided [here](https://kubernetes.io/docs/reference/kubectl/quick-reference/).  Similarly, the `--help` flag on any `kubectl` command will give you more information.
 
-To monitor a deployment in the service you can run the following commands;
+### Testing a Deployment
 
-```zsh
-kubectl get deployment -n $NAMESPACE
-```
-
-This will give you the name of the current deployments and their current status.
-
-If you wish to scale down the currently running service in any environment. You can run the following command with the
-`--replicas=0` flag to stop the currently running pods.
+#### 1. Find the deployments in the `hmpps-find-and-refer-an-intervention-prod` namespace:
 
 ```zsh
-kubectl scale deployment $DEPLOYMENT_NAME -n $NAMESPACE --replicas=0
+$ kubectl get deployments -n hmpps-find-and-refer-an-intervention-prod
+
+NAME                                           READY   UP-TO-DATE   AVAILABLE   AGE
+hmpps-find-and-refer-an-intervention-service   0/0     0            0           41d
+hmpps-find-and-refer-an-intervention-ui        2/2     2            2           41d
 ```
+
+If you have done a deployment of UI, there should be more than 0 Pods marked as `READY` in that response, indicating that they have, indeed, been spun up.
+
+#### 2. Double-check the Pod(s) associated with the Deployment:
+
+Per [Kubernete's docs](https://kubernetes.io/docs/concepts/workloads/pods/):
+
+> A Pod is similar to a set of containers with shared namespaces and shared filesystem volumes.
+
+View the Pods in the namespace, these are what the `READY` column in the `get deployments` refer to:
+
+```zsh
+$ kubectl get pods -n hmpps-find-and-refer-an-intervention-prod
+
+NAME                                                       READY   STATUS    RESTARTS   AGE
+hmpps-find-and-refer-an-intervention-ui-58b989489d-blprx   1/1     Running   0          2m49s
+hmpps-find-and-refer-an-intervention-ui-58b989489d-mkb7p   1/1     Running   0          2m49s
+```
+
+#### 3. Check the logs of a Pod
+
+It is possible to read the logs of a given Pod to check that the build and spin-up process for the Pod has been successful.
+
+To view the logs from any of the Pods whose name is given in the previous responses:
+
+
+```zsh
+kubectl logs $POD_NAME -namespace hmpps-find-and-refer-an-intervention-prod
+
+# ...
+Application Insights 2.X SDK. []
+14:25:13.500Z  INFO HMPPS Find And Refer An Intervention Ui: Server listening on port 3000
+```
+
+Where `$POD_NAME` is the full string Pod name given in the `get pods` response.
+
+#### 4. Scale down the Pods
+
+While we are in pre-release, it's important not to leave the pods running.  
+
+We scale down the number of running Pods in the Kubernetes deployment with the following:
+
+```zsh
+$ kubectl scale deployment $DEPLOYMENT_NAME -n $NAMESPACE --replicas=0
+
+deployment.apps/hmpps-find-and-refer-an-intervention-ui scaled
+```
+
+And then double-check this has taken effect:
+
+```zsh
+$ kubectl get deployments --namespace=hmpps-find-and-refer-an-intervention-prod
+
+NAME                                           READY   UP-TO-DATE   AVAILABLE   AGE
+hmpps-find-and-refer-an-intervention-service   0/0     0            0           41d
+hmpps-find-and-refer-an-intervention-ui        0/0     0            0           41d
+```
+
+By checking for the `0` in the `READY` column.
+
 
 ## Change log
 
