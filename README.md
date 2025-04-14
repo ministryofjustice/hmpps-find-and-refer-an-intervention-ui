@@ -14,7 +14,7 @@ Most software can be installed using [homebrew](https://brew.sh/).
 
 ## Running the application locally
 
-After setting up the dependencies (below), run the application locally with with: 
+After setting up the dependencies (below), run the application locally with with:
 
 ```bash
 npm run start:dev
@@ -46,7 +46,7 @@ docker-compose up -d
 
 ### Environment Files (.env)
 
-Node requires a .env file to start the application, but the project does not make heavy use of environmental variables. 
+Node requires a .env file to start the application, but the project does not make heavy use of environmental variables.
 
 Before starting the application create a new blank .env file by either creating a blank .env file:
 
@@ -60,7 +60,6 @@ or copying the example file:
 cp .env.example .env
 ```
 
-
 ## Connecting to local database
 
 The service uses a postgres database alongside flyaway migrations to create and populate the database. To connect to the
@@ -70,31 +69,26 @@ client ([IntelliJ Ultimate](https://www.jetbrains.com/help/idea/database-tool-wi
 
 Create new connection using local database credentials;
 
-| Variable | Value    |
-| -------- | -------- |
-| Port     | 5432     |
-| Username | postgres |
-| Password | password |
+| Variable | Value |
+| -------- | ----- |
+| Port     | 5432  |
+| Username | root  |
+| Password | dev   |
 
 ## Authorization
 
 The service uses an Oauth 2.0 setup managed through the Hmpps Auth project. To call any endpoints locally a bearer token
 must be generated. This can be done through calling the auth endpoint in the Hmpps-auth service.
 
-| Variable         | Value                                     |
-| ---------------- | ----------------------------------------- |
-| Grant type       | Client credentials                        |
-| Access token URL | <http://hmpps-auth:8090/auth/oauth/token> |
-| Client ID        | -----                                     |
-| Client Secret    | -----                                     |
-| Scope            | Read                                      |
+| Variable         | Value                                          |
+| ---------------- | ---------------------------------------------- |
+| Grant type       | Client credentials                             |
+| Access token URL | <http://hmpps-auth:8090/auth/oauth/token>      |
+| Client ID        | hmpps-find-and-refer-an-intervention-ui-client |
+| Client Secret    | clientsecret                                   |
+| Scope            | Read                                           |
 
 For Client ID and Secret refer to the relevant credentials for the Find and Refer Project.
-
-## Troubleshooting
-
-For any issues please reach out to the Find and Refer Interventions team in
-slack [#find-refer-interventions-team](https://moj.enterprise.slack.com/archives/C06MPNK0AD6)
 
 ## Client Credentials flow
 
@@ -123,7 +117,7 @@ username: REFER_MONITOR_PP
 password: R8Mpassword
 
 Custody User
-username: FR_USER
+username: FRI_USER_ACP_REF_TEAM
 password: password123456
 
 ## Extra commands
@@ -137,6 +131,35 @@ password: password123456
 
 `npm run test`
 
+## Deployments
+
+All deployments and environments are managed through Kubernetes. For information on how to connect to the Cloud
+Platform's Kubernetes cluster follow the setup
+guide [here](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/getting-started/kubectl-config.html#connecting-to-the-cloud-platform-39-s-kubernetes-cluster).
+
+For further Kubernetes commands a useful cheat sheet is
+provided [here](https://kubernetes.io/docs/reference/kubectl/quick-reference/).
+
+To monitor a deployment in the service you can run the following commands;
+
+```zsh
+kubectl get deployment -n $NAMESPACE
+```
+
+This will give you the name of the current deployments and their current status.
+
+If you wish to scale down the currently running service in any environment. You can run the following command with the
+`--replicas=0` flag to stop the currently running pods.
+
+```zsh
+kubectl scale deployment $DEPLOYMENT_NAME -n $NAMESPACE --replicas=0
+```
+
 ## Change log
 
 A changelog for the service is available [here](./CHANGELOG.md)
+
+## Troubleshooting
+
+For any issues please reach out to the Find and Refer Interventions team in
+slack [#find-refer-interventions-team](https://moj.enterprise.slack.com/archives/C06MPNK0AD6)

@@ -1,5 +1,16 @@
 # Change log
 
+**March 18th 2025** - Update to Node v 22
+
+Docs for Node v22: [link](https://nodejs.org/en/blog/announcements/v22-release-announce)
+
+Updated the .nvmrc to expect `22` (from `20`)
+
+Updated the `engine.node` field to `22` (from `20`)
+
+Updated the base Docker image to [node-22-bookwork-slim](https://github.com/nodejs/docker-node/blob/258c1a40754047657c4d8cdb6df5042785584821/22/bookworm/Dockerfile) from `node-20.19-bookworm-slim`
+
+
 **September 25th 2024** - Removing dependency on dotenv
 
 Removing dependency on [dotenv](https://www.npmjs.com/package/dotenv).

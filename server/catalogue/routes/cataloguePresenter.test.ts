@@ -1,31 +1,9 @@
 import CatalogueFilter from './catalogueFilter'
 import CataloguePresenter from './cataloguePresenter'
-
-describe(`mapInterventionTypeToFriendlyString`, () => {
-  it('returns the correct mapping', async () => {
-    const presenter = new CataloguePresenter(
-      {
-        content: [],
-        totalElements: 9,
-        totalPages: 2,
-        size: 5,
-        number: 0,
-        numberOfElements: 5,
-      },
-      new CatalogueFilter(),
-      'gender-checkbox=Male',
-      'community',
-    )
-    const testValues = [
-      { input: 'ACP', output: 'Accredited Programmes' },
-      { input: 'SI', output: 'Structured Interventions' },
-      { input: 'CRS', output: 'Commissioned Rehabilitative Services' },
-      { input: '', output: '' },
-      { input: 'OTHER', output: '' },
-    ]
-    testValues.forEach(test => expect(presenter.mapInterventionTypeToFriendlyString(test.input)).toEqual(test.output))
-  })
-})
+import { Page } from '../../shared/models/pagination'
+import InterventionCatalogueItem from '../../models/InterventionCatalogueItem'
+import pageFactory from '../../../testutils/factories/page'
+import interventionCatalogueItemFactory from '../../../testutils/factories/interventionCatalogueItem'
 
 describe(`filters.`, () => {
   describe(`intervention type`, () => {
@@ -200,5 +178,307 @@ describe(`generateFilterPane`, () => {
       'community',
     )
     expect(presenter.generateFilterPane()).toEqual(testObject.expectedResult)
+  })
+})
+
+describe(`interventionSummaryList`, () => {
+  it('returns a summarylist object with the correct data, ACP, community', async () => {
+    const filter = {} as CatalogueFilter
+    const interventionCatalogueItem = interventionCatalogueItemFactory.build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    const presenter = new CataloguePresenter(interventionCatalogueItemPage, filter, '', 'community')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Accredited Programmes'],
+      },
+      {
+        key: 'Risk criteria',
+        lines: ['Medium, high or very high', 'Yes'],
+      },
+      {
+        key: 'Needs',
+        lines: ['Thinking, Behaviours and Attitudes'],
+        listStyle: 0,
+      },
+      {
+        key: 'Time to complete',
+        lines: ['At least 6 Months'],
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
+        key: 'Attendance type',
+        lines: ['In Person'],
+      },
+    ]
+
+    expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
+  })
+
+  it('returns a summarylist object with the correct data, ACP, custody', async () => {
+    const filter = {} as CatalogueFilter
+    const interventionCatalogueItem = interventionCatalogueItemFactory.build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    const presenter = new CataloguePresenter(interventionCatalogueItemPage, filter, '', 'custody')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Accredited Programmes'],
+      },
+      {
+        key: 'Risk criteria',
+        lines: ['Medium, high or very high', 'Yes'],
+      },
+      {
+        key: 'Suitable for people with learning disabilities or challenges (LDC)',
+        lines: ['Yes'],
+      },
+      {
+        key: 'Equivalent non-LDC programme',
+        lines: ['Kaizen'],
+      },
+      {
+        key: 'Time to complete',
+        lines: ['At least 6 Months'],
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+    ]
+
+    expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
+  })
+
+  it('returns a summarylist object with the correct data, CRS, community', async () => {
+    const filter = {} as CatalogueFilter
+    const interventionCatalogueItem = interventionCatalogueItemFactory.CRS().build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    const presenter = new CataloguePresenter(interventionCatalogueItemPage, filter, '', 'community')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Commissioned Rehabilitative Services'],
+      },
+      {
+        key: 'Needs',
+        lines: ['Thinking, Behaviours and Attitudes'],
+        listStyle: 0,
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
+        key: 'Attendance type',
+        lines: ['In Person'],
+      },
+    ]
+
+    expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
+  })
+
+  it('returns a summarylist object with the correct data, CRS, custody', async () => {
+    const filter = {} as CatalogueFilter
+    const interventionCatalogueItem = interventionCatalogueItemFactory.CRS().build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    const presenter = new CataloguePresenter(interventionCatalogueItemPage, filter, '', 'custody')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Commissioned Rehabilitative Services'],
+      },
+      {
+        key: 'Needs',
+        lines: ['Thinking, Behaviours and Attitudes'],
+        listStyle: 0,
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
+        key: 'Attendance type',
+        lines: ['In Person'],
+      },
+    ]
+
+    expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
+  })
+
+  it('returns a summarylist object with the correct data, SI, community', async () => {
+    const filter = {} as CatalogueFilter
+    const interventionCatalogueItem = interventionCatalogueItemFactory.SI().build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    const presenter = new CataloguePresenter(interventionCatalogueItemPage, filter, '', 'community')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Structured Interventions'],
+      },
+      {
+        key: 'Risk criteria',
+        lines: ['Medium, high or very high', 'Yes'],
+      },
+      {
+        key: 'Needs',
+        lines: ['Thinking, Behaviours and Attitudes'],
+        listStyle: 0,
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
+        key: 'Attendance type',
+        lines: ['In Person'],
+      },
+    ]
+    expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
+  })
+
+  it('returns a summarylist object with the correct data, toolkits, community', async () => {
+    const filter = {} as CatalogueFilter
+    const interventionCatalogueItem = interventionCatalogueItemFactory.TOOLKITS().build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    const presenter = new CataloguePresenter(interventionCatalogueItemPage, filter, '', 'community')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Toolkits'],
+      },
+      {
+        key: 'Risk criteria',
+        lines: ['Medium, high or very high', 'Yes'],
+      },
+      {
+        key: 'Needs',
+        lines: ['Thinking, Behaviours and Attitudes'],
+        listStyle: 0,
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
+        key: 'Attendance type',
+        lines: ['In Person'],
+      },
+    ]
+
+    expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
+  })
+  it('returns a summarylist object with the correct data, toolkits, cusotdy', async () => {
+    const filter = {} as CatalogueFilter
+    const interventionCatalogueItem = interventionCatalogueItemFactory.TOOLKITS().build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    const presenter = new CataloguePresenter(interventionCatalogueItemPage, filter, '', 'custody')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Toolkits'],
+      },
+      {
+        key: 'Risk criteria',
+        lines: ['Medium, high or very high', 'Yes'],
+      },
+      {
+        key: 'Needs',
+        lines: ['Thinking, Behaviours and Attitudes'],
+        listStyle: 0,
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
+        key: 'Attendance type',
+        lines: ['In Person'],
+      },
+    ]
+
+    expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
+  })
+
+  it('returns a summarylist object with the correct data, missing data', async () => {
+    const filter = {} as CatalogueFilter
+    const interventionCatalogueItem = interventionCatalogueItemFactory.missingFields().build()
+    const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
+      .pageContent([interventionCatalogueItem])
+      .build() as Page<InterventionCatalogueItem>
+    const presenter = new CataloguePresenter(interventionCatalogueItemPage, filter, '', 'community')
+
+    const expectedResult = [
+      {
+        key: 'Gender',
+        lines: ['Male'],
+      },
+      {
+        key: 'Type',
+        lines: ['Accredited Programmes'],
+      },
+      {
+        key: 'Format',
+        lines: ['Group'],
+      },
+      {
+        key: 'Attendance type',
+        lines: ['In Person'],
+      },
+    ]
+
+    expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
   })
 })

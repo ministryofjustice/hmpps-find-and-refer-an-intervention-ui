@@ -3,6 +3,8 @@ import { Page } from '../../shared/models/pagination'
 import Pagination from '../../utils/pagination/pagination'
 import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import CatalogueFilter from './catalogueFilter'
+import InterventionsUtils from '../../utils/interventionUtils'
+import { AvailableCatalogueFields, CatalogueFields } from '../../utils/fieldUtils'
 
 export default class CataloguePresenter {
   public readonly pagination: Pagination
@@ -199,7 +201,7 @@ export default class CataloguePresenter {
           searchParams.delete('type-checkbox', interventionTypeFilter)
           return {
             href: `/interventions/${this.setting}${searchParams.size === 0 ? '' : `?${searchParams.toString()}`}`,
-            text: this.mapInterventionTypeToFriendlyString(interventionTypeFilter),
+            text: InterventionsUtils.mapInterventionTypeToFriendlyString(interventionTypeFilter),
           }
         }),
       })
@@ -208,49 +210,38 @@ export default class CataloguePresenter {
     return selectedFilters
   }
 
-  mapInterventionTypeToFriendlyString(interventionType: string) {
-    enum InterventionTypes {
-      SI = 'Structured Interventions',
-      ACP = 'Accredited Programmes',
-      CRS = 'Commissioned Rehabilitative Services',
-      TOOLKITS = 'Toolkits',
-    }
-    return InterventionTypes[interventionType.toUpperCase()] !== undefined
-      ? InterventionTypes[interventionType.toUpperCase()]
-      : ''
-  }
-
   interventionSummaryList(intervention: InterventionCatalogueItem): SummaryListItem[] {
+    const fieldsToShow: AvailableCatalogueFields =
+      CatalogueFields[`${intervention.interventionType}_${this.setting.toLowerCase()}`]
+
     const summary: SummaryListItem[] = [
       {
         key: 'Gender',
-        lines: [
-          intervention.allowsMales && !intervention.allowsFemales ? 'Male' : '',
-          intervention.allowsFemales && intervention.allowsMales ? ' Male or Female' : '',
-          intervention.allowsFemales && !intervention.allowsMales ? 'Female' : '',
-        ],
+        lines: [InterventionsUtils.formatGenderText(intervention.allowsMales, intervention.allowsFemales)],
       },
       {
         key: 'Type',
-        lines: [this.mapInterventionTypeToFriendlyString(intervention.interventionType)],
+        lines: [InterventionsUtils.mapInterventionTypeToFriendlyString(intervention.interventionType)],
       },
     ]
-    if (intervention.riskCriteria && intervention.riskCriteria.length > 0) {
+
+    if (fieldsToShow.riskCriteria && intervention.riskCriteria && intervention.riskCriteria.length > 0) {
       summary.push({
         key: 'Risk criteria',
         lines: intervention.riskCriteria,
-        listStyle: intervention.riskCriteria.length > 1 ? ListStyle.bulleted : undefined,
       })
     }
-    if (intervention.criminogenicNeeds && intervention.criminogenicNeeds.length > 0) {
+
+    if (fieldsToShow.criminogenicNeeds && intervention.criminogenicNeeds && intervention.criminogenicNeeds.length > 0) {
       summary.push({
         key: 'Needs',
         lines: [intervention.criminogenicNeeds.join(', ')],
         listStyle: ListStyle.noMarkers,
       })
     }
+
     if (
-      intervention.setting.includes('CUSTODY') &&
+      fieldsToShow.suitableForPeopleWithLearningDifficulties &&
       intervention.suitableForPeopleWithLearningDifficulties !== undefined
     ) {
       summary.push({
@@ -258,30 +249,35 @@ export default class CataloguePresenter {
         lines: [intervention.suitableForPeopleWithLearningDifficulties ? 'Yes' : 'No'],
       })
     }
-    if (intervention.setting.includes('CUSTODY') && intervention.equivalentNonLdcProgramme) {
+
+    if (fieldsToShow.equivalentNonLdcProgramme && intervention.equivalentNonLdcProgramme) {
       summary.push({
         key: 'Equivalent non-LDC programme',
         lines: [intervention.equivalentNonLdcProgramme],
       })
     }
-    if (intervention.timeToComplete) {
+
+    if (fieldsToShow.timeToComplete && intervention.timeToComplete) {
       summary.push({
         key: 'Time to complete',
         lines: [intervention.timeToComplete],
       })
     }
-    if (intervention.deliveryFormat && intervention.deliveryFormat.length > 0) {
+
+    if (fieldsToShow.deliveryFormat && intervention.deliveryFormat && intervention.deliveryFormat.length > 0) {
       summary.push({
         key: 'Format',
         lines: intervention.deliveryFormat,
       })
     }
-    if (intervention.attendanceType && intervention.attendanceType.length > 0) {
+
+    if (fieldsToShow.attendanceType && intervention.attendanceType && intervention.attendanceType.length > 0) {
       summary.push({
         key: 'Attendance type',
         lines: intervention.attendanceType,
       })
     }
+
     return summary
   }
 }
