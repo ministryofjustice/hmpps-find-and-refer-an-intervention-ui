@@ -193,7 +193,7 @@ To view the logs from any of the Pods whose name is given in the previous respon
 
 
 ```zsh
-kubectl logs $POD_NAME -namespace hmpps-find-and-refer-an-intervention-prod
+$ kubectl logs $POD_NAME --namespace hmpps-find-and-refer-an-intervention-prod
 
 # ...
 Application Insights 2.X SDK. []
@@ -209,7 +209,7 @@ While we are in pre-release, it's important not to leave the pods running.
 We scale down the number of running Pods in the Kubernetes deployment with the following:
 
 ```zsh
-$ kubectl scale deployment $DEPLOYMENT_NAME -n $NAMESPACE --replicas=0
+$ kubectl scale deployment hmpps-find-and-refer-an-intervention-ui --namespace hmpps-find-and-refer-an-intervention-prod --replicas=0
 
 deployment.apps/hmpps-find-and-refer-an-intervention-ui scaled
 ```
