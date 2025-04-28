@@ -99,6 +99,7 @@ export type AvailableInterventionDetailsFields = {
   attendanceType: boolean
   suitableForPeopleWithLearningDifficulties: boolean
   equivalentNonLdcProgramme: boolean
+  expectedOutcomes: boolean
 }
 
 export const InterventionDetailsFields = {
@@ -134,6 +135,7 @@ export const InterventionDetailsFields = {
     attendanceType: true,
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
+    expectedOutcomes: true,
   } as AvailableInterventionDetailsFields,
   CRS_custody: {
     gender: true,
@@ -145,6 +147,7 @@ export const InterventionDetailsFields = {
     attendanceType: true,
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
+    expectedOutcomes: true,
   } as AvailableInterventionDetailsFields,
   SI_community: {
     gender: true,
