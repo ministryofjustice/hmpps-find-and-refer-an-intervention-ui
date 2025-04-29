@@ -42,7 +42,7 @@
               },
               submit: {
                 attributes: {
-                    "data-test-id": "submit-button"
+                    "data-testid": "submit-button"
                 }
               },
             selectedFilters: selectedFilters,
@@ -53,7 +53,7 @@
     <p/>
 
     <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-s" data-test-id="results-number">{{presenter.pagination.page.totalElements}} results</h2>
+      <h2 class="govuk-heading-s" data-testid="results-number">{{presenter.pagination.page.totalElements}} results</h2>
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
       {% if presenter.interventions.length == 0 %}
