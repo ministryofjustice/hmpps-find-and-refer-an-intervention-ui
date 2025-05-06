@@ -6,6 +6,10 @@ generic-service:
 
   ingress:
     host: find-and-refer-intervention-dev.hmpps.service.justice.gov.uk
+  
+  allowlist:
+    groups:
+      - circleci
 
   env:
     INGRESS_URL: "https://find-and-refer-intervention-dev.hmpps.service.justice.gov.uk"
