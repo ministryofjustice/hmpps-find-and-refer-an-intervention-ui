@@ -9,6 +9,7 @@ generic-service:
   
   allowlist:
     groups:
+      - internal
       - circleci
 
   env:
