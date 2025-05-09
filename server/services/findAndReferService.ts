@@ -6,6 +6,7 @@ import { Page } from '../shared/models/pagination'
 import InterventionCatalogueItem from '../models/InterventionCatalogueItem'
 import InterventionDetails from '../models/InterventionDetails'
 import CrsInterventionDetails from '../models/CrsInterventionDetails'
+import ServiceUserDetails from '../models/serviceUserDetails'
 
 export interface DummyData {
   dummyId: number
@@ -89,5 +90,17 @@ export default class FindAndReferService {
       path: `/intervention/${interventionId}/pdu/${pduId}`,
       headers: { Accept: 'application/json' },
     })) as CrsInterventionDetails
+  }
+
+  async getServiceUser(username: Express.User['username'], crn: Partial<{ crn: string }>): Promise<ServiceUserDetails> {
+    const hmppsAuthClient = this.hmppsAuthClientBuilder()
+    const systemToken = await hmppsAuthClient.getSystemClientToken(username)
+    const restClient = this.createRestClient(systemToken)
+
+    return (await restClient.get({
+      path: `/service-user`,
+      headers: { Accept: 'application/json' },
+      query: { ...crn },
+    })) as ServiceUserDetails
   }
 }

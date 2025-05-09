@@ -14,16 +14,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l govuk-!-margin-top-8">{{ presenter.text.pageHeading }}</h1>
-      <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.searchDescription }}</p>
-
-    <form method="post">
-      <input type="hidden" name="_csrf" value="{{csrfToken}}">
-      {{ govukInput(searchByCrnInputArgs) }}
-      {{ govukButton({ text: "Continue"}) }}
-    </form>
-
-
-
+      {{presenter.serviceUserDetails}}
     </div>
   </div>
 
