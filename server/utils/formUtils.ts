@@ -39,8 +39,8 @@ export default class FormUtils {
 
     return {
       errors: result.array().map(validationError => ({
-        formFields: [validationError.param],
-        errorSummaryLinkedField: validationError.param,
+        formFields: [validationError.path],
+        errorSummaryLinkedField: validationError.path,
         message: validationError.msg,
       })),
     }

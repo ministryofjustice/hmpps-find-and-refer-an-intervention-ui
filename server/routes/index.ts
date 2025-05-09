@@ -6,6 +6,7 @@ import CatalogueController from '../catalogue/routes/catalogueController'
 import TestController from './test/testController'
 import InterventionController from '../intervention/routes/interventionController'
 import CrsDetailsController from '../crsDetails/routes/crsDetailsController'
+// import SearchController from '../search/routes/searchController'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function routes({ auditService, findAndReferService }: Services): Router {
@@ -16,6 +17,7 @@ export default function routes({ auditService, findAndReferService }: Services):
   const catalogueController = new CatalogueController(findAndReferService)
   const interventionController = new InterventionController(findAndReferService)
   const crsDetailsController = new CrsDetailsController(findAndReferService)
+  // const searchController = new SearchController(findAndReferService)
   const testController = new TestController(findAndReferService)
 
   get('/', async (req, res, next) => {
@@ -49,6 +51,18 @@ export default function routes({ auditService, findAndReferService }: Services):
   get('/crsDetails/:id/:pduId/:setting', async (req, res, next) => {
     await crsDetailsController.showCrsDetailsPage(req, res)
   })
+
+  // get('/search-service-user-by-crn', async (req, res, next) => {
+  //   await searchController.searchByCrn(req, res)
+  // })
+  //
+  // post('/search-service-user-by-crn', async (req, res, next) => {
+  //   await searchController.searchByCrn(req, res)
+  // })
+  //
+  // get('/service-user/crn/:crn', async (req, res, next) => {
+  //   await searchController.searchResults(req, res)
+  // })
 
   get('/test', async (req, res, next) => {
     await testController.showTestPage(req, res)

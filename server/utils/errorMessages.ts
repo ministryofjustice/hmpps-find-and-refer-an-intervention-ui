@@ -35,6 +35,11 @@ const returnedError = {
 }
 
 export default {
+  enterCrn: {
+    wrongFormat:
+      'Enter a CRN or prison number in the correct format, like X123456 for a CRN or D0168GH for a prison number',
+    empty: 'Enter CRN or prison number.',
+  },
   returnedError,
   userHeaderTypes,
   errorHandlerAccessErrorMessages,
