@@ -12,7 +12,7 @@ export interface CustodyLocation {
 }
 
 export interface CommunityLocation {
-  pccRegion: string
+  npsRegion: string
   pdus: PDU[]
 }
 
