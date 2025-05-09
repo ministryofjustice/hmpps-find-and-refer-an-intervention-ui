@@ -6,18 +6,18 @@ import CatalogueController from '../catalogue/routes/catalogueController'
 import TestController from './test/testController'
 import InterventionController from '../intervention/routes/interventionController'
 import CrsDetailsController from '../crsDetails/routes/crsDetailsController'
-import SearchController from '../search/routes/searchController'
+// import SearchController from '../search/routes/searchController'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function routes({ auditService, findAndReferService }: Services): Router {
   const router = Router()
   const get = (path: string | string[], handler: RequestHandler) => router.get(path, asyncMiddleware(handler))
-  const post = (path: string, handler: RequestHandler): Router => router.post(path, asyncMiddleware(handler))
+  // const post = (path: string, handler: RequestHandler): Router => router.post(path, asyncMiddleware(handler))
 
   const catalogueController = new CatalogueController(findAndReferService)
   const interventionController = new InterventionController(findAndReferService)
   const crsDetailsController = new CrsDetailsController(findAndReferService)
-  const searchController = new SearchController(findAndReferService)
+  // const searchController = new SearchController(findAndReferService)
   const testController = new TestController(findAndReferService)
 
   get('/', async (req, res, next) => {

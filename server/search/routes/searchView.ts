@@ -1,6 +1,5 @@
 import SearchPresenter from './searchPresenter'
-import { SummaryListItem } from '../../utils/summaryList'
-import { InputArgs, SummaryListArgs } from '../../utils/govukFrontendTypes'
+import { InputArgs } from '../../utils/govukFrontendTypes'
 import ViewUtils from '../../utils/viewUtils'
 
 export default class SearchView {
