@@ -1,6 +1,6 @@
 import { Factory } from 'fishery'
-import InterventionDetails from '../../server/models/InterventionDetails'
 import { InterventionType } from '../../server/models/InterventionCatalogueItem'
+import InterventionDetails from '../../server/models/InterventionDetails'
 
 class InterventionDetailsFactory extends Factory<InterventionDetails> {
   custody() {
@@ -24,7 +24,7 @@ class InterventionDetailsFactory extends Factory<InterventionDetails> {
     return this.params({
       communityLocations: [
         {
-          pccRegion: 'Cleveland',
+          npsRegion: 'North East',
           pdus: [
             {
               id: '1',
@@ -37,11 +37,11 @@ class InterventionDetailsFactory extends Factory<InterventionDetails> {
           ],
         },
         {
-          pccRegion: 'Durham',
+          npsRegion: 'East of England',
           pdus: [
             {
               id: '1',
-              pduName: 'County Durham and Darlington',
+              pduName: 'Cambridgeshire',
             },
           ],
         },

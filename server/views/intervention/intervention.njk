@@ -4,7 +4,6 @@
 {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
-
 {% extends "partials/layout.njk" %}
 
 {% set pageTitle = applicationName + " - Home" %}
@@ -12,7 +11,7 @@
 
 {% block content %}
 
-{{ govukBackLink(backLinkArgs) }}
+  {{ govukBackLink(backLinkArgs) }}
 
   <h1 class="govuk-heading-l intervention-heading" data-testid="intervention-name">{{ presenter.text.pageHeading }}</h1>
   <div class="govuk-grid-row">
@@ -25,38 +24,37 @@
       <p>{{ presenter.intervention.description }}</p>
 
       {% if presenter.intervention.interventionType == 'CRS' and presenter.intervention.expectedOutcomes %}
-           <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes</h2>
-             {% for outcome in presenter.intervention.expectedOutcomes %}
-             <p>{{ outcome }}</p>
-             {% endfor %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes</h2>
+        {% for outcome in presenter.intervention.expectedOutcomes %}
+          <p>{{ outcome }}</p>
+        {% endfor %}
       {% endif %}
 
       {% if presenter.intervention.sessionDetails %}
-           <h2 class="govuk-heading-m govuk-!-margin-top-8">Session Details</h2>
-          <p>{{ presenter.intervention.sessionDetails}}</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Session Details</h2>
+        <p>{{ presenter.intervention.sessionDetails}}</p>
       {% endif %}
 
-
       {% if presenter.setting == 'custody' and presenter.intervention.custodyLocations.length > 0 %}
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location</h2>
-      <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.custodyLocationDescription }}</p>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Location</h2>
+        <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.custodyLocationDescription }}</p>
         {{ govukTable(presenter.getLocationsInCustodyTableArgs()) }}
       {% endif %}
 
-      {% if presenter.setting == 'community' and presenter.intervention.communityLocations.length > 0 %}
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Location</h2>
-      <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.communityLocationDescription }}</p>
+      {% if presenter.setting == 'community' or(presenter.setting == 'custody' and presenter.intervention.interventionType == 'CRS')and presenter.intervention.communityLocations.length > 0 %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Location</h2>
+        <p class="govuk-body govuk-!-margin-top-6">{{ presenter.text.communityLocationDescription }}</p>
         {% macro locationTable(pdus) %}
-            {% set rows = [] %}
-            {% for pdu in pdus %}
-              {% set rows = (rows.push([
-                {
-                  html: presenter.generateCRSLocationUrl(presenter.intervention.id, pdu)
-                }
-              ]), rows) %}
-            {% endfor %}
+          {% set rows = [] %}
+          {% for pdu in pdus %}
+            {% set rows = (rows.push([
+              {
+                html: presenter.generateCRSLocationUrl(presenter.intervention.id, pdu)
+              }
+            ]), rows) %}
+          {% endfor %}
 
-         {{ govukTable({
+          {{ govukTable({
               attributes: {
                 "data-module": "moj-sortable-table"
               },
@@ -73,38 +71,25 @@
             }}
         {% endmacro %}
 
-          {% set locations = [] %}
+        {% set locations = [] %}
 
-          {% for communityLocation in presenter.intervention.communityLocations %}
-            {% set locations = (locations.push(
-                {
-                  heading: {
-                    text: communityLocation.pccRegion
-                  },
-                  content: {
-                    html: locationTable(communityLocation.pdus)
-                  }
-                }
-              ), locations) %}
-          {% endfor %}
+        {% for communityLocation in presenter.intervention.communityLocations %}
+          {% set locations = (locations.push({
+            heading: {
+              text: communityLocation.npsRegion
+            },
+            content: {
+              html: locationTable(communityLocation.pdus)
+            }
+          }), locations) %}
+        {% endfor %}
 
-          {{ govukAccordion({
+        {{ govukAccordion({
           id: "accordion-default",
           items: locations
           }) }}
       {% endif %}
 
-
-
-
-
-
-
-
     </div>
   </div>
 {% endblock %}
-
-
-
-
