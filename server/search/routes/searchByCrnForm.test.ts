@@ -10,7 +10,18 @@ describe(`SearchByCrnForm`, () => {
         })
         const data = await new SearchByCrnForm(request).data()
 
-        expect(data.paramsForUpdate?.crn).toEqual('X123456')
+        expect(data.paramsForUpdate).toEqual({ crn: 'X123456' })
+      })
+    })
+
+    describe('when a prisonId is passed', () => {
+      it('returns params for update', async () => {
+        const request = TestUtils.createRequest({
+          'search-by-crn': 'A1234AA',
+        })
+        const data = await new SearchByCrnForm(request).data()
+
+        expect(data.paramsForUpdate).toEqual({ prisonId: 'A1234AA' })
       })
     })
 

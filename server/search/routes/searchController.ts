@@ -24,9 +24,20 @@ export default class SearchController {
         userInputData = req.body
       } else {
         const serviceUserDetails = await this.findAndReferService.getServiceUser(username, data.paramsForUpdate)
-        const presenter = new SearchResultsPresenter(`/`, serviceUserDetails)
-        const view = new SearchResultsView(presenter)
-        return ControllerUtils.renderWithLayout(res, view)
+        if (serviceUserDetails) {
+          const presenter = new SearchResultsPresenter(req.originalUrl, serviceUserDetails)
+          const view = new SearchResultsView(presenter)
+          return ControllerUtils.renderWithLayout(res, view)
+        }
+        formError = {
+          errors: [
+            {
+              formFields: ['search-by-crn'],
+              errorSummaryLinkedField: 'search-by-crn',
+              message: `No person with CRN or prison number ${req.body['search-by-crn']} found`,
+            },
+          ],
+        }
       }
     }
     const presenter = new SearchPresenter(`/`, formError, userInputData)

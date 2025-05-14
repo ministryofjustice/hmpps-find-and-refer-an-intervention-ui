@@ -31,7 +31,7 @@ describe(`temp`, () => {
     return request(app).get('/')
   })
 })
-
+//
 // describe(`GET /searchByCrn`, () => {
 //   it('can load search by crn page', async () => {
 //     return request(app)
@@ -44,7 +44,7 @@ describe(`temp`, () => {
 // })
 //
 // describe(`POST /searchByCrn`, () => {
-//   it('can load search by crn page', async () => {
+//   it('can search by crn', async () => {
 //     const serviceUserDetails = serviceUserDetailsFactory.build()
 //     findAndReferService.getServiceUser.mockResolvedValue(serviceUserDetails)
 //     return request(app)
@@ -54,7 +54,64 @@ describe(`temp`, () => {
 //       })
 //       .expect(200)
 //       .expect(res => {
-//         expect(res.text).toContain(`Search Results`)
+//         expect(res.text).toContain(`Confirm Bob's details`)
+//       })
+//   })
+//
+//   it('can search by prisonId', async () => {
+//     const serviceUserDetails = serviceUserDetailsFactory.build()
+//     findAndReferService.getServiceUser.mockResolvedValue(serviceUserDetails)
+//     return request(app)
+//       .post('/search-service-user-by-crn')
+//       .send({
+//         'search-by-crn': 'A1234AA',
+//       })
+//       .expect(200)
+//       .expect(res => {
+//         expect(res.text).toContain(`Confirm Bob's details`)
+//       })
+//   })
+//
+//   it('displays the correct error message when input format is invalid', async () => {
+//     const serviceUserDetails = serviceUserDetailsFactory.build()
+//     findAndReferService.getServiceUser.mockResolvedValue(serviceUserDetails)
+//     return request(app)
+//       .post('/search-service-user-by-crn')
+//       .send({
+//         'search-by-crn': 'notACrn',
+//       })
+//       .expect(400)
+//       .expect(res => {
+//         expect(res.text).toContain(
+//           `Enter a CRN or prison number in the correct format, like X123456 for a CRN or D0168GH for a prison number`,
+//         )
+//       })
+//   })
+//
+//   it('displays the correct error message when input is empty', async () => {
+//     const serviceUserDetails = serviceUserDetailsFactory.build()
+//     findAndReferService.getServiceUser.mockResolvedValue(serviceUserDetails)
+//     return request(app)
+//       .post('/search-service-user-by-crn')
+//       .send({
+//         'search-by-crn': '',
+//       })
+//       .expect(400)
+//       .expect(res => {
+//         expect(res.text).toContain(`Enter CRN or prison number`)
+//       })
+//   })
+//
+//   it('displays the correct error message when no record is returned', async () => {
+//     findAndReferService.getServiceUser.mockResolvedValue(null)
+//     return request(app)
+//       .post('/search-service-user-by-crn')
+//       .send({
+//         'search-by-crn': 'X123456',
+//       })
+//       .expect(200)
+//       .expect(res => {
+//         expect(res.text).toContain(`No person with CRN or prison number X123456 found`)
 //       })
 //   })
 // })

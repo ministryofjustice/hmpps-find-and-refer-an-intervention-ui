@@ -92,15 +92,17 @@ export default class FindAndReferService {
     })) as CrsInterventionDetails
   }
 
-  async getServiceUser(username: Express.User['username'], crn: Partial<{ crn: string }>): Promise<ServiceUserDetails> {
+  async getServiceUser(
+    username: Express.User['username'],
+    searchTerm: Partial<{ crn: string }> | Partial<{ prisonId: string }>,
+  ): Promise<ServiceUserDetails> {
     const hmppsAuthClient = this.hmppsAuthClientBuilder()
     const systemToken = await hmppsAuthClient.getSystemClientToken(username)
     const restClient = this.createRestClient(systemToken)
-
     return (await restClient.get({
       path: `/service-user`,
       headers: { Accept: 'application/json' },
-      query: { ...crn },
+      query: { ...searchTerm },
     })) as ServiceUserDetails
   }
 }

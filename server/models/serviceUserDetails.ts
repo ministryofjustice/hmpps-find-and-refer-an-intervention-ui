@@ -5,4 +5,5 @@ export default interface ServiceUserDetails {
   gender: string | null
   ethnicity: string | null
   currentPdu: string | null
+  setting: string | null
 }
