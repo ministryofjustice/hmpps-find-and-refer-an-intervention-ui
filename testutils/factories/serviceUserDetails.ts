@@ -8,4 +8,5 @@ export default Factory.define<ServiceUserDetails>(() => ({
   gender: 'Male',
   ethnicity: 'British',
   currentPdu: 'East Sussex',
+  setting: 'Custody',
 }))

@@ -95,4 +95,26 @@ describe('getInterventionsCatalogue', () => {
       query: { page: 0, size: 10, interventionType: ['ACP', 'CRS'], allowsMales: true },
     })
   })
+
+  it('should call getServiceUser with the correct params when a crn is supplied', async () => {
+    await findAndReferService.getServiceUser(username, { crn: 'X123456' })
+    expect(hmppsAuthClientBuilder).toHaveBeenCalled()
+    expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
+    expect(restClientMock.get).toHaveBeenCalledWith({
+      headers: { Accept: 'application/json' },
+      path: '/service-user',
+      query: { crn: 'X123456' },
+    })
+  })
+
+  it('should call getServiceUser with the correct params when a prisonerNumber is supplied', async () => {
+    await findAndReferService.getServiceUser(username, { prisonerNumber: 'A1234AA' })
+    expect(hmppsAuthClientBuilder).toHaveBeenCalled()
+    expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
+    expect(restClientMock.get).toHaveBeenCalledWith({
+      headers: { Accept: 'application/json' },
+      path: '/service-user',
+      query: { prisonerNumber: 'A1234AA' },
+    })
+  })
 })
