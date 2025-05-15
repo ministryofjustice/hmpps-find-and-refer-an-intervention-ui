@@ -49,7 +49,7 @@
           {% for pdu in pdus %}
             {% set rows = (rows.push([
               {
-                html: presenter.generateCommunityRows(presenter.intervention.id, pdu, presenter.intervention.interventionType)
+                html: presenter.generateCommunityRow(presenter.intervention.id, pdu, presenter.intervention.interventionType)
               }
             ]), rows) %}
           {% endfor %}

@@ -1,5 +1,8 @@
-import InterventionPresenter from './interventionPresenter'
+import { randomUUID, UUID } from 'crypto'
 import interventionDetailsFactory from '../../../testutils/factories/interventionDetails'
+import { InterventionType } from '../../models/InterventionCatalogueItem'
+import InterventionDetails, { PDU } from '../../models/InterventionDetails'
+import InterventionPresenter from './interventionPresenter'
 
 describe(`text`, () => {
   it(`returns the title of the intervention for page heading`, async () => {
@@ -338,5 +341,28 @@ describe(`getLocationsInCustodyTableArgs`, () => {
     }
 
     expect(presenter.getLocationsInCustodyTableArgs()).toStrictEqual(expectedResult)
+  })
+})
+
+describe(`generateCommunityRow`, () => {
+  it('For CRS intervention returns a link for a row', async () => {
+    const interventionId: UUID = randomUUID()
+    const interventionDetails: InterventionDetails = interventionDetailsFactory.community().build()
+    const pdu: PDU = { id: 'durham', pduName: 'Durham' }
+    const presenter = new InterventionPresenter('backlink-uri', interventionDetails, 'community')
+    presenter.generateCommunityRow(randomUUID(), pdu, 'CRS' as InterventionType)
+    const expectedResult = `<a href=/crsDetails/${interventionId}/${pdu.id}/community>${pdu.pduName}</a>`
+
+    expect(presenter.generateCommunityRow(interventionId, pdu, 'CRS')).toStrictEqual(expectedResult)
+  })
+  it('For non-CRS intervention return non hyperlinked pdu', async () => {
+    const interventionId: UUID = randomUUID()
+    const interventionDetails: InterventionDetails = interventionDetailsFactory.community().build()
+    const pdu: PDU = { id: 'durham', pduName: 'Durham' }
+    const presenter = new InterventionPresenter('backlink-uri', interventionDetails, 'community')
+    presenter.generateCommunityRow(randomUUID(), pdu, 'ACP' as InterventionType)
+    const expectedResult = pdu.pduName
+
+    expect(presenter.generateCommunityRow(interventionId, pdu, 'ACP')).toStrictEqual(expectedResult)
   })
 })

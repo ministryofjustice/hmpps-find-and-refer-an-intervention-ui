@@ -120,7 +120,7 @@ export default class InterventionPresenter {
     }
   }
 
-  generateCustodyTableRows(locations: CustodyLocation[]) {
+  private generateCustodyTableRows(locations: CustodyLocation[]) {
     const locationRows = []
     locations.forEach(location => {
       locationRows.push([
@@ -138,7 +138,7 @@ export default class InterventionPresenter {
     return locationRows
   }
 
-  generateCommunityRows(interventionId: string, location: PDU, interventionType: InterventionType) {
+  generateCommunityRow(interventionId: string, location: PDU, interventionType: InterventionType) {
     if (interventionType === 'CRS') {
       return `<a href=/crsDetails/${interventionId}/${location.id}/${this.setting}>${location.pduName}</a>`
     }
