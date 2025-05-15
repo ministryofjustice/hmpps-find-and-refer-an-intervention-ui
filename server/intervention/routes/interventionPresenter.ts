@@ -1,8 +1,9 @@
-import { SummaryListItem } from '../../utils/summaryList'
+import { InterventionType } from '../../models/InterventionCatalogueItem'
 import InterventionDetails, { CustodyLocation, PDU } from '../../models/InterventionDetails'
-import InterventionsUtils from '../../utils/interventionUtils'
-import { TableArgs } from '../../utils/govukFrontendTypes'
 import { AvailableInterventionDetailsFields, InterventionDetailsFields } from '../../utils/fieldUtils'
+import { TableArgs } from '../../utils/govukFrontendTypes'
+import InterventionsUtils from '../../utils/interventionUtils'
+import { SummaryListItem } from '../../utils/summaryList'
 
 export default class InterventionPresenter {
   constructor(
@@ -119,7 +120,7 @@ export default class InterventionPresenter {
     }
   }
 
-  generateCustodyTableRows(locations: CustodyLocation[]) {
+  private generateCustodyTableRows(locations: CustodyLocation[]) {
     const locationRows = []
     locations.forEach(location => {
       locationRows.push([
@@ -137,7 +138,10 @@ export default class InterventionPresenter {
     return locationRows
   }
 
-  generateCRSLocationUrl(interventionId: string, location: PDU) {
-    return `<a href=/crsDetails/${interventionId}/${location.id}/${this.setting}>${location.pduName}</a>`
+  generateCommunityRow(interventionId: string, location: PDU, interventionType: InterventionType) {
+    if (interventionType === 'CRS') {
+      return `<a href=/crsDetails/${interventionId}/${location.id}/${this.setting}>${location.pduName}</a>`
+    }
+    return location.pduName
   }
 }

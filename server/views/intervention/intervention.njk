@@ -31,7 +31,7 @@
       {% endif %}
 
       {% if presenter.intervention.sessionDetails %}
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">Session Details</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Session details</h2>
         <p>{{ presenter.intervention.sessionDetails}}</p>
       {% endif %}
 
@@ -49,7 +49,7 @@
           {% for pdu in pdus %}
             {% set rows = (rows.push([
               {
-                html: presenter.generateCRSLocationUrl(presenter.intervention.id, pdu)
+                html: presenter.generateCommunityRow(presenter.intervention.id, pdu, presenter.intervention.interventionType)
               }
             ]), rows) %}
           {% endfor %}
