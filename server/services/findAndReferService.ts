@@ -94,7 +94,7 @@ export default class FindAndReferService {
 
   async getServiceUser(
     username: Express.User['username'],
-    searchTerm: Partial<{ crn: string }> | Partial<{ prisonId: string }>,
+    searchTerm: Partial<{ crn: string }> | Partial<{ prisonerNumber: string }>,
   ): Promise<ServiceUserDetails> {
     const hmppsAuthClient = this.hmppsAuthClientBuilder()
     const systemToken = await hmppsAuthClient.getSystemClientToken(username)

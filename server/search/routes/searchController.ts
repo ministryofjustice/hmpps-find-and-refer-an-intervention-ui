@@ -3,7 +3,7 @@ import FindAndReferService from '../../services/findAndReferService'
 import SearchPresenter from './searchPresenter'
 import ControllerUtils from '../../utils/controllerUtils'
 import SearchView from './searchView'
-import SearchByCrnForm from './searchByCrnForm'
+import SearchByIdentifierForm from './SearchByIdentifierForm'
 import { FormValidationError } from '../../utils/formValidationError'
 import SearchResultsPresenter from './searchResultsPresenter'
 import SearchResultsView from './searchResultsView'
@@ -17,7 +17,7 @@ export default class SearchController {
     let userInputData = null
 
     if (req.method === 'POST') {
-      const data = await new SearchByCrnForm(req).data()
+      const data = await new SearchByIdentifierForm(req).data()
       if (data.error) {
         res.status(400)
         formError = data.error

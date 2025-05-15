@@ -107,14 +107,14 @@ describe('getInterventionsCatalogue', () => {
     })
   })
 
-  it('should call getServiceUser with the correct params when a prisonId is supplied', async () => {
-    await findAndReferService.getServiceUser(username, { prisonId: 'A1234AA' })
+  it('should call getServiceUser with the correct params when a prisonerNumber is supplied', async () => {
+    await findAndReferService.getServiceUser(username, { prisonerNumber: 'A1234AA' })
     expect(hmppsAuthClientBuilder).toHaveBeenCalled()
     expect(hmppsAuthClient.getSystemClientToken).toHaveBeenCalledWith(username)
     expect(restClientMock.get).toHaveBeenCalledWith({
       headers: { Accept: 'application/json' },
       path: '/service-user',
-      query: { prisonId: 'A1234AA' },
+      query: { prisonerNumber: 'A1234AA' },
     })
   })
 })

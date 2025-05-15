@@ -32,10 +32,10 @@ describe(`temp`, () => {
   })
 })
 //
-// describe(`GET /searchByCrn`, () => {
+// describe(`GET /enter-crn-or-prison-number`, () => {
 //   it('can load search by crn page', async () => {
 //     return request(app)
-//       .get('/search-service-user-by-crn')
+//       .get('/enter-crn-or-prison-number')
 //       .expect(200)
 //       .expect(res => {
 //         expect(res.text).toContain(`Enter a CRN or prison number`)
@@ -43,12 +43,12 @@ describe(`temp`, () => {
 //   })
 // })
 //
-// describe(`POST /searchByCrn`, () => {
+// describe(`POST /enter-crn-or-prison-number`, () => {
 //   it('can search by crn', async () => {
 //     const serviceUserDetails = serviceUserDetailsFactory.build()
 //     findAndReferService.getServiceUser.mockResolvedValue(serviceUserDetails)
 //     return request(app)
-//       .post('/search-service-user-by-crn')
+//       .post('/enter-crn-or-prison-number')
 //       .send({
 //         'search-by-crn': 'X123456',
 //       })
@@ -58,11 +58,11 @@ describe(`temp`, () => {
 //       })
 //   })
 //
-//   it('can search by prisonId', async () => {
+//   it('can search by prisonerNumber', async () => {
 //     const serviceUserDetails = serviceUserDetailsFactory.build()
 //     findAndReferService.getServiceUser.mockResolvedValue(serviceUserDetails)
 //     return request(app)
-//       .post('/search-service-user-by-crn')
+//       .post('/enter-crn-or-prison-number')
 //       .send({
 //         'search-by-crn': 'A1234AA',
 //       })
@@ -76,7 +76,7 @@ describe(`temp`, () => {
 //     const serviceUserDetails = serviceUserDetailsFactory.build()
 //     findAndReferService.getServiceUser.mockResolvedValue(serviceUserDetails)
 //     return request(app)
-//       .post('/search-service-user-by-crn')
+//       .post('/enter-crn-or-prison-number')
 //       .send({
 //         'search-by-crn': 'notACrn',
 //       })
@@ -92,7 +92,7 @@ describe(`temp`, () => {
 //     const serviceUserDetails = serviceUserDetailsFactory.build()
 //     findAndReferService.getServiceUser.mockResolvedValue(serviceUserDetails)
 //     return request(app)
-//       .post('/search-service-user-by-crn')
+//       .post('/enter-crn-or-prison-number')
 //       .send({
 //         'search-by-crn': '',
 //       })
@@ -105,7 +105,7 @@ describe(`temp`, () => {
 //   it('displays the correct error message when no record is returned', async () => {
 //     findAndReferService.getServiceUser.mockResolvedValue(null)
 //     return request(app)
-//       .post('/search-service-user-by-crn')
+//       .post('/enter-crn-or-prison-number')
 //       .send({
 //         'search-by-crn': 'X123456',
 //       })
