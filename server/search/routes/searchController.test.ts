@@ -4,7 +4,6 @@ import FindAndReferService from '../../services/findAndReferService'
 import { appWithAllRoutes } from '../../routes/testutils/appSetup'
 import serviceUserDetailsFactory from '../../../testutils/factories/serviceUserDetails'
 import AuditService from '../../services/auditService'
-import HmppsAuditClient from '../../data/hmppsAuditClient'
 
 jest.mock('../../services/findAndReferService')
 jest.mock('../../data/hmppsAuthClient')
