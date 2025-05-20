@@ -10,7 +10,7 @@ describe(`SearchByIdentifierForm`, () => {
         })
         const data = await new SearchByIdentifierForm(request).data()
 
-        expect(data.paramsForUpdate).toEqual({ crn: 'X123456' })
+        expect(data.paramsForUpdate).toEqual('X123456')
       })
     })
 
@@ -21,7 +21,7 @@ describe(`SearchByIdentifierForm`, () => {
         })
         const data = await new SearchByIdentifierForm(request).data()
 
-        expect(data.paramsForUpdate).toEqual({ prisonerNumber: 'A1234AA' })
+        expect(data.paramsForUpdate).toEqual('A1234AA')
       })
     })
 

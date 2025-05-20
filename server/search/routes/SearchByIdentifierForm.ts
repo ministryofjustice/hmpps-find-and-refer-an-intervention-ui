@@ -7,7 +7,7 @@ import errorMessages from '../../utils/errorMessages'
 export default class SearchByIdentifierForm {
   constructor(private readonly request: Request) {}
 
-  async data(): Promise<FormData<Partial<{ crn: string }> | Partial<{ prisonerNumber: string }>>> {
+  async data(): Promise<FormData<string>> {
     const validationResult = await FormUtils.runValidations({
       request: this.request,
       validations: SearchByIdentifierForm.validations,
@@ -20,15 +20,9 @@ export default class SearchByIdentifierForm {
         error,
       }
     }
-    let searchValue: Partial<{ crn: string }> | Partial<{ prisonerNumber: string }> = {
-      crn: this.request.body['search-by-crn'],
-    }
-    if (/^[A-Z]\d{4}[A-Z]{2}$/.test(this.request.body['search-by-crn'])) {
-      searchValue = { prisonerNumber: this.request.body['search-by-crn'] }
-    }
 
     return {
-      paramsForUpdate: searchValue,
+      paramsForUpdate: this.request.body['search-by-crn'],
       error: null,
     }
   }

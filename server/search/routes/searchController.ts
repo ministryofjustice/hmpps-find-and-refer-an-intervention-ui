@@ -7,9 +7,13 @@ import SearchByIdentifierForm from './SearchByIdentifierForm'
 import { FormValidationError } from '../../utils/formValidationError'
 import SearchResultsPresenter from './searchResultsPresenter'
 import SearchResultsView from './searchResultsView'
+import AuditService from '../../services/auditService'
 
 export default class SearchController {
-  constructor(private readonly findAndReferService: FindAndReferService) {}
+  constructor(
+    private readonly findAndReferService: FindAndReferService,
+    private readonly auditService: AuditService,
+  ) {}
 
   async searchByCrn(req: Request, res: Response): Promise<void> {
     const { username } = req.user
@@ -18,6 +22,10 @@ export default class SearchController {
 
     if (req.method === 'POST') {
       const data = await new SearchByIdentifierForm(req).data()
+      await this.auditService.logSearchServiceUser({
+        who: username,
+        details: { identifier: data.paramsForUpdate },
+      })
       if (data.error) {
         res.status(400)
         formError = data.error
