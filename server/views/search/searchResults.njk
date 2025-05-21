@@ -1,20 +1,29 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {% extends "partials/layout.njk" %}
 
-{% set pageTitle = applicationName + " - Search by Crn" %}
-{% set mainClasses = "" %}
+{% set pageTitle = applicationName + " - Search by Crn result" %}
+{% set mainClasses = "intervention-body" %}
 
 {% block content %}
 
 {{ govukBackLink(backLinkArgs) }}
-
+<a class="govuk-link top-right-link" href="/">Go to intervention homepage</a>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l govuk-!-margin-top-8">{{ presenter.text.pageHeading }}</h1>
-      {{presenter.serviceUserDetails}}
+      <h1 class="govuk-heading-l govuk-!-margin-top-8">Confirm {{ presenter.serviceUserDetails.name }}'s details</h1>
+      {{ govukSummaryList(summaryListArgs(presenter.crnDetailsSummaryList())) }}
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          If this information is out of date or incorrect, you must update the information in OASys/NDelius[TBC].
+        </strong>
+      </div>
+      <p class="save-referral-text">This will save the draft referral</p>
+      {{ govukButton({ text: "Continue" }) }}
+      <p class="reset-link"><a class="govuk-link" href="/search-service-user-by-crn">Enter a different identifier</a></p>
     </div>
   </div>
 

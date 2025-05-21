@@ -4,6 +4,10 @@ export enum Page {
   EXAMPLE_PAGE = 'EXAMPLE_PAGE',
 }
 
+enum AuditableUserAction {
+  SEARCH_SERVICE_USER_BY_CRN = 'SEARCH_SERVICE_USER_BY_CRN',
+}
+
 export interface PageViewEventDetails {
   who: string
   subjectId?: string
@@ -17,6 +21,10 @@ export default class AuditService {
 
   async logAuditEvent(event: AuditEvent) {
     await this.hmppsAuditClient.sendMessage(event)
+  }
+
+  async logSearchServiceUser(baseAuditData: PageViewEventDetails) {
+    await this.logAuditEvent({ ...baseAuditData, what: AuditableUserAction.SEARCH_SERVICE_USER_BY_CRN })
   }
 
   async logPageView(page: Page, eventDetails: PageViewEventDetails) {

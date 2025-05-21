@@ -1,16 +1,27 @@
 import TestUtils from '../../../testutils/testUtils'
-import SearchByCrnForm from './searchByCrnForm'
+import SearchByIdentifierForm from './SearchByIdentifierForm'
 
-describe(`SearchByCrnForm`, () => {
+describe(`SearchByIdentifierForm`, () => {
   describe('data', () => {
     describe('when a crn is passed', () => {
       it('returns params for update', async () => {
         const request = TestUtils.createRequest({
           'search-by-crn': 'X123456',
         })
-        const data = await new SearchByCrnForm(request).data()
+        const data = await new SearchByIdentifierForm(request).data()
 
-        expect(data.paramsForUpdate?.crn).toEqual('X123456')
+        expect(data.paramsForUpdate).toEqual('X123456')
+      })
+    })
+
+    describe('when a prisonerNumber is passed', () => {
+      it('returns params for update', async () => {
+        const request = TestUtils.createRequest({
+          'search-by-crn': 'A1234AA',
+        })
+        const data = await new SearchByIdentifierForm(request).data()
+
+        expect(data.paramsForUpdate).toEqual('A1234AA')
       })
     })
 
@@ -19,7 +30,7 @@ describe(`SearchByCrnForm`, () => {
         const request = TestUtils.createRequest({
           'search-by-crn': '',
         })
-        const data = await new SearchByCrnForm(request).data()
+        const data = await new SearchByIdentifierForm(request).data()
 
         expect(data.error?.errors).toContainEqual({
           errorSummaryLinkedField: 'search-by-crn',
@@ -36,7 +47,7 @@ describe(`SearchByCrnForm`, () => {
             'search-by-crn': 'X123',
           },
         })
-        const data = await new SearchByCrnForm(request).data()
+        const data = await new SearchByIdentifierForm(request).data()
 
         expect(data.error?.errors).toContainEqual({
           errorSummaryLinkedField: 'search-by-crn',

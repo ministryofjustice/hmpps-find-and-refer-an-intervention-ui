@@ -17,7 +17,7 @@ export default function routes({ auditService, findAndReferService }: Services):
   const catalogueController = new CatalogueController(findAndReferService)
   const interventionController = new InterventionController(findAndReferService)
   const crsDetailsController = new CrsDetailsController(findAndReferService)
-  // const searchController = new SearchController(findAndReferService)
+  // const searchController = new SearchController(findAndReferService, auditService)
   const testController = new TestController(findAndReferService)
 
   get('/', async (req, res, next) => {
@@ -52,15 +52,15 @@ export default function routes({ auditService, findAndReferService }: Services):
     await crsDetailsController.showCrsDetailsPage(req, res)
   })
 
-  // get('/search-service-user-by-crn', async (req, res, next) => {
+  // get('/enter-crn-or-prison-number', async (req, res, next) => {
   //   await searchController.searchByCrn(req, res)
   // })
   //
-  // post('/search-service-user-by-crn', async (req, res, next) => {
+  // post('/enter-crn-or-prison-number', async (req, res, next) => {
   //   await searchController.searchByCrn(req, res)
   // })
-  //
-  // get('/service-user/crn/:crn', async (req, res, next) => {
+
+  // get('/service-user/find-by-crn-or-prison-number/:crn', async (req, res, next) => {
   //   await searchController.searchResults(req, res)
   // })
 
