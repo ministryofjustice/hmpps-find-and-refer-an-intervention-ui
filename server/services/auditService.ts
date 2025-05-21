@@ -24,7 +24,7 @@ export default class AuditService {
   }
 
   async logSearchServiceUser(baseAuditData: PageViewEventDetails) {
-    return this.logAuditEvent({ ...baseAuditData, what: AuditableUserAction.SEARCH_SERVICE_USER_BY_CRN })
+    await this.logAuditEvent({ ...baseAuditData, what: AuditableUserAction.SEARCH_SERVICE_USER_BY_CRN })
   }
 
   async logPageView(page: Page, eventDetails: PageViewEventDetails) {
