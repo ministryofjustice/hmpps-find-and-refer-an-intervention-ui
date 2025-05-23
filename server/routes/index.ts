@@ -57,11 +57,11 @@ export default function routes({ auditService, findAndReferService }: Services):
   })
 
   get('/enter-crn-or-prison-number', async (req, res, next) => {
-    await searchController.searchByCrn(req, res)
+    await searchController.searchByCrnOrPrisonNumber(req, res)
   })
 
   post('/enter-crn-or-prison-number', async (req, res, next) => {
-    await searchController.searchByCrn(req, res)
+    await searchController.searchByCrnOrPrisonNumber(req, res)
   })
 
   get('/test', async (req, res, next) => {
