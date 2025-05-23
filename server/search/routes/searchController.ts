@@ -15,7 +15,7 @@ export default class SearchController {
     private readonly auditService: AuditService,
   ) {}
 
-  async searchByCrn(req: Request, res: Response): Promise<void> {
+  async searchByCrnOrPrisonNumber(req: Request, res: Response): Promise<void> {
     const { username } = req.user
     let formError: FormValidationError | null = null
     let userInputData = null

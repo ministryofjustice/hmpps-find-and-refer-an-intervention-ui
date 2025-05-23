@@ -19,9 +19,9 @@
       <form method="post">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
         {{ govukInput(searchByCrnInputArgs) }}
-        {{ govukButton({ text: "Continue"}) }}
+        {{ govukButton({ text: "Continue", id:"search-for-service-user"}) }}
       </form>
-      <p><a class="govuk-link" href="/">See a list of all interventions</a></p>
+      <p><a class="govuk-link" href="/interventions">See a list of all interventions</a></p>
 
     </div>
   </div>
