@@ -24,6 +24,19 @@ afterEach(() => {
 })
 
 describe('GET /', () => {
+  it('should render search for service user page', () => {
+    app = appWithAllRoutes({
+      services: {
+        auditService,
+        findAndReferService,
+      },
+      userSupplier: () => nomisUser,
+    })
+    return request(app).get('/').expect(302).expect('Location', '/enter-crn-or-prison-number')
+  })
+})
+
+describe('GET /interventions', () => {
   it('should render custody page for nomis user', () => {
     app = appWithAllRoutes({
       services: {
@@ -37,7 +50,7 @@ describe('GET /', () => {
       .pageContent([interventionCatalogueItem])
       .build() as Page<InterventionCatalogueItem>
     findAndReferService.getInterventionsCatalogue.mockResolvedValue(interventionCatalogueItemPage)
-    return request(app).get('/').expect(302).expect('Location', '/interventions/custody')
+    return request(app).get('/interventions').expect(302).expect('Location', '/interventions/custody')
   })
   it('should render community page for delius user', () => {
     app = appWithAllRoutes({
@@ -52,6 +65,6 @@ describe('GET /', () => {
       .pageContent([interventionCatalogueItem])
       .build() as Page<InterventionCatalogueItem>
     findAndReferService.getInterventionsCatalogue.mockResolvedValue(interventionCatalogueItemPage)
-    return request(app).get('/').expect(302).expect('Location', '/interventions/community')
+    return request(app).get('/interventions').expect(302).expect('Location', '/interventions/community')
   })
 })
