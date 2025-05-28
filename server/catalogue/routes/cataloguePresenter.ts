@@ -240,7 +240,7 @@ export default class CataloguePresenter {
       })
     }
 
-    if (intervention.minAge && intervention.maxAge) {
+    if (fieldsToShow.ageGroup && intervention.minAge && intervention.maxAge) {
       summary.push({
         key: 'Age group',
         lines: [`${intervention.minAge}-${intervention.maxAge}`],
