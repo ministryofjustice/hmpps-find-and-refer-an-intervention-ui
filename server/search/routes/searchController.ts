@@ -8,6 +8,7 @@ import { FormValidationError } from '../../utils/formValidationError'
 import SearchResultsPresenter from './searchResultsPresenter'
 import SearchResultsView from './searchResultsView'
 import AuditService from '../../services/auditService'
+import ServiceUserDetails from '../../models/serviceUserDetails'
 
 export default class SearchController {
   constructor(
@@ -31,7 +32,14 @@ export default class SearchController {
         formError = data.error
         userInputData = req.body
       } else {
-        const serviceUserDetails = await this.findAndReferService.getServiceUser(username, data.paramsForUpdate)
+        let serviceUserDetails: ServiceUserDetails
+        try {
+          serviceUserDetails = await this.findAndReferService.getServiceUser(username, data.paramsForUpdate)
+        } catch (error) {
+          if (error.status !== 404) {
+            throw error
+          }
+        }
         if (serviceUserDetails) {
           const presenter = new SearchResultsPresenter(req.originalUrl, serviceUserDetails)
           const view = new SearchResultsView(presenter)
