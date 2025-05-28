@@ -31,14 +31,17 @@
     {
       "request": {
         "method": "GET",
-        "urlPathPattern": "/person/find/X123456"
+        "urlPath": "/person/find/X123456"
       },
       "response": {
         "status": 404,
         "headers": {
           "Content-Type": "application/json"
         },
-        "jsonBody": {}
+        "jsonBody": {
+          "error": "Not Found",
+          "message": "No person found with identifier X12345"
+        }
       }
     }
   ]
