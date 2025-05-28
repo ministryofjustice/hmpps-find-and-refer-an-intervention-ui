@@ -62,6 +62,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=local
       - POSTGRES_URI=postgres:5432
+      - FIND_AND_REFER_AND_DELIUS_BASEURL=http://wiremock:8080
 
   nomis-user-roles-api:
     image: quay.io/hmpps/nomis-user-roles-api:latest
