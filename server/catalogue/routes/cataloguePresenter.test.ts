@@ -1,9 +1,9 @@
+import interventionCatalogueItemFactory from '../../../testutils/factories/interventionCatalogueItem'
+import pageFactory from '../../../testutils/factories/page'
+import InterventionCatalogueItem from '../../models/InterventionCatalogueItem'
+import { Page } from '../../shared/models/pagination'
 import CatalogueFilter from './catalogueFilter'
 import CataloguePresenter from './cataloguePresenter'
-import { Page } from '../../shared/models/pagination'
-import InterventionCatalogueItem from '../../models/InterventionCatalogueItem'
-import pageFactory from '../../../testutils/factories/page'
-import interventionCatalogueItemFactory from '../../../testutils/factories/interventionCatalogueItem'
 
 describe(`filters.`, () => {
   describe(`intervention type`, () => {
@@ -402,6 +402,14 @@ describe(`interventionSummaryList`, () => {
         listStyle: 0,
       },
       {
+        key: 'Age group',
+        lines: ['18-30'],
+      },
+      {
+        key: 'Time to complete',
+        lines: ['At least 6 Months'],
+      },
+      {
         key: 'Format',
         lines: ['Group'],
       },
@@ -413,7 +421,7 @@ describe(`interventionSummaryList`, () => {
 
     expect(presenter.interventionSummaryList(interventionCatalogueItem)).toStrictEqual(expectedResult)
   })
-  it('returns a summarylist object with the correct data, toolkits, cusotdy', async () => {
+  it('returns a summarylist object with the correct data, toolkits, custody', async () => {
     const filter = {} as CatalogueFilter
     const interventionCatalogueItem = interventionCatalogueItemFactory.TOOLKITS().build()
     const interventionCatalogueItemPage: Page<InterventionCatalogueItem> = pageFactory
@@ -438,6 +446,14 @@ describe(`interventionSummaryList`, () => {
         key: 'Needs',
         lines: ['Thinking, Behaviours and Attitudes'],
         listStyle: 0,
+      },
+      {
+        key: 'Age group',
+        lines: ['18-30'],
+      },
+      {
+        key: 'Time to complete',
+        lines: ['At least 6 Months'],
       },
       {
         key: 'Format',
