@@ -34,6 +34,36 @@
         {% endfor %}
       {% endif %}
 
+      {#  Check nullability of all fields in this eligibility block #}
+      {% if presenter.intervention.interventionType == 'SI' %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Eligibility and suitability criteria</h2>
+        {% if presenter.intervention.criminogenicNeedsScore %}
+          <h3 class="govuk-heading-m govuk-!-margin-top-8">Criminogenic needs score</h3>
+          <p>{{ presenter.intervention.criminogenicNeedsScore }}</p>
+        {% endif %}
+        {% if presenter.intervention.convictedForOffenceType %}
+          <h3 class="govuk-heading-m govuk-!-margin-top-8">Offence type the person must have been convicted for</h3>
+          <p>{{ presenter.intervention.convictedForOffenceType }}</p>
+        {% endif %}
+        {% if presenter.intervention.enablingInterventions %}
+          <h3 class="govuk-heading-m govuk-!-margin-top-8">Required prior interventions</h3>
+          <p>{{ presenter.intervention.enablingInterventions }}</p>
+        {% endif %}
+        {% if presenter.intervention.programmeSuitability %}
+          <h3 class="govuk-heading-m govuk-!-margin-top-8">Suitability for the programme</h3>
+          <p>{{ presenter.intervention.programmeSuitability.convictedForOffenceType }}</p>
+          <p>{{ presenter.intervention.programmeSuitability.victimType }}</p>
+          <p>{{ presenter.intervention.programmeSuitability.minRemainingSentenceDuration }}</p>
+          <p>{{ presenter.intervention.programmeSuitability.remainingLicenseCommunityOrder }}</p>
+          <p>{{ presenter.intervention.programmeSuitability.alcoholDrugProblem }}</p>
+          <p>{{ presenter.intervention.programmeSuitability.mentalHealthProgramme }}</p>
+          <p>{{ presenter.intervention.programmeSuitability.notAllowedIfEligibleForAnotherIntervention }}</p>
+          <p>{{ presenter.intervention.programmeSuitability.literacyLevel }}</p>
+          <p>{{ presenter.intervention.programmeSuitability.other }}</p>
+        {% endif %}
+
+      {% endif %}
+
       {% if presenter.intervention.sessionDetails %}
         <h2 class="govuk-heading-m govuk-!-margin-top-8">Session details</h2>
         <p>{{ presenter.intervention.sessionDetails}}</p>

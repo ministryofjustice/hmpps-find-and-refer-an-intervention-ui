@@ -55,6 +55,13 @@ export default class InterventionPresenter {
       })
     }
 
+    if (fieldsToShow.ageGroup && this.intervention.minAge && this.intervention.maxAge) {
+      summary.push({
+        key: 'Age group',
+        lines: [`${this.intervention.minAge}-${this.intervention.maxAge}`],
+      })
+    }
+
     if (
       fieldsToShow.suitableForPeopleWithLearningDifficulties &&
       this.intervention.suitableForPeopleWithLearningDifficulties

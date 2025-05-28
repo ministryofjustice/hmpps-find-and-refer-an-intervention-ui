@@ -58,6 +58,8 @@ class InterventionDetailsFactory extends Factory<InterventionDetails> {
   SI() {
     return this.params({
       interventionType: 'SI' as InterventionType,
+      criminogenicNeedsScore:
+        'At least 1 of the following 3 OASys criteria needs to be satisfied:* score of 2 on item 11.3 - aggressive behaviour* answer of ‘yes’ to ‘Thinking and behaviour’ being related to risk of serious harm to self or others* answer of ‘yes’ to ‘Attitudes’ being related to risk of serious harm to self or others',
     })
   }
 
@@ -95,4 +97,7 @@ export default InterventionDetailsFactory.define(({ sequence }) => ({
   sessionDetails: 'abc',
   communityLocations: null,
   custodyLocations: null,
+  criminogenicNeedsScore: null,
+  enablingInterventions: null,
+  programmeSuitability: null,
 }))

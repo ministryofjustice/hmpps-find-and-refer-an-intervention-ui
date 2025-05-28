@@ -108,6 +108,10 @@ export type AvailableInterventionDetailsFields = {
   suitableForPeopleWithLearningDifficulties: boolean
   equivalentNonLdcProgramme: boolean
   expectedOutcomes: boolean
+  ageGroup: boolean
+  criminogenicNeedsScore: boolean
+  enablingInterventions: boolean
+  programmeSuitability: boolean
 }
 
 export const InterventionDetailsFields = {
@@ -121,6 +125,10 @@ export const InterventionDetailsFields = {
     attendanceType: true,
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
+    ageGroup: false,
+    criminogenicNeedsScore: false,
+    enablingInterventions: false,
+    programmeSuitability: false,
   } as AvailableInterventionDetailsFields,
   ACP_custody: {
     gender: true,
@@ -132,6 +140,10 @@ export const InterventionDetailsFields = {
     attendanceType: false,
     suitableForPeopleWithLearningDifficulties: true,
     equivalentNonLdcProgramme: true,
+    ageGroup: false,
+    criminogenicNeedsScore: false,
+    enablingInterventions: false,
+    programmeSuitability: false,
   } as AvailableInterventionDetailsFields,
   CRS_community: {
     gender: true,
@@ -144,6 +156,10 @@ export const InterventionDetailsFields = {
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
     expectedOutcomes: true,
+    ageGroup: false,
+    criminogenicNeedsScore: false,
+    enablingInterventions: false,
+    programmeSuitability: false,
   } as AvailableInterventionDetailsFields,
   CRS_custody: {
     gender: true,
@@ -156,6 +172,10 @@ export const InterventionDetailsFields = {
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
     expectedOutcomes: true,
+    ageGroup: false,
+    criminogenicNeedsScore: false,
+    enablingInterventions: false,
+    programmeSuitability: false,
   } as AvailableInterventionDetailsFields,
   SI_community: {
     gender: true,
@@ -167,6 +187,10 @@ export const InterventionDetailsFields = {
     attendanceType: true,
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
+    ageGroup: true,
+    criminogenicNeedsScore: true,
+    enablingInterventions: true,
+    programmeSuitability: true,
   } as AvailableInterventionDetailsFields,
   TOOLKITS_community: {
     gender: true,
@@ -178,6 +202,10 @@ export const InterventionDetailsFields = {
     attendanceType: true,
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
+    ageGroup: false,
+    criminogenicNeedsScore: false,
+    enablingInterventions: false,
+    programmeSuitability: false,
   } as AvailableInterventionDetailsFields,
   TOOLKITS_custody: {
     gender: true,
@@ -189,5 +217,9 @@ export const InterventionDetailsFields = {
     attendanceType: true,
     suitableForPeopleWithLearningDifficulties: false,
     equivalentNonLdcProgramme: false,
+    ageGroup: false,
+    criminogenicNeedsScore: false,
+    enablingInterventions: false,
+    programmeSuitability: false,
   } as AvailableInterventionDetailsFields,
 }
