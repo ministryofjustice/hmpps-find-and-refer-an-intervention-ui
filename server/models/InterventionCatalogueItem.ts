@@ -16,4 +16,6 @@ export default interface InterventionCatalogueItem {
   timeToComplete: string
   suitableForPeopleWithLearningDifficulties: string
   equivalentNonLdcProgramme: string
+  minAge: number
+  maxAge: number
 }

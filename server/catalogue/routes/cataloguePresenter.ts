@@ -1,10 +1,10 @@
 import InterventionCatalogueItem from '../../models/InterventionCatalogueItem'
 import { Page } from '../../shared/models/pagination'
+import { AvailableCatalogueFields, CatalogueFields } from '../../utils/fieldUtils'
+import InterventionsUtils from '../../utils/interventionUtils'
 import Pagination from '../../utils/pagination/pagination'
 import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 import CatalogueFilter from './catalogueFilter'
-import InterventionsUtils from '../../utils/interventionUtils'
-import { AvailableCatalogueFields, CatalogueFields } from '../../utils/fieldUtils'
 
 export default class CataloguePresenter {
   public readonly pagination: Pagination
@@ -237,6 +237,13 @@ export default class CataloguePresenter {
         key: 'Needs',
         lines: [intervention.criminogenicNeeds.join(', ')],
         listStyle: ListStyle.noMarkers,
+      })
+    }
+
+    if (fieldsToShow.ageGroup && intervention.minAge && intervention.maxAge) {
+      summary.push({
+        key: 'Age group',
+        lines: [`${intervention.minAge}-${intervention.maxAge}`],
       })
     }
 
