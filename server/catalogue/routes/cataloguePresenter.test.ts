@@ -364,6 +364,14 @@ describe(`interventionSummaryList`, () => {
         listStyle: 0,
       },
       {
+        key: 'Age group',
+        lines: ['18-30'],
+      },
+      {
+        key: 'Time to complete',
+        lines: ['At least 6 Months'],
+      },
+      {
         key: 'Format',
         lines: ['Group'],
       },
