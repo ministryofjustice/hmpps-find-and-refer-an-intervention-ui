@@ -102,7 +102,6 @@ export default class DateUtils {
   // if the current date is 29/05/2025 and date of birth is 20/04/1984 output will be 1
   static ageMonths(dateOfBirth: string): number {
     const dateOfBirthMoment = moment(dateOfBirth)
-    // dateOfBirthMoment.year(moment().year())
     const years = moment().diff(dateOfBirthMoment, 'year')
     dateOfBirthMoment.add(years, 'years')
     return moment().diff(dateOfBirthMoment, 'months')
