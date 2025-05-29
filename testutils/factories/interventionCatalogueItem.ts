@@ -14,12 +14,16 @@ class InterventionCatalogueItemFactory extends Factory<InterventionCatalogueItem
   SI() {
     return this.params({
       interventionType: 'SI' as InterventionType,
+      minAge: 18,
+      maxAge: 30,
     })
   }
 
   TOOLKITS() {
     return this.params({
       interventionType: 'TOOLKITS' as InterventionType,
+      minAge: 18,
+      maxAge: 30,
     })
   }
 
@@ -48,4 +52,6 @@ export default InterventionCatalogueItemFactory.define(({ sequence }) => ({
   timeToComplete: 'At least 6 Months',
   suitableForPeopleWithLearningDifficulties: 'true',
   equivalentNonLdcProgramme: 'Kaizen',
+  minAge: null,
+  maxAge: null,
 }))

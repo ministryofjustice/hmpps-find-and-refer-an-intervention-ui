@@ -3,6 +3,7 @@ export type AvailableCatalogueFields = {
   type: boolean
   riskCriteria: boolean
   criminogenicNeeds: boolean
+  ageGroup: boolean
   timeToComplete: boolean
   deliveryFormat: boolean
   attendanceType: boolean
@@ -15,6 +16,7 @@ export const CatalogueFields = {
     type: true,
     riskCriteria: true,
     criminogenicNeeds: true,
+    ageGroup: false,
     timeToComplete: true,
     deliveryFormat: true,
     attendanceType: true,
@@ -26,6 +28,7 @@ export const CatalogueFields = {
     type: true,
     riskCriteria: true,
     criminogenicNeeds: false,
+    ageGroup: false,
     timeToComplete: true,
     deliveryFormat: true,
     attendanceType: false,
@@ -37,6 +40,7 @@ export const CatalogueFields = {
     type: true,
     riskCriteria: false,
     criminogenicNeeds: true,
+    ageGroup: false,
     timeToComplete: false,
     deliveryFormat: true,
     attendanceType: true,
@@ -48,6 +52,7 @@ export const CatalogueFields = {
     type: true,
     riskCriteria: false,
     criminogenicNeeds: true,
+    ageGroup: false,
     timeToComplete: false,
     deliveryFormat: true,
     attendanceType: true,
@@ -59,7 +64,8 @@ export const CatalogueFields = {
     type: true,
     riskCriteria: true,
     criminogenicNeeds: true,
-    timeToComplete: false,
+    ageGroup: true,
+    timeToComplete: true,
     deliveryFormat: true,
     attendanceType: true,
     suitableForPeopleWithLearningDifficulties: false,
@@ -70,7 +76,8 @@ export const CatalogueFields = {
     type: true,
     riskCriteria: true,
     criminogenicNeeds: true,
-    timeToComplete: false,
+    ageGroup: true,
+    timeToComplete: true,
     deliveryFormat: true,
     attendanceType: true,
     suitableForPeopleWithLearningDifficulties: false,
@@ -81,7 +88,8 @@ export const CatalogueFields = {
     type: true,
     riskCriteria: true,
     criminogenicNeeds: true,
-    timeToComplete: false,
+    ageGroup: true,
+    timeToComplete: true,
     deliveryFormat: true,
     attendanceType: true,
     suitableForPeopleWithLearningDifficulties: false,
