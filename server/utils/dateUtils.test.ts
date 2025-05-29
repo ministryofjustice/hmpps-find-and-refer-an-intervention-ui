@@ -147,4 +147,24 @@ describe('DateUtils', () => {
       expect(DateUtils.age(birthdate)).toEqual(expectedAge)
     })
   })
+
+  describe('ageMonths', () => {
+    beforeEach(() => {
+      moment.now = jest.fn().mockReturnValue(new Date('2023-07-29T00:00:00.000Z'))
+    })
+
+    afterEach(() => {
+      jest.restoreAllMocks()
+    })
+
+    test.each([
+      ['1981-07-29', 0],
+      ['1992-06-29', 1],
+      ['2000-08-29', 11],
+      ['2005-12-31', 6],
+      ['2022-10-10', 9],
+    ])('calculates month difference correctly for birthdate %s', (birthdate, expectedAge) => {
+      expect(DateUtils.ageMonths(birthdate)).toEqual(expectedAge)
+    })
+  })
 })
