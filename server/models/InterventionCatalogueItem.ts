@@ -10,8 +10,8 @@ export default interface InterventionCatalogueItem {
   allowsMales: boolean
   allowsFemales: boolean
   riskCriteria: string[]
-  attendanceType: string[]
-  deliveryFormat: string[]
+  attendanceType: string
+  deliveryFormat: string
   criminogenicNeeds: string[]
   timeToComplete: string
   suitableForPeopleWithLearningDifficulties: string

@@ -29,8 +29,8 @@ export default interface InterventionDetails {
   suitableForPeopleWithLearningDifficulties?: string
   equivalentNonLdcProgramme?: string
   timeToComplete?: string
-  deliveryFormat: string[]
-  attendanceType: string[]
+  deliveryFormat: string
+  attendanceType: string
   description: string
   sessionDetails?: string
   communityLocations?: CommunityLocation[]
