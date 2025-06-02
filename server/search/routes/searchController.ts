@@ -36,7 +36,27 @@ export default class SearchController {
         try {
           serviceUserDetails = await this.findAndReferService.getServiceUser(username, data.paramsForUpdate)
         } catch (error) {
-          if (error.status !== 404) {
+          if (error.status === 404) {
+            formError = {
+              errors: [
+                {
+                  formFields: ['search-by-crn'],
+                  errorSummaryLinkedField: 'search-by-crn',
+                  message: `No person with CRN or prison number ${req.body['search-by-crn']} found`,
+                },
+              ],
+            }
+          } else if (error.status === 403) {
+            formError = {
+              errors: [
+                {
+                  formFields: ['search-by-crn'],
+                  errorSummaryLinkedField: 'search-by-crn',
+                  message: `You are not authorised to view this person’s details. Either contact your system administrator or enter a different CRN or prison number`,
+                },
+              ],
+            }
+          } else {
             throw error
           }
         }
@@ -44,15 +64,6 @@ export default class SearchController {
           const presenter = new SearchResultsPresenter(req.originalUrl, serviceUserDetails)
           const view = new SearchResultsView(presenter)
           return ControllerUtils.renderWithLayout(res, view)
-        }
-        formError = {
-          errors: [
-            {
-              formFields: ['search-by-crn'],
-              errorSummaryLinkedField: 'search-by-crn',
-              message: `No person with CRN or prison number ${req.body['search-by-crn']} found`,
-            },
-          ],
         }
       }
     }
