@@ -20,7 +20,7 @@
     {
       "request": {
         "method": "GET",
-        "urlPathPattern": "/users/.*/access/X718256"
+        "urlPathPattern": "/users/.*/access/X472241"
       },
       "response": {
         "status": 200,
@@ -28,7 +28,7 @@
           "Content-Type": "application/json"
         },
         "jsonBody": {
-          "crn": "X718256",
+          "crn": "X472241",
           "userExcluded": false,
           "userRestricted": true
         }

@@ -274,14 +274,14 @@ export default class CataloguePresenter {
     if (fieldsToShow.deliveryFormat && intervention.deliveryFormat && intervention.deliveryFormat.length > 0) {
       summary.push({
         key: 'Format',
-        lines: intervention.deliveryFormat,
+        lines: [intervention.deliveryFormat],
       })
     }
 
     if (fieldsToShow.attendanceType && intervention.attendanceType && intervention.attendanceType.length > 0) {
       summary.push({
         key: 'Attendance type',
-        lines: intervention.attendanceType,
+        lines: [intervention.attendanceType],
       })
     }
 
