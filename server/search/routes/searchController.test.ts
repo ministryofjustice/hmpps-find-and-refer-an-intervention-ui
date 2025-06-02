@@ -1,5 +1,6 @@
 import { Express } from 'express'
 import request from 'supertest'
+import createError from 'http-errors'
 import FindAndReferService from '../../services/findAndReferService'
 import { appWithAllRoutes } from '../../routes/testutils/appSetup'
 import serviceUserDetailsFactory from '../../../testutils/factories/serviceUserDetails'
@@ -106,7 +107,7 @@ describe(`POST /enter-crn-or-prison-number`, () => {
   })
 
   it('displays the correct error message when no record is returned', async () => {
-    findAndReferService.getServiceUser.mockResolvedValue(null)
+    findAndReferService.getServiceUser.mockRejectedValue(createError(404))
     return request(app)
       .post('/enter-crn-or-prison-number')
       .send({
@@ -115,6 +116,21 @@ describe(`POST /enter-crn-or-prison-number`, () => {
       .expect(200)
       .expect(res => {
         expect(res.text).toContain(`No person with CRN or prison number X123456 found`)
+      })
+  })
+
+  it('displays the correct error message when user is not authorised', async () => {
+    findAndReferService.getServiceUser.mockRejectedValue(createError(403))
+    return request(app)
+      .post('/enter-crn-or-prison-number')
+      .send({
+        'search-by-crn': 'X123456',
+      })
+      .expect(200)
+      .expect(res => {
+        expect(res.text).toContain(
+          `You are not authorised to view this person’s details. Either contact your system administrator or enter a different CRN or prison number`,
+        )
       })
   })
 })

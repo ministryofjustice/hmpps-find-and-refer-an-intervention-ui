@@ -35,13 +35,17 @@ export default class ViewUtils {
     return message === null || message === undefined ? null : { text: message }
   }
 
-  static govukErrorSummaryArgs(errorSummary: { field: string; message: string }[] | null): ErrorSummaryArgs | null {
+  static govukErrorSummaryArgs(
+    errorSummary: { field: string; message: string }[] | null,
+    classes: string = '',
+  ): ErrorSummaryArgs | null {
     if (errorSummary === null) {
       return null
     }
 
     return {
       titleText: 'There is a problem',
+      classes,
       errorList: errorSummary.map(error => {
         return {
           text: error.message,
