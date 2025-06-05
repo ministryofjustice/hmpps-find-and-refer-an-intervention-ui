@@ -4,7 +4,7 @@ export type DeliveryMethodSetting = 'COMMUNITY' | 'CUSTODY'
 export default interface InterventionCatalogueItem {
   id: string
   title: string
-  description: string
+  description: string[]
   interventionType: InterventionType
   setting: DeliveryMethodSetting[]
   allowsMales: boolean

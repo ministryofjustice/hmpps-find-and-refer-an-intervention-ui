@@ -13,5 +13,5 @@ export default interface CrsInterventionDetails {
   maxAge?: number
   allowsMales: boolean
   allowsFemales: boolean
-  description: string
+  description: string[]
 }

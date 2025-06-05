@@ -40,8 +40,10 @@ export default InterventionCatalogueItemFactory.define(({ sequence }) => ({
   id: sequence.toString(),
   criminogenicNeeds: ['Thinking, Behaviours and Attitudes'],
   title: 'Horizon',
-  description:
-    'Horizon is for men convicted of a sexual or sexually-motivated offence who are medium risk or above. It helps address problematic factors and how they contribute to behaviour.',
+  description: [
+    'Horizon is for men convicted of a sexual or sexually-motivated offence who are medium risk or above. ' +
+      'It helps address problematic factors and how they contribute to behaviour.',
+  ],
   interventionType: 'ACP' as InterventionType,
   setting: ['CUSTODY' as DeliveryMethodSetting],
   allowsMales: true,

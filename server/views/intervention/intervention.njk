@@ -20,8 +20,12 @@
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Criteria</h2>
       {{ govukSummaryList(summaryListArgs(presenter.interventionSummaryList())) }}
 
+
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Description</h2>
-      <p>{{ presenter.intervention.description }}</p>
+      {% for description in presenter.intervention.description %}
+          <p>{{ description }}</p>
+      {% endfor %}
+
 
       {% if presenter.intervention.interventionType == 'CRS' and presenter.intervention.expectedOutcomes %}
         <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes</h2>
