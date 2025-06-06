@@ -1,0 +1,17 @@
+{% extends "../partials/layout.njk" %}
+
+{% set pageTitle = applicationName + " - Error" %}
+{% set mainClasses = "app-container govuk-body" %}
+
+{% block content %}
+
+<h1>Sorry, the service is unavailable</h1>
+<p>You will be able to use the service again from 9am on Monday 19 November 2018</p>
+<p><a href="">Go to Accredited Programmes homepage</a></p>
+<p><a href="">Go to Refer and Monitor an intervention homepage</a></p>
+<p>You can also <a href="">contact the helpline</a> if you need to speak to someone about this service.</p>
+<h1>{{ message }}</h1>
+<h2>{{ status }}</h2>
+<pre>{{ stack }}</pre>
+
+{% endblock %}
