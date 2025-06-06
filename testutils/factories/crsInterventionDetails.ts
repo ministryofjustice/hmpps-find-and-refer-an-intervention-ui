@@ -19,5 +19,5 @@ export default Factory.define<CrsInterventionDetails>(({ sequence }) => ({
   maxAge: null,
   allowsMales: true,
   allowsFemales: true,
-  description: 'Drug and alcohol rehab.',
+  description: ['Drug and alcohol rehab.'],
 }))

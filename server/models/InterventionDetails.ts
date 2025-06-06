@@ -31,7 +31,7 @@ export default interface InterventionDetails {
   timeToComplete?: string
   deliveryFormat: string
   attendanceType: string
-  description: string
+  description: string[]
   sessionDetails?: string
   communityLocations?: CommunityLocation[]
   custodyLocations?: CustodyLocation[]
