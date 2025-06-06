@@ -18,7 +18,7 @@ generic-service:
     FIND_AND_REFER_URL: "https://find-and-refer-intervention-api-dev.hmpps.service.justice.gov.uk"
     TOKEN_VERIFICATION_API_URL: "https://token-verification-api-dev.prison.service.justice.gov.uk"
     ENVIRONMENT_NAME: DEV
-    AUDIT_ENABLED: "false"
+    AUDIT_ENABLED: "true"
 
 generic-prometheus-alerts:
   alertSeverity: NON_PROD_ALERTS_SEVERITY_LABEL
