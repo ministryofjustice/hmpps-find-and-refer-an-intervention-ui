@@ -1,19 +1,26 @@
 import type { Express } from 'express'
 import request from 'supertest'
+import createError from 'http-errors'
 import { appWithAllRoutes } from './routes/testutils/appSetup'
 import FindAndReferService from './services/findAndReferService'
 
 let app: Express
 
 jest.mock('./services/findAndReferService')
-const findAndReferService = new FindAndReferService(null) as jest.Mocked<FindAndReferService>
+jest.mock('./data/hmppsAuthClient')
 
-beforeEach(() => {
-  app = appWithAllRoutes({})
-})
+const hmppsAuthClientBuilder = jest.fn()
+const findAndReferService = new FindAndReferService(hmppsAuthClientBuilder) as jest.Mocked<FindAndReferService>
 
 afterEach(() => {
   jest.resetAllMocks()
+})
+beforeEach(() => {
+  app = appWithAllRoutes({
+    services: {
+      findAndReferService,
+    },
+  })
 })
 
 describe('GET 404', () => {
@@ -49,7 +56,7 @@ describe('GET 500', () => {
       .expect('Content-Type', /html/)
       .expect(res => {
         expect(res.text).toContain('Sorry, there is a problem with the service')
-        expect(res.text).toContain('Cannot read properties of undefined')
+        expect(res.text).toContain('Some problem calling external api!')
       })
   })
 
@@ -61,7 +68,21 @@ describe('GET 500', () => {
       .expect('Content-Type', /html/)
       .expect(res => {
         expect(res.text).toContain('Sorry, there is a problem with the service')
-        expect(res.text).not.toContain('Cannot read properties of undefined')
+        expect(res.text).not.toContain('Some problem calling external api!')
+      })
+  })
+})
+
+describe('GET 503', () => {
+  it('should display correct error when 503 is thrown', () => {
+    findAndReferService.getInterventionsCatalogue.mockRejectedValue(createError(503))
+    return request(app)
+      .get('/interventions/community')
+      .expect(503)
+      .expect('Content-Type', /html/)
+      .expect(res => {
+        expect(res.text).toContain('Sorry, the service is unavailable')
+        expect(res.text).toContain('Service Unavailable')
       })
   })
 })
