@@ -78,14 +78,14 @@ export default class InterventionPresenter {
     if (fieldsToShow.deliveryFormat && this.intervention.deliveryFormat) {
       summary.push({
         key: 'Format',
-        lines: this.intervention.deliveryFormat,
+        lines: [this.intervention.deliveryFormat],
       })
     }
 
     if (fieldsToShow.attendanceType && this.intervention.attendanceType) {
       summary.push({
         key: 'Attendance type',
-        lines: this.intervention.attendanceType,
+        lines: [this.intervention.attendanceType],
       })
     }
     return summary

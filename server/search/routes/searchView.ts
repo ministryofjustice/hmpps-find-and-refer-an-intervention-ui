@@ -30,6 +30,7 @@ export default class SearchView {
         presenter: this.presenter,
         backLinkArgs: this.backLinkArgs,
         searchByCrnInputArgs: this.searchByCrnInputArgs,
+        errorSummary: ViewUtils.govukErrorSummaryArgs(this.presenter.errorSummary, 'search-error-summary'),
       },
     ]
   }

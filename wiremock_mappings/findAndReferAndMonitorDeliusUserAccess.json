@@ -1,0 +1,38 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/users/.*/access/.*"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "crn": "X718255",
+          "userExcluded": false,
+          "userRestricted": false
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/users/.*/access/X472241"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "crn": "X472241",
+          "userExcluded": false,
+          "userRestricted": true
+        }
+      }
+    }
+  ]
+}

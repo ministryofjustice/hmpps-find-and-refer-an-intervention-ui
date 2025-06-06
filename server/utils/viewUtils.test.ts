@@ -78,6 +78,25 @@ describe('ViewUtils', () => {
             { href: '#field-2', text: 'Message 2' },
           ],
           titleText: 'There is a problem',
+          classes: '',
+        })
+      })
+      it('returns an error summary object with a class, suitable to pass to the govukErrorSummary macro', () => {
+        expect(
+          ViewUtils.govukErrorSummaryArgs(
+            [
+              { field: 'field-1', message: 'Message 1' },
+              { field: 'field-2', message: 'Message 2' },
+            ],
+            'my-class',
+          ),
+        ).toEqual({
+          errorList: [
+            { href: '#field-1', text: 'Message 1' },
+            { href: '#field-2', text: 'Message 2' },
+          ],
+          titleText: 'There is a problem',
+          classes: 'my-class',
         })
       })
     })
