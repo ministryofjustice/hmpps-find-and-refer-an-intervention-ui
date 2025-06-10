@@ -30,7 +30,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Time to complete',
@@ -65,7 +66,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Suitable for people with learning disabilities or challenges (LDC)',
@@ -166,7 +168,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Needs',
@@ -201,7 +204,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Needs',
@@ -236,7 +240,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Needs',
@@ -257,7 +262,7 @@ describe(`interventionSummaryList`, () => {
 
   it('returns a summarylist object without optional fields when they are not available', async () => {
     const interventionDetails = interventionDetailsFactory.build({
-      riskCriteria: [],
+      riskCriteria: null,
       suitableForPeopleWithLearningDifficulties: null,
       equivalentNonLdcProgramme: null,
       timeToComplete: null,

@@ -1,4 +1,5 @@
 import { InterventionType } from './InterventionCatalogueItem'
+import RiskCriteria from './RiskCriteria'
 
 export interface PDU {
   id: string
@@ -25,7 +26,7 @@ export default interface InterventionDetails {
   title: string
   minAge?: number
   maxAge?: number
-  riskCriteria?: string[]
+  riskCriteria?: RiskCriteria
   suitableForPeopleWithLearningDifficulties?: string
   equivalentNonLdcProgramme?: string
   timeToComplete?: string

@@ -1,3 +1,5 @@
+import RiskCriteria from '../models/RiskCriteria'
+
 export default class InterventionsUtils {
   static formatGenderText(allowsMale: boolean, allowsFemale: boolean): string {
     if (allowsMale && allowsFemale) {
@@ -19,5 +21,23 @@ export default class InterventionsUtils {
     return InterventionTypes[interventionType.toUpperCase()] !== undefined
       ? InterventionTypes[interventionType.toUpperCase()]
       : ''
+  }
+
+  // The Criminogenic Needs Score (cnScoreGuide) has been excluded from this list as it should not be displayed alongside the risk criteria.
+  static formatRiskCriteriaObject(riskCriteria: RiskCriteria) {
+    const riskList: string[] = [
+      riskCriteria.ovpGuide,
+      riskCriteria.ogrsScoreGuide,
+      riskCriteria.ogpGuide,
+      riskCriteria.ospDcIccCombinationGuide,
+      riskCriteria.ospScoreGuide,
+      riskCriteria.extremismRiskGuide,
+      riskCriteria.saraPartnerScoreGuide,
+      riskCriteria.saraOtherScoreGuide,
+      riskCriteria.pnaGuide,
+      riskCriteria.rsrGuide,
+      riskCriteria.roshLevel?.toString(),
+    ].filter((item): item is string => item !== undefined)
+    return riskList.length > 0 ? riskList : null
   }
 }

@@ -225,11 +225,15 @@ export default class CataloguePresenter {
       },
     ]
 
-    if (fieldsToShow.riskCriteria && intervention.riskCriteria && intervention.riskCriteria.length > 0) {
-      summary.push({
-        key: 'Risk criteria',
-        lines: intervention.riskCriteria,
-      })
+    if (fieldsToShow.riskCriteria && intervention.riskCriteria) {
+      const riskList = InterventionsUtils.formatRiskCriteriaObject(intervention.riskCriteria)
+      if (riskList !== null) {
+        summary.push({
+          key: 'Risk criteria',
+          lines: riskList,
+          listStyle: riskList.length > 1 ? ListStyle.bulleted : undefined,
+        })
+      }
     }
 
     if (fieldsToShow.criminogenicNeeds && intervention.criminogenicNeeds && intervention.criminogenicNeeds.length > 0) {

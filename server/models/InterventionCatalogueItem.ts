@@ -1,3 +1,5 @@
+import RiskCriteria from './RiskCriteria'
+
 export type InterventionType = 'SI' | 'ACP' | 'CRS' | 'TOOLKITS'
 export type DeliveryMethodSetting = 'COMMUNITY' | 'CUSTODY'
 
@@ -9,7 +11,7 @@ export default interface InterventionCatalogueItem {
   setting: DeliveryMethodSetting[]
   allowsMales: boolean
   allowsFemales: boolean
-  riskCriteria: string[]
+  riskCriteria?: RiskCriteria
   attendanceType: string
   deliveryFormat: string
   criminogenicNeeds: string[]
