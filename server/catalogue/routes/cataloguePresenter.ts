@@ -227,7 +227,7 @@ export default class CataloguePresenter {
 
     if (fieldsToShow.riskCriteria && intervention.riskCriteria) {
       const riskList = InterventionsUtils.formatRiskCriteriaObject(intervention.riskCriteria)
-      if (riskList.length !== 0) {
+      if (riskList !== null) {
         summary.push({
           key: 'Risk criteria',
           lines: riskList,

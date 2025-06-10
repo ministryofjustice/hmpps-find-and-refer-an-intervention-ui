@@ -25,7 +25,7 @@ export default class InterventionsUtils {
 
   // The Criminogenic Needs Score (cnScoreGuide) has been excluded from this list as it should not be displayed alongside the risk criteria.
   static formatRiskCriteriaObject(riskCriteria: RiskCriteria) {
-    return [
+    const riskList: string[] = [
       riskCriteria.ovpGuide,
       riskCriteria.ogrsScoreGuide,
       riskCriteria.ogpGuide,
@@ -38,5 +38,6 @@ export default class InterventionsUtils {
       riskCriteria.rsrGuide,
       riskCriteria.roshLevel?.toString(),
     ].filter((item): item is string => item !== undefined)
+    return riskList.length > 0 ? riskList : null
   }
 }

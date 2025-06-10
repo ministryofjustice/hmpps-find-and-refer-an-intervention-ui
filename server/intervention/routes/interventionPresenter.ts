@@ -35,7 +35,7 @@ export default class InterventionPresenter {
 
     if (fieldsToShow.riskCriteria && this.intervention.riskCriteria) {
       const riskList = InterventionsUtils.formatRiskCriteriaObject(this.intervention.riskCriteria)
-      if (riskList.length !== 0) {
+      if (riskList !== null) {
         summary.push({
           key: 'Risk criteria',
           lines: riskList,
