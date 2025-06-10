@@ -3,7 +3,7 @@ import InterventionDetails, { CustodyLocation, PDU } from '../../models/Interven
 import { AvailableInterventionDetailsFields, InterventionDetailsFields } from '../../utils/fieldUtils'
 import { TableArgs } from '../../utils/govukFrontendTypes'
 import InterventionsUtils from '../../utils/interventionUtils'
-import { SummaryListItem } from '../../utils/summaryList'
+import { ListStyle, SummaryListItem } from '../../utils/summaryList'
 
 export default class InterventionPresenter {
   constructor(
@@ -33,11 +33,15 @@ export default class InterventionPresenter {
       },
     ]
 
-    if (fieldsToShow.riskCriteria && this.intervention.riskCriteria && this.intervention.riskCriteria.length > 0) {
-      summary.push({
-        key: 'Risk criteria',
-        lines: this.intervention.riskCriteria,
-      })
+    if (fieldsToShow.riskCriteria && this.intervention.riskCriteria) {
+      const riskList = InterventionsUtils.formatRiskCriteriaObject(this.intervention.riskCriteria)
+      if (riskList.length !== 0) {
+        summary.push({
+          key: 'Risk criteria',
+          lines: riskList,
+          listStyle: riskList.length > 1 ? ListStyle.bulleted : undefined,
+        })
+      }
     }
 
     if (

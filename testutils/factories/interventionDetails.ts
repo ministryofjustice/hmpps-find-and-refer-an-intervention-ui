@@ -80,7 +80,11 @@ export default InterventionDetailsFactory.define(({ sequence }) => ({
   setting: ['CUSTODY'],
   allowsMales: true,
   allowsFemales: false,
-  riskCriteria: ['Medium, high or very high', 'Yes'],
+  riskCriteria: {
+    saraOtherScoreGuide: 'Low risk on SARA',
+    ogrsScoreGuide: 'If OVP not available, then OGRS3: score 25+',
+    ovpGuide: 'OVP: score 20+',
+  },
   attendanceType: 'In Person',
   deliveryFormat: 'Group',
   timeToComplete: 'At least 6 Months',

@@ -201,7 +201,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Needs',
@@ -244,7 +245,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Suitable for people with learning disabilities or challenges (LDC)',
@@ -356,7 +358,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Needs',
@@ -402,7 +405,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Needs',
@@ -448,7 +452,8 @@ describe(`interventionSummaryList`, () => {
       },
       {
         key: 'Risk criteria',
-        lines: ['Medium, high or very high', 'Yes'],
+        lines: ['OVP: score 20+', 'If OVP not available, then OGRS3: score 25+', 'Low risk on SARA'],
+        listStyle: 1,
       },
       {
         key: 'Needs',
