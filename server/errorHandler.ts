@@ -11,13 +11,21 @@ export default function createErrorHandler(production: boolean) {
       return res.redirect('/sign-out')
     }
 
-    res.locals.message = production
-      ? 'Something went wrong. The error has been logged. Please try again'
-      : error.message
+    res.locals.message = production ? null : error.message
     res.locals.status = error.status
     res.locals.stack = production ? null : error.stack
 
     res.status(error.status || 500)
+
+    if (error.status === 404) {
+      logger.info('Page not found')
+      return res.render('pages/not-found-error')
+    }
+
+    if (error.status === 503) {
+      logger.info('Service is unavailable')
+      return res.render('pages/service-unavailable-error')
+    }
 
     return res.render('pages/error')
   }
