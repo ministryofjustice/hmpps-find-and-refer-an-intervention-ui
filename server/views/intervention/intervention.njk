@@ -20,18 +20,49 @@
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Criteria</h2>
       {{ govukSummaryList(summaryListArgs(presenter.interventionSummaryList())) }}
 
-
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Description</h2>
       {% for description in presenter.intervention.description %}
-          <p>{{ description }}</p>
+        <p>{{ description }}</p>
       {% endfor %}
-
 
       {% if presenter.intervention.interventionType == 'CRS' and presenter.intervention.expectedOutcomes %}
         <h2 class="govuk-heading-m govuk-!-margin-top-8">Outcomes</h2>
         {% for outcome in presenter.intervention.expectedOutcomes %}
           <p>{{ outcome }}</p>
         {% endfor %}
+      {% endif %}
+
+      {% if presenter.intervention.interventionType == 'SI' %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Eligibility and suitability criteria</h2>
+
+        {% if presenter.intervention.criminogenicNeedsScore %}
+          <h3 class="govuk-heading-s govuk-!-margin-top-8">Criminogenic needs score</h3>
+          <p>{{ presenter.intervention.criminogenicNeedsScore }}</p>
+        {% endif %}
+
+        {% if presenter.intervention.enablingIntervention and presenter.intervention.enablingIntervention.convictedForOffenceTypeGuide %}
+          <h3 class="govuk-heading-s govuk-!-margin-top-8">Offence type the person must have been convicted for</h3>
+          <p>{{ presenter.intervention.enablingIntervention.convictedForOffenceTypeGuide }}</p>
+        {% endif %}
+
+        {% if presenter.intervention.enablingIntervention and presenter.intervention.enablingIntervention.enablingInterventionDetail %}
+          <h3 class="govuk-heading-s govuk-!-margin-top-8">Required prior interventions</h3>
+          <p>{{ presenter.intervention.enablingIntervention.enablingInterventionDetail }}</p>
+        {% endif %}
+
+        {% if presenter.intervention.exclusion %}
+          <h3 class="govuk-heading-s govuk-!-margin-top-8">Suitability for the programme</h3>
+          <p>{{ presenter.intervention.exclusion.convictedForOffenceTypeGuide }}</p>
+          <p>{{ presenter.intervention.exclusion.victimType }}</p>
+          <p>{{ presenter.intervention.exclusion.minRemainingSentenceDuration }}</p>
+          <p>{{ presenter.intervention.exclusion.remainingLicenseCommunityOrder }}</p>
+          <p>{{ presenter.intervention.exclusion.alcoholDrugProblem }}</p>
+          <p>{{ presenter.intervention.exclusion.mentalHealthProgramme }}</p>
+          <p>{{ presenter.intervention.exclusion.notAllowedIfEligibleForAnotherIntervention }}</p>
+          <p>{{ presenter.intervention.exclusion.literacyLevel }}</p>
+          <p>{{ presenter.intervention.exclusion.other }}</p>
+        {% endif %}
+
       {% endif %}
 
       {% if presenter.intervention.sessionDetails %}
