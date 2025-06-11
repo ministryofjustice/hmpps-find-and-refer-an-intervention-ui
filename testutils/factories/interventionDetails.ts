@@ -99,5 +99,5 @@ export default InterventionDetailsFactory.define(({ sequence }) => ({
   custodyLocations: null,
   criminogenicNeedsScore: null,
   enablingInterventions: null,
-  programmeSuitability: null,
+  exclusion: null,
 }))

@@ -17,7 +17,7 @@ export interface CommunityLocation {
   pdus: PDU[]
 }
 
-export interface ProgrammeSuitability {
+export interface Exclusion {
   minRemainingSentenceDuration?: string
   remainingLicenseCommunityOrder?: string
   alcoholDrugProblem?: string
@@ -27,6 +27,12 @@ export interface ProgrammeSuitability {
   scheduleFrequency?: string
   notAllowedIfEligibleForAnotherIntervention?: string
   literacyLevel?: string
+  convictedForOffenceTypeGuide?: string
+}
+
+export interface EnablingIntervention {
+  enablingInterventionDetail?: string
+  convictedForOffenceTypeGuide?: string
 }
 
 export default interface InterventionDetails {
@@ -50,6 +56,6 @@ export default interface InterventionDetails {
   custodyLocations?: CustodyLocation[]
   expectedOutcomes?: string[]
   criminogenicNeedsScore?: string
-  enablingInterventions?: string[]
-  programmeSuitability?: ProgrammeSuitability
+  enablingIntervention?: EnablingIntervention
+  exclusion?: Exclusion
 }

@@ -111,7 +111,7 @@ export type AvailableInterventionDetailsFields = {
   ageGroup: boolean
   criminogenicNeedsScore: boolean
   enablingInterventions: boolean
-  programmeSuitability: boolean
+  exclusion: boolean
 }
 
 export const InterventionDetailsFields = {
@@ -128,7 +128,7 @@ export const InterventionDetailsFields = {
     ageGroup: false,
     criminogenicNeedsScore: false,
     enablingInterventions: false,
-    programmeSuitability: false,
+    exclusion: false,
   } as AvailableInterventionDetailsFields,
   ACP_custody: {
     gender: true,
@@ -143,7 +143,7 @@ export const InterventionDetailsFields = {
     ageGroup: false,
     criminogenicNeedsScore: false,
     enablingInterventions: false,
-    programmeSuitability: false,
+    exclusion: false,
   } as AvailableInterventionDetailsFields,
   CRS_community: {
     gender: true,
@@ -159,7 +159,7 @@ export const InterventionDetailsFields = {
     ageGroup: false,
     criminogenicNeedsScore: false,
     enablingInterventions: false,
-    programmeSuitability: false,
+    exclusion: false,
   } as AvailableInterventionDetailsFields,
   CRS_custody: {
     gender: true,
@@ -175,7 +175,7 @@ export const InterventionDetailsFields = {
     ageGroup: false,
     criminogenicNeedsScore: false,
     enablingInterventions: false,
-    programmeSuitability: false,
+    exclusion: false,
   } as AvailableInterventionDetailsFields,
   SI_community: {
     gender: true,
@@ -190,7 +190,7 @@ export const InterventionDetailsFields = {
     ageGroup: true,
     criminogenicNeedsScore: true,
     enablingInterventions: true,
-    programmeSuitability: true,
+    exclusion: true,
   } as AvailableInterventionDetailsFields,
   TOOLKITS_community: {
     gender: true,
@@ -205,7 +205,7 @@ export const InterventionDetailsFields = {
     ageGroup: false,
     criminogenicNeedsScore: false,
     enablingInterventions: false,
-    programmeSuitability: false,
+    exclusion: false,
   } as AvailableInterventionDetailsFields,
   TOOLKITS_custody: {
     gender: true,
@@ -220,6 +220,6 @@ export const InterventionDetailsFields = {
     ageGroup: false,
     criminogenicNeedsScore: false,
     enablingInterventions: false,
-    programmeSuitability: false,
+    exclusion: false,
   } as AvailableInterventionDetailsFields,
 }
