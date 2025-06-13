@@ -32,7 +32,7 @@
         {% endfor %}
       {% endif %}
 
-      {% if presenter.intervention.interventionType == 'SI' %}
+      {% if presenter.intervention.interventionType == 'SI' or presenter.intervention.interventionType == 'TOOLKITS' %}
         <h2 class="govuk-heading-m govuk-!-margin-top-8">Eligibility and suitability criteria</h2>
 
         {% if presenter.intervention.criminogenicNeedsScore %}
