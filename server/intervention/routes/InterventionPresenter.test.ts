@@ -216,6 +216,10 @@ describe(`interventionSummaryList`, () => {
         lines: ['Thinking, Behaviours and Attitudes'],
       },
       {
+        key: 'Age group',
+        lines: ['18-30'],
+      },
+      {
         key: 'Format',
         lines: ['Group'],
       },
@@ -250,6 +254,10 @@ describe(`interventionSummaryList`, () => {
       {
         key: 'Needs',
         lines: ['Thinking, Behaviours and Attitudes'],
+      },
+      {
+        key: 'Age group',
+        lines: ['18-30'],
       },
       {
         key: 'Format',
