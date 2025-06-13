@@ -2,6 +2,7 @@ import express from 'express'
 
 import createError from 'http-errors'
 
+import * as Sentry from '@sentry/node'
 import nunjucksSetup from './utils/nunjucksSetup'
 import errorHandler from './errorHandler'
 import { appInsightsMiddleware } from './utils/azureAppInsights'
@@ -19,6 +20,8 @@ import setUpWebSession from './middleware/setUpWebSession'
 import routes from './routes'
 import type { Services } from './services'
 import config from './config'
+import './sentry'
+import sentryMiddleware from './middleware/sentryMiddleware'
 
 declare module 'express-session' {
   export interface SessionData {
@@ -44,11 +47,13 @@ export default function createApp(services: Services): express.Application {
   app.use(authorisationMiddleware(config.allowedRoles, config.allowedAuthSources))
   app.use(setUpCsrf())
   app.use(setUpCurrentUser())
+  app.use(sentryMiddleware())
 
   app.use(routes(services))
 
   app.use((req, res, next) => next(createError(404, 'Not found')))
   app.use(errorHandler(process.env.NODE_ENV === 'production'))
+  if (config.sentry.dsn) Sentry.setupExpressErrorHandler(app)
 
   return app
 }
