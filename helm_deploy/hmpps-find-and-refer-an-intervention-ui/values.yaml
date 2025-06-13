@@ -55,7 +55,9 @@ generic-service:
     sqs-hmpps-audit-secret:
       AUDIT_SQS_QUEUE_URL: 'sqs_queue_url'
       AUDIT_SQS_QUEUE_NAME: 'sqs_queue_name'
-
+    hmpps-find-and-refer-an-intervention-sentry:    
+      SENTRY_DSN: 'SENTRY_DSN'
+  
   allowlist:
     groups:
       - internal
