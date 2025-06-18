@@ -106,6 +106,7 @@ workflows:
             branches:
               only:
                 - main
+          additional_docker_build_args: --secret id=sentry,env=SENTRY_AUTH_TOKEN
       - hmpps/deploy_env:
           name: deploy_dev
           env: 'dev'
