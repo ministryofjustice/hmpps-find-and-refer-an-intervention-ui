@@ -30,6 +30,7 @@ export default function setUpWebSecurity(): Router {
           ],
           styleSrc: ["'self'", (_req: Request, res: Response) => `'nonce-${res.locals.cspNonce}'`],
           fontSrc: ["'self'"],
+          workerSrc: ["'self' blob:"],
           formAction: [`'self' ${config.apis.hmppsAuth.externalUrl}`],
           connectSrc: [
             "'self' https://*.sentry.io https://northeurope-0.in.applicationinsights.azure.com https://js.monitor.azure.com",
