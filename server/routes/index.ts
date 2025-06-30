@@ -1,12 +1,11 @@
 import { type RequestHandler, Router } from 'express'
 
-import asyncMiddleware from '../middleware/asyncMiddleware'
-import type { Services } from '../services'
 import CatalogueController from '../catalogue/routes/catalogueController'
-import TestController from './test/testController'
-import InterventionController from '../intervention/routes/interventionController'
 import CrsDetailsController from '../crsDetails/routes/crsDetailsController'
+import InterventionController from '../intervention/routes/interventionController'
+import asyncMiddleware from '../middleware/asyncMiddleware'
 import SearchController from '../search/routes/searchController'
+import type { Services } from '../services'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function routes({ auditService, findAndReferService }: Services): Router {
@@ -18,7 +17,6 @@ export default function routes({ auditService, findAndReferService }: Services):
   const interventionController = new InterventionController(findAndReferService)
   const crsDetailsController = new CrsDetailsController(findAndReferService)
   const searchController = new SearchController(findAndReferService, auditService)
-  const testController = new TestController(findAndReferService)
 
   get('/', async (req, res, next) => {
     res.redirect('/enter-crn-or-prison-number')
@@ -62,10 +60,6 @@ export default function routes({ auditService, findAndReferService }: Services):
 
   post('/enter-crn-or-prison-number', async (req, res, next) => {
     await searchController.searchByCrnOrPrisonNumber(req, res)
-  })
-
-  get('/test', async (req, res, next) => {
-    await testController.showTestPage(req, res)
   })
 
   return router
