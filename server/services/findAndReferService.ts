@@ -2,17 +2,11 @@ import type { SystemToken } from '@hmpps-auth'
 import config, { ApiConfig } from '../config'
 import type { HmppsAuthClient, RestClientBuilderWithoutToken } from '../data'
 import RestClient from '../data/restClient'
-import { Page } from '../shared/models/pagination'
+import CrsInterventionDetails from '../models/CrsInterventionDetails'
 import InterventionCatalogueItem from '../models/InterventionCatalogueItem'
 import InterventionDetails from '../models/InterventionDetails'
-import CrsInterventionDetails from '../models/CrsInterventionDetails'
 import ServiceUserDetails from '../models/serviceUserDetails'
-
-export interface DummyData {
-  dummyId: number
-  dummyDescription: string
-  dummyDate: string
-}
+import { Page } from '../shared/models/pagination'
 
 export interface PaginationParams {
   // Page number to retrieve -- starts from 1
@@ -35,17 +29,6 @@ export default class FindAndReferService {
 
   createRestClient = (token: Express.User['token'] | SystemToken): RestClient =>
     new RestClient('Find and Refer Service API Client', config.apis.findAndReferService as ApiConfig, token)
-
-  async getDummy(id: string, username: Express.User['username']): Promise<DummyData> {
-    const hmppsAuthClient = this.hmppsAuthClientBuilder()
-    const systemToken = await hmppsAuthClient.getSystemClientToken(username)
-    const restClient = this.createRestClient(systemToken)
-
-    return (await restClient.get({
-      path: `/dummy/${id}`,
-      headers: { Accept: 'application/json' },
-    })) as DummyData
-  }
 
   async getInterventionsCatalogue(
     username: Express.User['username'],
