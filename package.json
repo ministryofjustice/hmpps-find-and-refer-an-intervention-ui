@@ -39,7 +39,7 @@
     "@microsoft/applicationinsights-clickanalytics-js": "^3.3.9",
     "@microsoft/applicationinsights-web": "^3.3.9",
     "@ministryofjustice/frontend": "^5.1.4",
-    "@sentry/node": "^9.34.0",
+    "@sentry/node": "^9.35.0",
     "@types/jsonwebtoken": "^9.0.10",
     "agentkeepalive": "^4.6.0",
     "applicationinsights": "^2.9.7",
