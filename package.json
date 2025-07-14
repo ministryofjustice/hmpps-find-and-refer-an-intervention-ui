@@ -63,7 +63,7 @@
     "nunjucks": "^3.2.4",
     "passport": "^0.7.0",
     "passport-oauth2": "^1.8.0",
-    "redis": "^5.5.6",
+    "redis": "^5.6.0",
     "superagent": "^10.2.1",
     "timezone-support": "^3.1.0"
   },
@@ -77,14 +77,14 @@
     "@types/express-session": "^1.18.2",
     "@types/http-errors": "^2.0.5",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.16.0",
+    "@types/node": "^22.16.2",
     "@types/nunjucks": "^3.2.6",
     "@types/passport": "^1.0.17",
     "@types/passport-oauth2": "^1.8.0",
     "@types/superagent": "^8.1.9",
     "@types/supertest": "^6.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.35.1",
-    "@typescript-eslint/parser": "^8.35.1",
+    "@typescript-eslint/eslint-plugin": "^8.36.0",
+    "@typescript-eslint/parser": "^8.36.0",
     "audit-ci": "^7.1.0",
     "aws-sdk-client-mock": "^4.1.0",
     "chokidar": "^3.6.0",
@@ -117,7 +117,7 @@
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.35.1"
+    "typescript-eslint": "^8.36.0"
   },
   "overrides": {
     "csurf": {
