@@ -63,7 +63,7 @@
     "nunjucks": "^3.2.4",
     "passport": "^0.7.0",
     "passport-oauth2": "^1.8.0",
-    "redis": "^5.6.0",
+    "redis": "^5.6.1",
     "superagent": "^10.2.3",
     "timezone-support": "^3.1.0"
   },
@@ -83,8 +83,8 @@
     "@types/passport-oauth2": "^1.8.0",
     "@types/superagent": "^8.1.9",
     "@types/supertest": "^6.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.37.0",
-    "@typescript-eslint/parser": "^8.37.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
     "audit-ci": "^7.1.0",
     "aws-sdk-client-mock": "^4.1.0",
     "chokidar": "^3.6.0",
@@ -104,7 +104,7 @@
     "fishery": "^2.3.1",
     "glob": "^11.0.3",
     "husky": "^9.1.7",
-    "jest": "^30.0.4",
+    "jest": "^30.0.5",
     "jest-html-reporter": "^4.3.0",
     "jest-junit": "^16.0.0",
     "jsonwebtoken": "^9.0.2",
@@ -113,11 +113,11 @@
     "nock": "^14.0.6",
     "prettier": "^3.6.2",
     "prettier-plugin-jinja-template": "^2.1.0",
-    "supertest": "^7.1.1",
+    "supertest": "^7.1.4",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.37.0"
+    "typescript-eslint": "^8.38.0"
   },
   "overrides": {
     "csurf": {
