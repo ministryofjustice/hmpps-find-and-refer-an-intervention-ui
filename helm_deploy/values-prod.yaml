@@ -12,6 +12,8 @@ generic-service:
     HMPPS_AUTH_URL: "https://sign-in.hmpps.service.justice.gov.uk/auth"
     FIND_AND_REFER_URL: "https://find-and-refer-intervention-api.hmpps.service.justice.gov.uk"
     TOKEN_VERIFICATION_API_URL: "https://token-verification-api.prison.service.justice.gov.uk"
+    REFER_AND_MONITOR_URL: "https://refer-monitor-intervention.service.justice.gov.uk"
+    ACCREDITED_PROGRAMMES_URL: "https://accredited-programmes-manage-and-deliver.hmpps.service.justice.gov.uk/"
     ENVIRONMENT_NAME: PRODUCTION
     AUDIT_ENABLED: "false"
     SENTRY_ENVIRONMENT: PRODUCTION

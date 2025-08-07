@@ -6,6 +6,7 @@ import InterventionController from '../intervention/routes/interventionControlle
 import asyncMiddleware from '../middleware/asyncMiddleware'
 import SearchController from '../search/routes/searchController'
 import type { Services } from '../services'
+import InterventionLandingPageController from '../home/routes/interventionsLandingPageController'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function routes({ auditService, findAndReferService }: Services): Router {
@@ -17,6 +18,7 @@ export default function routes({ auditService, findAndReferService }: Services):
   const interventionController = new InterventionController(findAndReferService)
   const crsDetailsController = new CrsDetailsController(findAndReferService)
   const searchController = new SearchController(findAndReferService, auditService)
+  const interventionLandingPageController = new InterventionLandingPageController()
 
   get('/', async (req, res, next) => {
     res.redirect('/enter-crn-or-prison-number')
@@ -58,7 +60,11 @@ export default function routes({ auditService, findAndReferService }: Services):
     await searchController.searchByCrnOrPrisonNumber(req, res)
   })
 
-  post('/enter-crn-or-prison-number', async (req, res, next) => {
+  get('/interventions-homepage', async (req, res) => {
+    await interventionLandingPageController.showHomePage(req, res)
+  })
+
+  post('/enter-crn-or-prison-number', async (req, res) => {
     await searchController.searchByCrnOrPrisonNumber(req, res)
   })
 
