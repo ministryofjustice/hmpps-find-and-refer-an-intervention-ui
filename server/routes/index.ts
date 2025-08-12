@@ -21,7 +21,7 @@ export default function routes({ auditService, findAndReferService }: Services):
   const interventionLandingPageController = new InterventionLandingPageController()
 
   get('/', async (req, res, next) => {
-    res.redirect('/enter-crn-or-prison-number')
+    res.redirect('/interventions-homepage')
   })
 
   get('/interventions', async (req, res, next) => {

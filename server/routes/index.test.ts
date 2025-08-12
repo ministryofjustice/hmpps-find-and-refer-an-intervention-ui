@@ -32,7 +32,7 @@ describe('GET /', () => {
       },
       userSupplier: () => nomisUser,
     })
-    return request(app).get('/').expect(302).expect('Location', '/enter-crn-or-prison-number')
+    return request(app).get('/').expect(302).expect('Location', '/interventions-homepage')
   })
 })
 
