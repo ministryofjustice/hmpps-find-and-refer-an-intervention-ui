@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@aws-sdk/client-sqs": "^3.882.0",
+    "@aws-sdk/client-sqs": "^3.886.0",
     "@microsoft/applicationinsights-clickanalytics-js": "^3.3.9",
     "@microsoft/applicationinsights-web": "^3.3.9",
     "@ministryofjustice/frontend": "^5.1.5",
@@ -83,8 +83,8 @@
     "@types/passport-oauth2": "^1.8.0",
     "@types/superagent": "^8.1.9",
     "@types/supertest": "^6.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.42.0",
-    "@typescript-eslint/parser": "^8.42.0",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
     "audit-ci": "^7.1.0",
     "aws-sdk-client-mock": "^4.1.0",
     "chokidar": "^3.6.0",
@@ -117,7 +117,7 @@
     "ts-jest": "^29.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.42.0"
+    "typescript-eslint": "^8.43.0"
   },
   "overrides": {
     "csurf": {
