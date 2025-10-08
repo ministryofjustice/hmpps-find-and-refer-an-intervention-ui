@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@aws-sdk/client-sqs": "^3.899.0",
+    "@aws-sdk/client-sqs": "^3.901.0",
     "@microsoft/applicationinsights-clickanalytics-js": "^3.3.10",
     "@microsoft/applicationinsights-web": "^3.3.10",
     "@ministryofjustice/frontend": "^6.0.0",
@@ -63,7 +63,7 @@
     "nunjucks": "^3.2.4",
     "passport": "^0.7.0",
     "passport-oauth2": "^1.8.0",
-    "redis": "^5.8.2",
+    "redis": "^5.8.3",
     "superagent": "^10.2.3",
     "timezone-support": "^3.1.0"
   },
