@@ -22,7 +22,7 @@
     "rebuild": "npm run clean && npm i && npm run build"
   },
   "engines": {
-    "node": "^22",
+    "node": "^22.14",
     "npm": "^10"
   },
   "lint-staged": {
