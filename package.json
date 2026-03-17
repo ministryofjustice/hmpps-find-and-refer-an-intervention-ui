@@ -22,8 +22,8 @@
     "rebuild": "npm run clean && npm i && npm run build"
   },
   "engines": {
-    "node": "^22.14",
-    "npm": "^10"
+    "node": "^24",
+    "npm": "^11"
   },
   "lint-staged": {
     "*.{ts,js,css}": [
@@ -122,6 +122,8 @@
   "overrides": {
     "csurf": {
       "cookie": "1.0.2"
-    }
+    },
+    "diff": "8.0.3",
+    "serialize-javascript": "7.0.4"
   }
 }
