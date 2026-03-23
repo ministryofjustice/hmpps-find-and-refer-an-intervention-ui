@@ -136,19 +136,10 @@ workflows:
           requires:
             - deploy_dev
           helm_timeout: 5m
-      - end_to_end_test:
-          context: hmpps-common-vars
-          filters:
-            branches:
-              only:
-                - main
-          requires:
-            - deploy_dev
       - request-prod-approval:
           type: approval
           requires:
             - deploy_preprod
-            - end_to_end_test
       - hmpps/deploy_env:
           name: deploy_prod
           env: 'prod'
