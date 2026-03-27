@@ -11,7 +11,7 @@ parameters:
     default: find-refer-interventions-dev-notification
   node-version:
     type: string
-    default: 22.14-browsers
+    default: 24.0-browsers
 jobs:
   build:
     executor:
