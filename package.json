@@ -39,7 +39,7 @@
     "@aws-sdk/client-sqs": "^3.1045.0",
     "@microsoft/applicationinsights-clickanalytics-js": "^3.4.1",
     "@microsoft/applicationinsights-web": "^3.4.1",
-    "@ministryofjustice/frontend": "^8.0.1",
+    "@ministryofjustice/frontend": "^9.0.0",
     "@sentry/node": "^10.53.1",
     "@types/jsonwebtoken": "^9.0.10",
     "agentkeepalive": "^4.6.0",
