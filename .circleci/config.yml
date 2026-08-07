@@ -21,7 +21,7 @@ jobs:
       - checkout
       - run:
           name: Update npm
-          command: 'sudo npm install -g npm@latest'
+          command: 'sudo npm install -g npm@^11'
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
@@ -75,7 +75,7 @@ jobs:
   #           git clone https://github.com/ministryofjustice/hmpps-find-and-refer-an-intervention-e2e .
   #     - run:
   #         name: Update npm
-  #         command: 'npm install -g npm@latest'
+  #         command: 'npm install -g npm@^11'
   #     - node/install-packages
   #     - run:
   #         name: Install Playwright

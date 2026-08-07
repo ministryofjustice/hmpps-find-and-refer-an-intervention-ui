@@ -19,4 +19,4 @@ generic-service:
     SENTRY_ENVIRONMENT: PRE-PRODUCTION
 
 generic-prometheus-alerts:
-  alertSeverity: NON_PROD_ALERTS_SEVERITY_LABEL
+  alertSeverity: hmpps_alerts_nonprod
