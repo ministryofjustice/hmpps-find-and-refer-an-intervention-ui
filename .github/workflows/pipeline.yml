@@ -17,6 +17,7 @@ on:
         type: boolean
 permissions:
   contents: read
+  packages: write
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
@@ -50,26 +51,17 @@ jobs:
       environment: ${{ matrix.environments }}
   build:
     name: Build docker image from hmpps-github-actions
-    uses: ministryofjustice/hmpps-github-actions/.github/workflows/docker_build_ecr.yml@v2 # WORKFLOW_VERSION
+    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
+    uses: ministryofjustice/hmpps-github-actions/.github/workflows/docker_build.yml@v2 # WORKFLOW_VERSION
     needs:
       - node_unit_tests
       - check_publish
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
-      attestations: write
     with:
+      docker_registry: 'ghcr.io'
+      registry_org: 'ministryofjustice'
       additional_docker_tag: ${{ inputs.additional_docker_tag }}
-      push: ${{ needs.check_publish.outputs.enabled == 'true' }}
+      push: ${{ github.ref == 'refs/heads/main' }}
       docker_multiplatform: false
-      generate_sbom: ${{ needs.check_publish.outputs.enabled == 'true' }}
-      attach_sbom_to_registry: ${{ needs.check_publish.outputs.enabled == 'true' }}
-      sign_image: ${{ needs.check_publish.outputs.enabled == 'true' }}
-      additional_docker_build_args: --secret id=sentry,env=SENTRY_AUTH_TOKEN
-    secrets:
-      ECR_ROLE_TO_ASSUME: ${{ secrets.ECR_ROLE_TO_ASSUME }}
-    if: github.ref == 'refs/heads/main'
   deploy_dev:
     name: Deploy to the dev environment
     if: github.ref == 'refs/heads/main'
