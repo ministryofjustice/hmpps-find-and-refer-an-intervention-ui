@@ -11,7 +11,7 @@ export default configureAllowedScripts({
    // macOS native file events; standard transitive dependency.
    "node_modules/fsevents@2.3.3": "ALLOW",
    // Protocol Buffers runtime library. Transitive dependency of '@aws-sdk/client-sqs' or 'applicationinsights'. Install script fetches minimal native components — a widely used, reputable package.
-   "node_modules/protobufjs@7.5.4": "ALLOW",
+   "node_modules/protobufjs@7.5.5": "ALLOW",
    // Rust-based Node.js module resolver. Transitive dependency of 'eslint-import-resolver-typescript'. Install script downloads pre-compiled Rust binaries for the target platform — no source compilation or network requests beyond the official release assets.
    "node_modules/unrs-resolver@1.11.1": "ALLOW"
    },
