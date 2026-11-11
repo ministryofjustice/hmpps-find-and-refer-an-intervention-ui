@@ -9,7 +9,7 @@ generic-service:
   replicaCount: 4
 
   image:
-    repository: quay.io/hmpps/hmpps-find-and-refer-an-intervention-ui
+    repository: ghcr.io/ministryofjustice/hmpps-find-and-refer-an-intervention-ui
     tag: app_version # override at deployment time
     port: 3000
 
