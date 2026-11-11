@@ -35,7 +35,7 @@ jobs:
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/node_build.yml@v2 # WORKFLOW_VERSION
     with:
       install_command: 'npm run setup'
-      npm_version: '12'
+      npm_version: '11'
   node_unit_tests:
     name: node unit tests
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/node_unit_tests.yml@v2 # WORKFLOW_VERSION
