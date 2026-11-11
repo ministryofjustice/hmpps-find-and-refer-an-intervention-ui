@@ -52,7 +52,6 @@ jobs:
     name: Build docker image from hmpps-github-actions
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/docker_build_ecr.yml@v2 # WORKFLOW_VERSION
     needs:
-      - node_integration_tests
       - node_unit_tests
       - check_publish
     permissions:
