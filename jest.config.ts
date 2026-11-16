@@ -1,5 +1,6 @@
 import type { Config } from 'jest'
 
+// Run Jest with --experimental-vm-modules so CommonJS tests can load ESM dependencies.
 const config: Config = {
   transform: {
     '^.+\\.tsx?$': [
