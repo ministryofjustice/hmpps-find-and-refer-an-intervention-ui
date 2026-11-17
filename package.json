@@ -35,6 +35,11 @@
       "prettier --write"
     ]
   },
+  "overrides": {
+    "@ministryofjustice/frontend": {
+      "moment": "2.31.0"
+    }
+  },
   "dependencies": {
     "@aws-sdk/client-sqs": "^3.1045.0",
     "@microsoft/applicationinsights-clickanalytics-js": "^3.4.1",
